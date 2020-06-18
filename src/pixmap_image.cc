@@ -27,6 +27,7 @@
 #include <sys/stat.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include <X11/xpm.h>
 #include "main.h"
 #include "pixmap_image.h"
 #include "extra_image.h"
