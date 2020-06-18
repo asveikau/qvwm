@@ -246,9 +246,9 @@ void TaskbarButton::DrawName()
     }
     if (strlen(name) > strlen(shortname)) {
       XRectangle xr[3] =
-	{{TB_MARGIN + SYMBOL_SIZE + 2 + log.width + 2, y - 1, 2, 2},
-         {TB_MARGIN + SYMBOL_SIZE + 2 + log.width + 5, y - 1, 2, 2},
-         {TB_MARGIN + SYMBOL_SIZE + 2 + log.width + 8, y - 1, 2, 2}};
+	{{(short)(TB_MARGIN + SYMBOL_SIZE + 2 + log.width + 2), (short)(y - 1), 2, 2},
+         {(short)(TB_MARGIN + SYMBOL_SIZE + 2 + log.width + 5), (short)(y - 1), 2, 2},
+         {(short)(TB_MARGIN + SYMBOL_SIZE + 2 + log.width + 8), (short)(y - 1), 2, 2}};
 
       XFillRectangles(display, frame, gc, xr, 3);
     }
@@ -261,9 +261,9 @@ void TaskbarButton::DrawName()
 
     if (strlen(name) > strlen(shortname)) {
       XRectangle xr[3] =
-	{{TB_MARGIN + SYMBOL_SIZE + 2 + log.width + 2, y - 2, 1, 2},
-	 {TB_MARGIN + SYMBOL_SIZE + 2 + log.width + 5, y - 2, 1, 2},
-	 {TB_MARGIN + SYMBOL_SIZE + 2 + log.width + 8, y - 2, 1, 2}};
+	{{(short)(TB_MARGIN + SYMBOL_SIZE + 2 + log.width + 2), (short)(y - 2), 1, 2},
+	 {(short)(TB_MARGIN + SYMBOL_SIZE + 2 + log.width + 5), (short)(y - 2), 1, 2},
+	 {(short)(TB_MARGIN + SYMBOL_SIZE + 2 + log.width + 8), (short)(y - 2), 1, 2}};
 
       XFillRectangles(display, frame, gc, xr, 3);
     }

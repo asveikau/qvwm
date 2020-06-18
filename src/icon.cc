@@ -363,9 +363,9 @@ void Icon::DrawText(Drawable d, GC dGc, Rect rect)
 		  str, strlen(str));
     if (strlen(start) > strlen(str)) {
       XRectangle xr[3] = {
-	{rect.x + log.width + 2, rect.y - log.y - 2, 1, 2},
-	{rect.x + log.width + 5, rect.y - log.y - 2, 1, 2},
-	{rect.x + log.width + 8, rect.y - log.y - 2, 1, 2}
+	{(short)(rect.x + log.width + 2), (short)(rect.y - log.y - 2), 1, 2},
+	{(short)(rect.x + log.width + 5), (short)(rect.y - log.y - 2), 1, 2},
+	{(short)(rect.x + log.width + 8), (short)(rect.y - log.y - 2), 1, 2}
       };
 
       XFillRectangles(display, d, dGc, xr, 3);

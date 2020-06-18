@@ -199,9 +199,9 @@ void Qvwm::DrawTitle(Bool focusChange)
 
   if (strlen(name) > strlen(shortname)) {
     XRectangle xr[3] =
-    {{ptTitle.x + log.width + 2, ptTitle.y - 2, 1, 2},
-     {ptTitle.x + log.width + 5, ptTitle.y - 2, 1, 2},
-     {ptTitle.x + log.width + 8, ptTitle.y - 2, 1, 2}};
+    {{(short)(ptTitle.x + log.width + 2), (short)(ptTitle.y - 2), 1, 2},
+     {(short)(ptTitle.x + log.width + 5), (short)(ptTitle.y - 2), 1, 2},
+     {(short)(ptTitle.x + log.width + 8), (short)(ptTitle.y - 2), 1, 2}};
     
     XFillRectangles(display, title, gc, xr, 3);
   }
