@@ -159,7 +159,7 @@ QvImage* QvImage::GetOffsetImage(const Point& pt)
   return img;
 }
 
-void QvImage::OutputError(char* filename)
+void QvImage::OutputError(const char* filename)
 {
   switch (m_error) {
   case IMG_DATA_ERROR:

@@ -65,7 +65,7 @@ public:
 
   virtual QvImage* GetOffsetImage(const Point& pt);
 
-  void OutputError(char* filename);
+  void OutputError(const char* filename);
 
   void SetPreCallback(BasicCallback* cb) { m_cbPre = cb; }
   void SetDisplayCallback(BasicCallback* cb) { m_cbDisp = cb; }
