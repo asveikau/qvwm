@@ -66,7 +66,7 @@ StartMenu::StartMenu(MenuElem* mItem)
     XSaveContext(display, logo, context, (caddr_t)this);
 
   } else {
-    logo = NULL;
+    logo = 0;
   }
 
 
