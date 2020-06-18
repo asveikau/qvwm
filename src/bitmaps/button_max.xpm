@@ -1,5 +1,5 @@
 /* XPM */
-static char *button_max[] = {
+static const char *button_max[] = {
 /* width height num_colors chars_per_pixel */
 "    12    10        2            1",
 /* colors */

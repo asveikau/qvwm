@@ -1,5 +1,5 @@
 /* XPM */
-static char * logo32[] = {
+static const char * logo32[] = {
 "26 32 2 1",
 " 	c None",
 ".	c #D70451",

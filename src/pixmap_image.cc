@@ -44,7 +44,7 @@
 // - " must be the first character of a line
 //
 
-PixmapImage::PixmapImage(char* filename)
+PixmapImage::PixmapImage(const char* filename)
 {
   FILE* fp;
   struct stat st;
@@ -83,7 +83,7 @@ PixmapImage::PixmapImage(char* filename)
   OutputError(filename);
 }
 
-PixmapImage::PixmapImage(char** data)
+PixmapImage::PixmapImage(const char*const* data)
 {
 #ifdef USE_IMLIB
   m_im = NULL;
@@ -92,7 +92,7 @@ PixmapImage::PixmapImage(char** data)
   m_error = CreatePixmap(data);
 }
 
-PixmapImage::PixmapImage(char* raw, int len)
+PixmapImage::PixmapImage(const char* raw, int len)
 {
 #ifdef USE_IMLIB
   m_im = NULL;
@@ -115,7 +115,7 @@ PixmapImage::~PixmapImage()
 #endif  
 }
 
-int PixmapImage::CreateImage(char* raw, int len)
+int PixmapImage::CreateImage(const char* raw, int len)
 {
   char** data;
   int error;
@@ -133,7 +133,7 @@ int PixmapImage::CreateImage(char* raw, int len)
   return error;
 }
 
-int PixmapImage::CreatePixmap(char** data)
+int PixmapImage::CreatePixmap(const char* const* data)
 {
 #ifdef USE_IMLIB
   m_im = Imlib_create_image_from_xpm_data(ExtraImage::m_idImlib, data);
@@ -162,7 +162,7 @@ int PixmapImage::CreatePixmap(char** data)
   attr.colormap = DefaultColormap(display, screen);
   attr.depth = DefaultDepth(display, screen);
 
-  error = XpmCreatePixmapFromData(display, root, data, &m_pix, &m_mask, &attr);
+  error = XpmCreatePixmapFromData(display, root, (char**)data, &m_pix, &m_mask, &attr);
   if (error == XpmSuccess || error == XpmColorError) {
     XGCValues gcv;
     gcv.clip_mask = m_mask;
@@ -184,9 +184,9 @@ int PixmapImage::CreatePixmap(char** data)
 #endif // USE_IMLIB
 }
 
-char** PixmapImage::ParseXpmData(char* raw, int len)
+char** PixmapImage::ParseXpmData(const char* raw, int len)
 {
-  char* ptr;
+  const char* ptr;
   int width, height, num_colors, chars_per_pixel;
   char** data;
   int i, dlen;
@@ -243,9 +243,9 @@ char** PixmapImage::ParseXpmData(char* raw, int len)
 }
 
 // return the next data enclosed with "
-char* PixmapImage::GetNextData(char*& raw, int& len)
+const char* PixmapImage::GetNextData(const char*& raw, int& len)
 {
-  char* ptr;
+  const char* ptr;
 
   while (*raw != '\"' && len > 0) {
     raw++;

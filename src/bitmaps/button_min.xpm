@@ -1,5 +1,5 @@
 /* XPM */
-static char *button_min[] = {
+static const char *button_min[] = {
 /* width height num_colors chars_per_pixel */
 "    12    10        2            1",
 /* colors */

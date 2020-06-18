@@ -632,12 +632,12 @@ void SetGC()
 void CreateCursor()
 {
   Pixmap pixCursor, maskCursor;
-  char* curbits[9] = { cursor_arrow_bits, cursor_size_h_bits,
+  const unsigned char* curbits[9] = { cursor_arrow_bits, cursor_size_h_bits,
 		       cursor_size_v_bits, cursor_size_l_bits,
 		       cursor_size_r_bits, cursor_busy_bits,
 		       cursor_move_bits, cursor_wait_bits,
 		       cursor_no_bits };
-  char* maskbits[9] = { csmask_arrow_bits, csmask_size_h_bits,
+  const unsigned char* maskbits[9] = { csmask_arrow_bits, csmask_size_h_bits,
 			csmask_size_v_bits, csmask_size_l_bits,
 			csmask_size_r_bits, csmask_busy_bits,
 			csmask_move_bits, csmask_wait_bits,
@@ -656,9 +656,9 @@ void CreateCursor()
 		    Point(16, 16), Point(4, 5), Point(17, 17) };
 
   for (int i = 0; i < 9; i++) {
-    pixCursor = XCreateBitmapFromData(display, root, curbits[i],
+    pixCursor = XCreateBitmapFromData(display, root, (char*)curbits[i],
 				      size[i].width, size[i].height);
-    maskCursor = XCreateBitmapFromData(display, root, maskbits[i],
+    maskCursor = XCreateBitmapFromData(display, root, (char*)maskbits[i],
 				       size[i].width, size[i].height);
     cursor[i] = XCreatePixmapCursor(display, pixCursor, maskCursor,
 				    &black, &CursorColor,

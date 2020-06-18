@@ -329,11 +329,11 @@ Bool MappedNotOverride(Window w, long* state)
 
 GC CreateTileGC(Drawable d)
 {
-  char data[] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
+  static const unsigned char data[] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
   Pixmap pattern;
   GC gcTile;
 
-  pattern = XCreateBitmapFromData(display, d, data, 8, 8);
+  pattern = XCreateBitmapFromData(display, d, (char*)data, 8, 8);
 
   gcTile = XCreateGC(display, d, 0, 0);
   XSetFillStyle(display, gcTile, FillStippled);

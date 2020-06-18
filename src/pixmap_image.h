@@ -33,19 +33,19 @@ private:
 #endif
 
 private:
-  int CreateImage(char* raw, int len);
-  int CreatePixmap(char** data);
-  char** ParseXpmData(char* raw, int len);
-  char* GetNextData(char*& raw, int& len);
+  int CreateImage(const char* raw, int len);
+  int CreatePixmap(const char*const* data);
+  char** ParseXpmData(const char* raw, int len);
+  const char* GetNextData(const char*& raw, int& len);
 
 protected:
   ~PixmapImage();
 
 public:
   PixmapImage() {}
-  PixmapImage(char* raw, int len);
-  PixmapImage(char* filename);
-  PixmapImage(char** data);
+  PixmapImage(const char* raw, int len);
+  PixmapImage(const char* filename);
+  PixmapImage(const char*const* data);
 };
 
 #endif // PIXMAP_IMAGE_H_

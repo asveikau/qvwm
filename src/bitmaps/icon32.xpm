@@ -1,5 +1,5 @@
 /* XPM */
-static char *icon32[] = {
+static const char *icon32[] = {
 "    32    32        2            1",
 "  c none s none",
 ". c #FF0000",
