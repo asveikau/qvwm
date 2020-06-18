@@ -1,0 +1,139 @@
+A propos de Qvwm                                           [charset:iso-8859-1]
+================
+Qvwm est un gestionnaire de fenêtres pour X Window à la Windows 95/98/NT. Il
+permet aux utilisateurs familiers de Windows 95/98/NT d'utiliser X Window
+sans hésitation, et aux utilisateurs de X Window d'utiliser Windows 95/98/NT
+sans hésitation.
+
+La raison du nom qvwm est la suivante : le 'q' signifie '9' (même prononciation
+en Japonais et presque la même forme) et 'v' pour '5' (V vaut 5 en chiffres
+romains). Mais qvwm est également "98 Window Manager" car 'v' signifie
+aussi '8' (un 'v' inversé verticalement étant identique au caractère kanji pour
+'8').
+
+La version actuelle est 1.1.12 (Senzoku).
+
+
+Fonctionnalités
+---------------
+- Codé en C++ à partir de zéro ;
+- Internatonalisé sans avoir besoin de patches ;
+- La même apparence que Windows 95/98/NT au pixel près ;
+- Permet de changer de fenêtre avec la fenêtre de changement de tâches
+  (Alt-Tab) ;
+- Permet de placer des indicateurs dans la barre des tâches ;
+- Permet de déplacer et de retailler les fenêtres avec leur contenu visible ;
+- Ecran virtuel (extension par rapport à Windows 95/98/NT) ;
+- Boîte de dialogue en sortie ;
+- Animation des barres de titre à la réduction et à l'aggrandissement des
+  fenêtres.
+- Permet à l'utilisateur d'avoir un fond d'écran et des icônes animées.
+
+
+La dernière version
+-------------------
+La dernière version de qvwm se trouve sur
+
+    http://www.qvwm.org/
+
+Il existe également des miroirs de cette page sur les sites suivants :
+
+U.S.A
+    http://qvwm.kuntrynet.com/qvwm/
+        (Peter Hartman  <hartman@kuntrynet.com>)
+
+Vous pouvez également télécharger qvwm depuis les sites suivants :
+
+Japon
+    ftp://ring.asahi-net.or.jp/pub/X/window_managers/qvwm/
+
+Japon
+    http://www.bkr-lab.utmc.or.jp/software/index.html#QVWM
+        (UTMC Ikebukuro Laboratory)
+         
+
+Rapports de bugs ou questions
+-----------------------------
+Veuillez envoyer vos e-mail à qvwm-support@qvwm.org si vous signalez des
+bugs ou avez des questions à propos de qvwm. Cependant, avant d'envoyer un
+e-mail, lisez BUGS.fr, TODO.fr, FAQ.fr, etc. Les archives des listes de
+diffusion sont également pratiques.
+
+Au cas où qvwm provoque une erreur de segmentation (segmentation fault), vous
+pouvez obtenir le message d'assertion non vérifiée en définissant l'option
+de compilation DEBUG. Même si vous n'obtenez pas de telle erreur, vous pouvez
+déterminer ou qvwm a planté en analysant le core avec gdb. Cette analyse se
+fait ainsi :
+
+  1. Lancez 'gdb {qvwm} {core}' dans le répertoire des sources de qvwm
+     ({qvwm} est le chemin du programme ayant généré le core, et {core}
+     le chemin du core).
+  2. Entrez 'backtrace' à la ligne de commande de gdb.
+
+Veuillez nous contactez si vous avez des besoins particuliers à propos de qvwm.
+
+
+Listes de diffusion
+-------------------
+Nous fournissons une liste de diffusion pour l'échange d'informations (qvwm-e).
+L'Anglais est la seule langue autorisée sur cette liste. Pour participer à cette
+liste, envoyez un mail avec dans le corps du message
+
+	subscribe
+
+à l'adresse
+
+	qvwm-e-ctl@qvwm.org
+
+Nous fournissons également une liste de diffusion pour les utilisateurs
+Japonais (qvwm). Le JAPONAIS et l'Anglais sont les seules langues autorisées sur
+cette liste. Pour participer à cette liste, envoyez un mail avec dans le corps
+du message
+
+	subscribe
+
+à l'adresse
+
+	qvwm-ctl@qvwm.org
+
+
+MISE EN GARDE
+-------------
+Bien que qvwm ait été diffusé officiellement, il peut manquer de stabilité dans
+certains environnements. En utilisant ce programme, vous êtes seul responsable
+de ce qui peut en découler.
+
+
+Remerciements
+-------------
+J'ai reçu beaucoup de patches lors du développement de qvwm par les personnes
+suivantes, que je tiens à remercier :
+
+  Miodrag Vallat        <miodrag@ifrance.com>
+  Byung Yang            <byung@wam.umd.edu>
+  Jun Obama             <george@yk.rim.or.jp>
+  Falk Hueffner         <falk.hueffner@student.uni-tuebingen.de>
+  Toshiyuki Amagasa     <amagasa@dbms.cs.gunma-u.ac.jp>
+  Hajime Morito         <Hajime.Morito@ccsr.cam.ac.uk>
+  Chris Meadors         <cmeadors@acc7.ac.cc.md.us>
+  Mofeed Shahin         <shahin@ist.flinders.edu.au>
+  Osamu Kurati          <kurati@bigfoot.com>
+  Youichiro Koga        <y-koga@w3.mag.keio.ac.jp>
+  Kenji Minoura         <minoru@i21x12.fuis.fukui-u.ac.jp>
+  Don Crimbchin         <djc2@andrew.cmu.edu>
+  Nozomu Kobayashi      <nozomu@ssf.abk.nec.co.jp>
+  Shuichi Oono          <jr5pdx@debian.or.jp>
+  Tamito Kajiyama       <kajiyama@etl.go.jp>
+  Takayuki Kusano       <AE5T-KSN@asahi-net.or.jp>
+  Francois Petitjean    <francois.petitjean@bureauveritas.com>
+  Kasamatsu Kenichi     <camatsu@geocities.co.jp>
+
+Merci aussi à tous ceux qui ont donné des renseignements utiles dans les
+listes de diffusion, etc.
+
+---
+Kenichi Kourai
+kourai@qvwm.org
+
+---
+Traduction par Miodrag Vallat <miodrag@ifrance.com>

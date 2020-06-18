@@ -1,0 +1,392 @@
+;                                                          [charset:iso-8859-1]
+;  italian.qvwmrc
+;
+;    Eseguite qvwm.man per i dettagli.
+;    Tradotto da Antonino Iacono <aiacono@tiscali.it>
+;
+
+[Variables]
+LocaleName		= "it_IT@euro"	; Lingua Italiana
+ImagePath		= "@IMGDIR@"
+SoundPath		= "@SNDDIR@"
+RestartOnFailure	= True		; Riparti in caso di errore
+UseDebugger		= True
+HourGlassTime		= 1000
+ImageAnimation		= True
+
+; Visualizzazione delle finestre
+OpaqueMove		= True		; Muovi per intero
+OpaqueResize		= True		; Ridimensiona per intero
+FullOpaque		= True		; Ridimensiona il contenuto
+ClickToFocus		= True		; Attiva cliccando sulla finestra
+FocusOnMap		= False		 
+ClickingRaises		= True		; Cliccando nell'angolo a sinistra la finestra
+NoDesktopFocus		= True		 
+TitlebarMotion		= True		; Animazione della barra del titolo
+TitlebarMotionSpeed	= 10		; Velocità (lenta -> rapida)
+AutoRaise		= True		; Chiude automaticamente la finestra
+AutoRaiseDelay		= 300		; Tempo per la chiusura automatica (msec)
+UseInfoDisplay		= True
+GradWindowMapStyle	= Normal	; Tipo di animazione per le finestre
+GradWindowMapSpeed	= 10		; Velocità delle animazioni
+MinimizeButtonMessage	= "Rimpicciolisce"
+MaximizeButtonMessage	= "Ingrandisce"
+CloseButtonMessage	= "Chiude"
+RestoreButtonMessage	= "Ritorna"
+
+; Schermo virtuale
+PagingResistance	= 250		; Resistenza dei bordi nel cambiare pagina
+PagingMovement		= 100		; Ampiezza (%) del cambiamento delle pagine
+PagingBeltSize		= 2		; Spazio necessario per cambiare pagina
+TopLeftPage		= -1-1		; Posizione in alto a sinistra della pagina
+PagingSize		= 3x3		; Grandezza dello schermo virtuale
+PagingSpeed		= 5		; Velocità del cambio pagina
+
+; Schermi
+UsePager		= True		; Usa gli schermi virtuali
+PagerGeometry		= 72x72-0-0	; Dimensione e posizione degli schermi
+OnTopPager		= False		; Paginazione sempre visibile
+
+; Barra delle applicazioni
+UseTaskbar		= True		; Usa la barra delle applicazioni
+TaskbarPosition		= Bottom	; Posizione iniziale
+TaskbarRows		= 1		; Righe iniziali
+TaskbarAutoHide		= False		; Nascondi automaticamente
+RestoreMinimize		= True		; Rimpicciolisci cliccando sul bottone
+NoResizeOverTaskbar	= False		; Non soprapponi la barra
+NoFocusChangeMask	= Shift		 
+GradTaskbarMotion	= True		; Nascondi gradatamente
+GradTaskbarMotionSpeed	= 10		; Velocità (lenta -> rapida)
+TaskbarShowDelay	= 0		; Ritardo per l'apertura automatica (ms)
+TaskbarHideDelay	= 500		; Ritardo per la chiusura automatica (ms)
+OnTopTaskbar		= True
+TaskbarButtonInScr	= False
+StartButtonTitle	= "Avvio"	; Testo per il bottone di avvio
+StartButtonMessage	= "Clicca qui per iniziare"
+
+; Orologi
+UseClock		= True
+ClockLocaleName		= "it_IT@euro"
+ClockFormat		= "%R"			; 21:50
+;ClockFormat		= "%l:%M %p"		; 9:50 PM
+;ClockFormat		= "%a %d %b %Y %R"	; Gio 17 Gennaio 2002 21:50
+;ClockFormat		= "%T"			; 21:50:59
+ClockMessageFormat	= "%A %B %e %Y"		; Giovedì 22 Gennaio 2002
+
+; Menu
+MenuDelayTime		= 300		; Tempo di attesa per la visualizzazione
+MenuDelayTime2		= 300		; Tempo di attesa per la sparizione
+GradMenuMap		= True		; Visualizza gradatamente
+GradMenuMapSpeed	= 5		; Velocità (lenta -> rapida)
+
+; Dialogo
+UseExitDialog		= True		; Casella di dialogo in uscita
+UseConfirmDialog	= False		; Casella di dialogo per la conferma
+
+; Trascinamento
+EdgeResistance		= 50		 
+SnappingMove		= 5		 
+SnappingEdges		= 5		 
+NoSnappingMask		= Alt		 
+ShiftMoveRatio		= 4.0		; Moltiplicatore per shift+cursore
+CtrlMoveRatio		= 0.5		; Multiplicatore per ctrl+cursore
+LockDragState		= False		 
+
+; Posizionamento
+SmartPlacement		= True		; Posiziona dentro lo spazio libero
+
+; Doppio click
+DoubleClickTime		= 400		; Ritardo tra i due clicks
+DoubleClickRange	= 5		; Massima distanza tra i 2 clicks
+
+; tooltip
+TooltipDelayTime        = 500
+TooltipMotionSpeed      = 5
+TooltipDisplayTime	= 6000
+
+; screen saver
+ScreenSaver		= "xlock"	; Screen saver program
+ScreenSaverDelay	= 600		; Parte dopo 10 minuti
+
+; suono
+EnableSound		= True		; abilita i suoni
+EnableAlsa		= False		; abilita ALSA (solo per Linux)
+EnableEsd		= False		; abilita EsounD
+
+; Tema
+include			@QVWMDIR@/default.qvwm-theme
+
+
+;**********************************************************************
+; Configurazione d'avvio
+;
+;    Applicazioni che vanno eseguite all'avvio di qvwm.
+;**********************************************************************
+[Startup]
+;"PAGE[1, 0, Navigator] netscape"
+;"PAGE[0, 1, Emacs] emacs"
+
+
+;**********************************************************************
+; Configurazione dei menu
+;    <elemento> <immagine> <azione (eseguibile o funzione interna di qvwm)>
+;    o
+;    <elemento> <immagine>
+;    +
+;        ... (menu figlio)
+;    -
+;
+;    Il terzo parametro può essere un programma, il nome di una funzione
+;    interna (che inizia per QVWM_), o una sotto sezione.
+;    \&? fissa una tasto-scorciatoia '?' per l'elemento del menu.
+;**********************************************************************
+[StartMenu]
+"\&Programmi"		""
++
+	"\&Emacs"	"emacs16.ani"	"emacs"
+	"Xe\&yes"	"xeyes16.ani"	"xeyes"
+	"X\&mag"	""		"xmag"
+	"Xre\&fresh"	""		"xrefresh"
+	"\&Terminali"	""
+	+
+		"\&Xterm"	"xterm16.xpm"	"xterm"
+		"\&Rxvt"	"xterm16.xpm"	"rxvt"
+	-
+	"\&Visualizzatori"	""
+	+
+		"\&Xv"		""		"xv"
+		"\&Ghostview"	""		"ghostview"
+		"X\&dvi"	""		"xdvi"
+		"X\&anim"	""		"xanim"
+		"\&Mpeg_play"	""		"mpeg_play"
+	-
+	"\&Browsers"	""
+	+
+		"\&Mosaic"	""		"xmosaic"
+		"\&Netscape"	"netscape16.ani" "netscape"
+	-
+	"\&Giochi"	""
+	+
+		"\&Maze"	""		"maze"
+		"\&Ico"		""		"ico"
+	-
+	"\&Orologi"	""
+	+
+		"\&Xclock"	""		"xclock"
+		"\&Oclock"	""		"oclock"
+	-
+-
+"Para\&metri"		"setting32.ani"
++
+	"\&Barra delle applicazioni"	"taskbar16.ani"
+	+
+		"In \&basso"	""		QVWM_BOTTOM
+		"In \&alto"	""		QVWM_TOP
+		"A \&sinistra"	""		QVWM_LEFT
+		"A \&destra"	""		QVWM_RIGHT
+	-
+-
+"\&Ricerca"		"find32.ani"	""
+"\&Aiuto"		"help32.xpm"	"xman"
+"\&Esegui"		"run32.ani"	"xterm -geometry 60x1"
+""			""		QVWM_SEPARATOR
+"\&Uscita da qvwm"	"exit32.ani"	QVWM_EXIT
+
+
+;**********************************************************************
+; Configurazione del menu di sistema
+;**********************************************************************
+[CtrlMenu]
+"Rit\&orna"			""		QVWM_RESTORE
+"\&Sposta"			""		QVWM_MOVE
+"Di\&mensione"			""		QVWM_RESIZE
+"\&Riduce"			""		QVWM_MINIMIZE
+"\&Ingrandisce"	  	        ""		QVWM_MAXIMIZE
+"So\&tto"			""		QVWM_LOWER
+""				""		QVWM_SEPARATOR
+"Sempre \&visibile"		""		QVWM_TOGGLE_ONTOP
+"Sempre \&presente"		""		QVWM_TOGGLE_STICKY
+""				""		QVWM_SEPARATOR
+"\&Esci"			""		QVWM_CLOSE
+"Distruggi (kill)"		""		QVWM_KILL
+
+;**********************************************************************
+; Configurazione del menu contestuale del desktop
+;**********************************************************************
+[DesktopMenu]
+"Ri\&carica"		""		"xrefresh"
+"\&Riavvia"		""		QVWM_RESTART
+"twm"			""		"EXEC twm"
+""			""		QVWM_SEPARATOR
+"\&xterm"		"xterm16.xpm"	"xterm"
+""			""		QVWM_SEPARATOR
+"\&Allinea le icone"	""		QVWM_LINEUP_ICON
+"\&Schermi"		""
++
+	"Schermo più \&alto"		""	QVWM_UP_PAGING
+	"Schermo più \&basso"		""	QVWM_DOWN_PAGING
+	"Schermo più a \&sinistra"	""	QVWM_LEFT_PAGING
+	"Schermo più a \&destra"	""	QVWM_RIGHT_PAGING
+-
+""			""		QVWM_SEPARATOR
+"\&Esci da qvwm"	""		QVWM_EXIT
+
+
+;**********************************************************************
+; Configurazione del menu contestuale del tasto destro del mouse
+;**********************************************************************
+[IconMenu]
+"\&Esegui"		""		QVWM_EXEC_ICON
+"\&Cancella"		""		QVWM_DELETE_ICON
+
+
+;**********************************************************************
+; Configurazione del menu contestuale della barra delle applicazioni
+;**********************************************************************
+[TaskbarMenu]
+"\&Sovrapponi"			""	QVWM_OVERLAP
+"Affianca \&orizzontalmente"	""	QVWM_TILE_HORZ
+"Affianca \&verticalmente"	""	QVWM_TILE_VERT
+""				""	QVWM_SEPARATOR
+"\&Riduci tutto"		""	QVWM_MINIMIZE_ALL
+""				""	QVWM_SEPARATOR
+"\&Posizione"			""
++
+	"In \&basso"		""	QVWM_BOTTOM
+	"In \&alto"		""	QVWM_TOP
+	"A \&sinistra"		""	QVWM_LEFT
+	"A \&destra"		""	QVWM_RIGHT
+-
+""				""	QVWM_SEPARATOR
+"\&Nascondi automaticamente"	""	QVWM_TOGGLE_AUTOHIDE
+
+
+;**********************************************************************
+; Configurazione delle scorciatoie
+;    <titolo> <immagine> <eseguibile> [<x>][, <y]
+;      o
+;    <titolo> <immagine> <funzione interna> [<x>][, <y>]
+;
+;    La dimensione dell'immagine è quella dell'icona (32x32 per defaut).
+;
+;    I comandi esterni possono avere i seguenti prefissi:
+;       PAGE[<x>, <y>, <id>] pone la finestra nello schermo (x, y).
+;       L'identificatore <id> è lo stesso della sezione [Indicator].
+;       PAGECUR[<id>] pone la finetra nella stessa pagina da dove si è cliccato.
+;       Questi prefissi sono ugualmenti validi nelle altre sezioni
+;
+;    La posizione x,y è determinata  arbitrariamente. Se x o y comincia per '!', la coordinata
+;    è moltiplicata per la larghezza (o l'altezza) dello spazio occupato
+;    dall'icona.
+;**********************************************************************
+[Shortcuts]
+"Emacs"			"emacs32.ani"	"PAGE[1, 0, Emacs] emacs"
+"Xv"			"xv32.xpm"	"xv"
+"Xterm"			"xterm32.ani"	"xterm"
+"Xeyes"			"xeyes32.ani"	"xeyes"
+"Netscape Navigator"	"netscape32.ani" "PAGECUR[Navigator] netscape"
+"Uscita"			""		QVWM_EXIT
+"Xcalc"			"xcalc32.ani"	"xcalc"		!1, 0
+
+
+;**********************************************************************
+; Configurazione dei tasti-scorciatoia
+;    <tasto> <Alt-Shift-Ctrl> <funzione interna>
+;
+;    Vedi /usr/include/X11/keysymdef.h per i simboli dei tasti.
+;**********************************************************************
+[ShortCutKeys]
+F4		Alt		QVWM_CLOSE
+Escape		Ctrl		QVWM_POPUP_START_MENU
+Escape		Alt		QVWM_CHANGE_WIN
+Escape		Alt|Shift	QVWM_CHANGE_WIN_BACK
+Delete		Alt		QVWM_CHANGE_WIN_INSCR
+Delete		Alt|Shift	QVWM_CHANGE_WIN_BACK_INSCR
+Tab		Alt		QVWM_SWITCH_TASK
+Tab		Alt|Shift	QVWM_SWITCH_TASK_BACK
+space		Alt		QVWM_POPUP_MENU
+Insert		Alt		QVWM_DESKTOP_FOCUS
+BackSpace	Alt		QVWM_POPUP_DESKTOP_MENU
+Left		Ctrl		QVWM_LEFT_PAGING
+Right		Ctrl		QVWM_RIGHT_PAGING
+Up		Ctrl		QVWM_UP_PAGING
+Down		Ctrl		QVWM_DOWN_PAGING
+Up		Ctrl|Alt	QVWM_RAISE
+Down		Ctrl|Alt	QVWM_LOWER
+Return		Alt		QVWM_EXPAND
+Left		Alt		QVWM_EXPAND_LEFT
+Right		Alt		QVWM_EXPAND_RIGHT
+Up		Alt		QVWM_EXPAND_UP
+Down		Alt		QVWM_EXPAND_DOWN
+s		Alt		QVWM_SHOW_TASKBAR
+h		Alt		QVWM_HIDE_TASKBAR
+F1		Alt		"xman"
+;#22		None		QVWM_POPUP_START_MENU
+
+
+;**********************************************************************
+; Configurazione degli attributi delle applicazioni
+;    <applicazione> <attributo,...>
+;
+;    Applicazione è un titolo, o un nome di una classe o di una instanza.
+;     (Vedi i valori WM_NAME o WM_CLASS visualizzati da xprop)
+;    Gli attributi sono :
+;       STICKY: sempre presente
+;       NO_FOCUS: mai attivo
+;       NO_TITLE: niente barra del titolo
+;       NO_BORDER: niente bordi
+;       NO_TBUTTON: nessun bottone sulla barra delle applicazioni
+;       SMALL_PIX: icone piccola (16x16) (per es. per il menu di sistema)
+;       LARGE_PIX: icona grande (32x32) (per es. per Alt-Tab)
+;       CLOSE_SOON: chiusura in corso (in caso di errore)
+;       ONTOP: sempre visibile
+;       INIT_MAXIMIZE: ingrandisci all'avvio
+;       INIT_MINIMIZE: riduci all'avvio
+;**********************************************************************
+[Applications]
+"xbiff"		STICKY, NO_FOCUS
+"console"	STICKY, NO_TITLE
+"Emacs"		SMALL_PIX="emacs16.ani", LARGE_PIX="emacs32.ani"
+"XTerm"		SMALL_PIX="xterm16.xpm", LARGE_PIX="xterm32.ani"
+"Netscape"	SMALL_PIX="netscape16.ani", LARGE_PIX="netscape32.ani"
+"XCalc"		SMALL_PIX="xcalc16.xpm", LARGE_PIX="xcalc32.ani", NO_BORDER_EDGE
+"XEyes"		SMALL_PIX="xeyes16.ani", LARGE_PIX="xeyes32.ani", NO_BORDER
+"xv"		SMALL_PIX="xv16.xpm", LARGE_PIX="xv32.xpm"
+"XClock"	NO_TBUTTON, NO_BORDER_EDGE
+"oclock"	NO_TITLE, NO_BORDER
+"Netscape: subprocess diagnostics (stdout/stderr)"	CLOSE_SOON
+"Netscape Download"	ONTOP
+"desktop_icon"	STICKY, NO_FOCUS, NO_TBUTTON
+"panel"		STICKY, NO_FOCUS, NO_TBUTTON
+
+
+;**********************************************************************
+; Configurazione degli indicatori
+;    <indicatore> <file eseguibile>
+;
+;    Indicatore è il titolo, o il nome o la classe della risorsa
+;    della finestra che indica.
+;**********************************************************************
+[Indicators]
+"xbiff"		"xbiff"
+"XEyes"		"xeyes"
+"xload"		"xload -nolabel -update 5 -bg gray"
+
+
+;**********************************************************************
+; Configurazione della finestra di dialogo dell'uscita
+;    <componente> <testo o immagine> (<azione>)
+;
+;    <Azione> è presente solo per RadioButton, ed è una funzione
+;    interna a qvwm o il nome di un file eseguibile.
+;**********************************************************************
+[ExitDialog]
+Title		"Uscita da qvwm"
+StaticText	"Cosa vuoi fare ?"
+RadioButton	"Uscire da qvwm"	QVWM_EXIT
+RadioButton	"Riavviare qvwm"	QVWM_RESTART
+RadioButton	"Lanciare twm."		"EXEC twm"
+IconImage	"quit32.ani"
+OKButton	"\&Si"
+CancelButton	"\&No"
+HelpButton	"\&Aiuto"

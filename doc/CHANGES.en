@@ -1,0 +1,1097 @@
+Where are changed?
+==================
+
+alpha -> beta1 
+--------------
+1. You can select menu when pushing the Star button.(To select 'Retrieve' still
+   make nothing start.)
+2. Task bar can move to the 4 place.
+3. Right button click on Task bar show menu.
+4. More stabilized than ever.('Quit' button of xv doesn't cause problem.)
+5. Rewritten all code with C++.
+
+beta1 -> beta2
+--------------
+1. Scalable size of the Task bar.
+2. Resource file(.qvwmrc) available.
+3. Colormap changes occur not when the cursor is in the window but when the 
+   window is activated.
+4. Title bar shows pixmaps and title name even when the window minimized or 
+   maximized.
+5. Qvwm doesn't end with xv showing 32x32 picture.
+6. Clock works properly.
+7. Delays in pointing Start menu folder appears.(Left click will show it fast.)
+8. Short cut available.
+9. Qvwm doesn't end with xv overwriteing existing file.
+10. Geometry specify as '-geometry +0+16' work properly.
+11. Pixmaps of application native appears on Control button menu and Task bar
+    button if they are available.
+
+beta2 -> beta3
+--------------
+1. The name on the Task bar button follow to XSetIconName specifies.
+2. 2byte Chinese character and Katakana are available on menus and folders.
+3. Showing menu doesn't let windows activated.
+4. Font configurations are reflected rightly.
+5. Shortcut configuration moved from Desktop section to ShortCut Session.
+6. Click on Control menu button hide control menu it appears.
+7. No system.qvwmrc makes no problems.
+8. Application started from the shortcut or the Start menu don't make zombie
+   when they end.
+9. Window just apearing and disapearing simply doesn't end qvwm.
+10. Short cut key available.
+11. Alt+Tab can select windows.
+12. Move and resize action are available from the Control menu.
+
+beta3 -> beta4
+--------------
+1. Drags of windows with menu button clicked don't cause problem.
+2. Icons movable.
+3. Button responce improved.
+4. Japanese available.(Not on X11R4 or older.)
+5. Dialog box appears at the end of qvwm.
+6. Virtual windows available.
+7. Moving and resizing windows effect not only their frames but their entity.
+
+beta4 -> beta4a
+---------------
+1. The bug is fixed that applications moves a little bit when they show a sub
+   window in the virtual windows.
+2. The mouse cursor pointing at the edge of a window now don't make page 
+   switch repeat.
+3. -f option to specify a configuration file to read in is now work properly.
+4. Resizing a window in the virtual window now doesn't make it moved.
+5. Clicking the mouse when you selected move or resize from menu to be avail-
+   able to move with cursor now doesn't cause freeze.
+
+beta4a -> beta4b
+----------------
+1. Left click on the menu after once the menu are showed now work properly.
+2. Mouse click now don't cause freeze just at the state you let cursor
+   move the window after you select move or resize function from menu.
+   (It really don't fixed though I think the previous patch did that.)
+
+beta4b -> beta4c
+----------------
+1. I fixed the bug of confusion reference and pointer. ( I don't know why
+   it makes no problem with new gcc.)
+
+beta4c -> beta5
+---------------
+1. Ctrl + cursor keys can change virtual windows.
+2. I made an easy pager for virtual windows.
+3. You can configure that the motion of cursor cause change the active window.
+4. You can push the task bar button to jump to the page its window is at.
+5. Window movement at the edge of the screen changes the page.
+6. You can specify attributions for each applications.(STICKKY, NOFOCUS)
+
+beta5 -> beta5a
+---------------
+1. When the focus on the desktop, icons on task switcher now matches properly 
+   to that title.
+2. Now you can use cursor keys on 10 key.
+3. The bug is fixed that shell remain when you run applications from short cut
+   or menus.
+4. I aviod control key unavailable error on Sun type4 keyboard(no cursor key)
+   with SUN_TYPE4 OPTIONS.(I'm still wondering why...)
+
+beta5a -> beta6
+---------------
+1. The bug is fixed so that more than two command line options work properly.
+2. Resize from task bar button at the minimized state now changes the virtual 
+   window properly.
+3. The bug is fixed so that cursor keys work properly on any keyboard.
+4. Unminimize with ALT+TAB of minimized application is now available.
+5. The bug is fixed so that even when ClickToFocus is false, the window that 
+   have never been active is also appear on the task switcher just after qvwm
+   initialization.
+6. The bug is fixed so that non-monocrome pixmaps are specified in the icon  
+   resource of an application now don't let qvwm down.
+7. The bug is fixed so that cursor move or resize windows properly even if 
+   the virtual page is not (0,0).
+8. The bug is fixed so that even when OpaqueMove is False, the lines now don't
+   remain with window movement from page to page.
+9. The bug is fixed so that zombie process don't remain when you quit 2nd
+   more application started from short cut.
+10. The bug is fixed that windows movement while kterm is initializing cause
+    kterm window broken.
+11. Short cut icon with no transparent point now show properly.
+12. Drag window from a virtual window to another now cause change virtual 
+    window properly.
+13. The bug is fixed that drag window from a virtual window to another
+    sometimes changes virtual window twice.
+14. The bug is fixed that drag window to outside of the virtual window cause
+    movement to opposite side of the same screen.
+15. You can customize where to refer pixmaps for icons with system.qvwmrc file.
+16. You can resize a window over virtual windows.
+17. Move and resize of windows with cursor key become more closer to the feel
+    of that in Windows95.
+18. Master window doesn't hide slave window such as dialog.
+19. Minimize of the master window cause minimize of that slave window.
+20. The bug is fixed that you can't minimize mule with ^Z more after 2nd times.
+21. Less blink when restart.
+22. You can use not only class name or instance name but also title name of the
+    resource when you set STICY or other.
+23. You can see and move little window on pager.
+24. The bug is fixed that taskbar movement sometimes hide windows with 
+    STICY attribute.
+25. The bug is fixed that taskbar movement reset the effect of pager movement.
+26. The most are changed in the way of configuration file.
+27. You can customize the exit dialog.
+28. You can show menu with right click on the desktop.
+
+beta6 -> beta6a
+---------------
+1. Taskbar button now don't remain when application destroy its window on
+   the screen.
+2. Taskbar button now don't cause 'Segmentation fault'.
+3. Xlib now don't say 'unexpected async reply' error to hang up.
+
+
+...under translation...
+
+
+beta6g -> beta7
+---------------
+1. The bug is fixed that the value of PagingResistance refrect correctly
+   in some environment.
+2. The bug is fixed that shortcut isn't selected when you click it after
+   restarting.
+3. You can use 12 hours for the clock on taskbar. (Clock12Hours)
+4. Transparent windows (e.g. xeyes) are displayed transparently.
+5. Supports XFree86 on OS/2.
+6. You can specify the initial position of shortcuts in configuration file.
+7. The string of the start button is displayed completely, even if it is
+   too long.
+8. You can specify the initial taskbar size in configuration file.
+9. The bug is fixed that the start menu is displayed in wrong position when
+   the taskbar locates to the top and is more than 2 rows.
+10. Adds 3 attributes, that is, no border (NOBORDER), no title (NOTITLE) and
+    no taskbar button (NOTBUTTON).
+11. Mini windows with STICKY attribute in pager move when you switch virtual
+    page.
+12. The bug is fixed that the shortcut you are moving sometimes erase other
+    shortcuts.
+13. The bug is fixed that windows with STICKY attributes go to incorrect
+    location when you exit qvwm.
+
+beta7 -> beta7a
+---------------
+1. The bug is fixed that a window with STICKY vanish when it gets focus
+   in other than the screen you run qvwm first. (e.g. xpbiff, emiclock)
+2. The bug is fixed that qvwm fleezes, when you select "move" in the menu
+   from right-clicking taskbar button and click the other window not to
+   correspond to the taskbar button.
+3. The bug is fixed that qvwm exits by alt+tab, when you compile qvwm with 
+   DEBUG option.
+
+beta7a -> beta7b
+----------------
+1. The bug is fixed that 0am appears instead of 12am when 12 hours-clock is 
+   used.
+2. The bug is fixed that qvwm freezes if you click the other windows when 
+   exit exit dialog is exposed.
+3. The bug is fixed that error occurs if you narrow the width or height of 
+   window to some extent when UsePager is True.
+4. The bug is fixed that the newly opened window does not become active when
+   ClickToFocus is True.
+5. The bug is fixed that qvwm jumps to the screen (0, 0) when you move or
+   resize taskbar.
+6. The bug is fixed that the window moves when you continue to minimize or
+   maximize for the window specified the geometry with '-'.
+7. The bug is fixed that the cascade menu vanishes if mouse cursor enters
+   the logo part (dark gray) from the item part (light gray) in start menu
+   when the cascade menu is exposed.
+8. The size of the clock in taskbar changes according to the format of the
+   clock.
+9. The automatic placement policy is intelligent.
+10. The behavior after selecting move or resize in a menu comes near Windows
+    95. (Once you move the window with cursor key, you can move it by moving 
+    the mouse.)
+11. Qvwm does not exit when it fails to parse the configuration file.
+12. Some variables can take the value 0. (e.g. TitlebarMotionSpeed,
+    PagingBeltSize)
+13. The bug is fixed that the line number of error is wrong when qvwm reads
+    the configuration file more than twice.
+14. Qvwm can handle the window whose initial state is IconicState properly.
+
+beta7b -> beta7c
+----------------
+1. The bug is fixed that the string of taskbar button does not change when 
+   the icon name changes. (e.g. Netscape)
+2. The bug is fixed that the opened window is always activated when 
+   ClickToFocus is False.
+3. The bug is fixed that the unmapped windows are visible when qvwm is exited.
+4. On restart, qvwm itself (not only configuration file) is reread.
+5. Qvwm can parse the configuration file properly if you correct and restart,
+   when qvwm fails to parse the file.
+6. On restart, the size of qvwm slightly increases.
+7. You can run another window manager from qvwm.
+8. The bug is fixed that qvwm sometimes crashes when the class name and 
+   instance name of the resource are not set.
+
+beta7c -> beta7d
+----------------
+1. The bug is fixed that a window does not raise automatically when
+   AutoRaiseDelay is over 1000.
+2. The bug is fixed that a window rases up the task switcher if you use
+   the task switcher just before the window raises automatically.
+3. The bug is fixed that you cannot manipulate the control menu.
+4. The bug is fixed that a descendant menu vanishes when the mouse cursor 
+   leaves out of the parent menu.
+5. Not only the popup but also the popdown of a child menu is delayed.
+6. You can configure the delay of a child menu when another child menu has
+   been already shown.
+7. The bug is fixed that some windows are sometimes located to the different
+   position from right position.
+8. The bug is fixed that the change of a window's location does not be 
+   notified to the application when the taskbar is moved or resized.
+   
+beta7d -> beta8
+---------------
+1. You can configure shortcut keys.
+2. The desktop menu is located to the point of mouse cursor, when you open
+   the menu with a shortcut key.
+3. The bug is fixed that qvwm crashes when you operate a menu with cursor
+   keys.
+4. The bug is fixed that the integration of a menu is lost, when you select
+   an item of the menu with mouse, then move the focus to another item, and
+   then click the first item that isn't selected now with mouse.
+5. In the above state, the menu has the focus when you move mouse.
+6. A menu is shown when you right-click a shortcut icon.
+7. You can put indicators on the left of the clock of the taskbar.
+8. The bug is fixed that qvwm crashes when you locate the taskbar to left or
+   right, and then narrow the width.
+
+beta8 -> beta8a
+---------------
+1. The bug is fixed that a taskbar button is on the taskbar box.
+2. The bug is fixed that the windows that have never been activate don't show
+   in the task switcher.
+3. The bug is fixed that shortcut keys are of no effect on CapsLock.
+
+beta8a -> beta8b
+----------------
+1. The bug is fixed that the location of the clock is wrong when the taskbar
+   is located on the left or right.
+2. The bug is fixed that the delayed child menu sometimes leaves on the
+   screen.
+3. The bug is fixed that qvwm fleezes when a minimized window is restored
+   to original size by the program.
+4. Darken the screen when the exit dialog is displayed.
+5. The bug is fixed that start menu vanishes if you move mouse on start menu.
+
+beta8b -> beta8c
+----------------
+1. The bug is fixed that qvwm crashes when a title or icon name is set to
+   null.
+2. Qvwm uses the title name as the taskbar button name when the icon name
+   is set to null.
+3. The bug is fixed that a taskbar button are over indicators when there
+   are many windows at start.
+4. The bug is fixed that a shortcut remains active when ClickToFocus is True
+   and you clicks the desktop.
+5. The bug is fixed that a window moves when you try expanding or shrinking
+   the window with the top or left border beyond max or min size specified
+   by the application.
+6. Qvwm can trace stack when qvwm crashes, if you compile it with DEBUG
+   option.
+
+beta8c -> beta8d
+----------------
+1. The bug is fixed that qvwm sometimes crashes due to applications
+   with transient windows.
+2. The bug is fixed that the virtual screen is inconsistent when you
+   set positive coordinates to TopLeftPage.
+3. The bug is fixed that a window is resized when you press button
+   outside the window and move mouse on the frame of the window.
+4. The bug is fixed that a window enlarge enormously when you shrink
+   the window.
+5. The bug is fixed that a window is moved when you shrink the window
+   from the top or left side.
+6. Diminishes the amount of redraw when OpaqueMove is True and you
+   resize windows.
+7. The bug is fixed that the focus of last submenu vanishes when mouse 
+   cursor leaves the submenu.
+8. An application is not killed when you double-click the control menu
+   button. (You can kill the application with ctrl + double-click.)
+9. You can move windows if you drag the border with the second button
+   (middle button of 3 button mouse, both button click of 2 button mouse)
+   for no title windows.
+10. The bug is fixed that a window with no content is exposed when you 
+    input non-existing URL with Netscape.
+
+beta8d -> beta8e
+----------------
+1. The bug is fixed that zombie processes of indicators leave when restarting.
+2. The background of an indicator with transparent window is always gray.
+3. The bug is fixed that child windows are not displayed in proper location,
+   for example xv's load window.
+4. Transient windows do not display in the task switcher like Windows.
+5. The bug is fixed that qvwm sometimes crashes if you quit an application
+   after you have closed the child window.
+
+beta8e -> beta8f
+----------------
+1. EdgeResistance for the resistance for moving a window over the edges of
+   the screen.
+2. SnappingMove/SnappingEdges for a window snapping the other windows/the 
+   edges of the screen when it comes near them.
+3. SmartPlacement for locating a window in free space if any, when it is 
+   created.
+4. Locale works properly on FreeBSD by specifying NEED_XPG4 in Config.tmpl.
+5. The bug is fixed that an error occurs when qvwm installs a colormap 
+   and that qvwm crashes after a short time.
+
+beta8f -> beta8g
+----------------
+1. The bug is fixed that a part of frame rectangles leaves when you move
+   or resize a window near the borders of the screen, if OpaqueMove is
+   False and EdgeResistance is not 0.
+2. The bug is fixed that qvwm fleezes when you left-click to another
+   window while exit dialog is displayed.
+3. The bug is fixed that qvwm crashes when you select a file in display
+   of ImageMagick.
+
+beta8g -> beta8h
+----------------
+1. The bug is fixed that one can go over the edges of virtual screen
+   using ctrl-allow when PagingBeltSize is 0.
+2. A window raises by clicking the window before expiring the time of
+   AutoRaiseDelay when AutoRaise is True.
+3. Accordingly, the bug is fixed that menus of an application sometimes
+   hide under the main window.
+
+beta8h -> beta9
+---------------
+1. You can execute the internal function,  when you double-click a
+   shortcut on the desktop.
+2. GRPH key (Mod3 instead of Alt) + Tab/Escape is valid in PC98 (Japanese 
+   PC).
+3. The bug is fixed that you can move a maximized window from the pager.
+4. A menu exposes by right-clicking the taskbar. (Configure in a
+   'TaskbarMenu' section)
+5. Change 'IconCtrlMenu' to 'IconMenu' for the configuration of an icon
+   menu.
+6. If ClickToFocus is False and NoDesktopFocus is True, a focus does not
+   move to the root window.
+7. When finding a space in an icon name, qvwm turns down the name if
+   the name is long.
+8. All windows without a STICKY attribute in a screen are rearranged
+   in an overlapping, horizontally-tiling, and vertically-tiling form
+   by internal functions QVWM_OVERLAP, QVWM_TILEHORZ, and QVWM_TILEVERT,
+   respectively. 
+9. All windows without a NOTBUTTON or STICKY attribute in a screen are
+   minimized by internal function QVWM_MINALL.
+10. Users can set an icon size.
+11. Users can suppress displaying specific windows if they set a 'CLOSESOON'
+    attribute in an Application section in a configuration file.
+    (error message windows of Netscape, etc.)
+12. A control menu exposes when right-clicking not only a title bar
+    but everywhere in a window frame.
+13. Users can keep a window on top if they set an 'ONTOP' attribute in 
+    an Application section.
+
+beta9 -> beta9a
+---------------
+1. The bug is fixed that qvwm sometimes crashes when you use an
+   application using transient windows.
+
+beta9a -> beta9b
+----------------
+1. Disallow switching virtual screen while exposing any menus.
+2. Fix the bug that list.h causes errors in some compilers (egc, etc.)
+3. When SnappingMove is not 0, a window don't snap against unmapped
+   windows.
+4. Allow to be canceled by Alt-Esc when switching windows with the
+   task switcher. 
+5. Raise a window which is active but not raised when pushing the
+   corresponding taskbar button.
+6. Fix the bug that a new window is located not so as to overlay
+   unmapped windows when SmartPlacement is True.
+7. When there is only a window which can be activated, task switcher
+   activates the window.
+
+beta9b -> beta9c
+----------------
+1. If you append "EXEC " before a program in the configuration file,
+   qvwm is replaced by the program.  i.e. "EXEC twm"
+   (Abolish OtherWM variable and QVWM_OTHERWM function)
+2. Execute not only qvwm internal functions but other programs in exit 
+   dialog.
+3. The bug is fixed that focus is left to the last menu item when you
+   move mouse cursor out of the menu.
+
+beta9c -> beta9d
+----------------
+1. Support not only imake but autoconf.
+2. A window is lowered when you click the title bar with the second
+   button of mouse(the center button).
+3. When ClickToFocus is False and ClickingRaises is False, a window is
+   not raised even if you click the client area.
+4. Add QVWM_RAISE(raise a window) and QVWM_LOWER(lower a window).
+5. Add QVWM_TOGGLEONTOP(toggle switch of an ONTOP attribute).
+6. The bug is fixed that qvwm sometimes crashes when you open a window.
+7. The bug is fixed that focus is lost if you click a shortcut icon and
+   leave the mouse cursor from the area when ClickToFocus is False.
+
+beta9d -> beta9e
+----------------
+1. Qvwm hides the task bar automatically when TaskbarAutoHide is True.
+2. A window with an ONTOP attribute cannot be lowered by center-clicking.
+3. The bug is fixed that qvwm crashes by 'xlock -inroot'.
+4. Fix Makefile.std and configure.in.
+
+beta9e -> beta9f
+----------------
+1. Add functions that expand a window so that it does not hide other
+   windows that it does not hide at that time. (QVWM_EXPAND, QVWM_EXPAND_LEFT,
+   QVWM_EXPAND_RIGHT, QVWM_EXPAND_UP and QVWM_EXPAND_DOWN)
+2. The bug is fixed that qvwm crashes when you run xfpovray.
+3. The bug is fixed that menus of an application is sometimes hided by
+   the main window when AutoRaise is True.
+4. The bug is fixed that the taskbar does not sometimes hide automatically.
+5. Add QVWM_TOGGLEAUTOHIDE (toggle switch of TaskbarAutoHide) and
+   QVWM_TOGGLESTICKY (toggle switch of a STICKY attribute).
+6. The bug is fixed that maximized windows move to incorrect location
+   when you move the taskbar.
+7. The bug is fixed that the taskbar does not show even if you show
+   the start menu with Ctrl + Esc when TaskbarAutoHide is True.
+8. Ignore SnappingMove, SnappingEdges, EdgeResistance when you move a
+   window pushing Alt key.
+9. The bug is fixed that xprop does not sometimes work properly.
+10. Minimize a window if you push the taskbar button when the window is
+    active, when RestoreMinimize is True. (like IE4)
+
+beta9f -> beta9g
+----------------
+1. The bug is fixed that a non-focused window is minimized when
+   RestoreMinimize is True and the taskbar button is clicked.
+2. Add two attributes INITMAX(maximize a window when shown initially)
+   and INITMIN(minimize a window when shown initially).  (fail to
+   write this in CHANGE.* in beta 9f)
+3. The bug is fixed that a window moves strangely if you press any
+   keys when you move/resize the window with mouse.
+
+beta9g -> beta9h
+----------------
+1. Fix the bug that a taskbar button changes to no press state if you
+   click the button with a focus when RestoreMinimize is False.
+2. Add a NoResizeOverTaskbar variable, which does not allow you to
+   resize a window over the taskbar.
+3. Fix the bug that a window repeats restoring and minimizing if you
+   double-click the taskbar button with a focus when RestoreMinimize
+   is True.
+4. You can configure the color of a title bar, etc.
+
+beta9h -> beta9i
+----------------
+1. Fix the bug that qvwm crashes if you try to lower a window when
+   UsePager is False.
+2. Fix the bug that the background color of the icon on the left of a
+   title bar does not change by TitlebarActiveColor and TitlebarColor.
+3. DesktopActiveColor allows you to specify the color of the selected
+   shortcut icon.
+4. Add a NOBORDEREDGE attribute. (no inner shade of a window frame)
+5. When you set TopLeftPage and PagingSize do not include the page (0, 0), 
+   qvwm changes them so that the virtual screen include the page (0, 0).
+6. Fix the bug of compile error of select() in HPUX.
+7. By default, qvwm creates a window with no inner shade for transient 
+   windows such as dialogs.
+8. Avoid the issue that fvwm starts when you start qvwm by a Restart
+   command in fvwm and then restart qvwm.  (The cause is that fvwm
+   starts qvwm with the first argument "fvwm".)
+
+beta9i -> beta9j
+----------------
+1. Fix the bug that the path specified on starting qvwm is ignored
+   when qvwm is restarted.
+2. Fix the bug that mule is not restored when you click the taskbar
+   button after minimizing it with Ctrl+Z, if NoDesktopFocus is True.
+3. You can specify multiple paths splitted by ':' in IconPath and PIXDIR.
+   ex. IconPath = "/usr/share/qvwm:/usr/include/pixmaps"
+4. Fix the bug that "Can't find pixmap" error occurs when the colors
+   of the pixmap are not enough.
+5. Fix the bug that transient windows vanish when you restore the
+   application after minimizing it with the transient windows mapped.
+   ex. application: Netscape, transient window: File Open dialog
+6. Fix the bug that you cannot change the size of a window with no
+   titlebar, using a part of left/right frame border.
+7. Add RestartOnFailure (automatically restarting qvwm on segmentation 
+   fault or bus error).
+8. Fix the bug that a strange window is often shown when you open the
+   menu in ImageMagick.
+9. Use gcc so that unused libg++ is not linked.
+
+beta9i -> beta10
+----------------
+1. Fix the bug that qvwm with DEBUG option outputs BadWindow frequently.
+2. With DEBUG option, qvwm outputs the backtrace of stack (again).
+3. Distinguish between Alt and Meta in [ShortCutKeys] section.
+4. Fix the bug that shortcut keys are invalid with NumLock on.
+5. You can specify extenal command in [ShortCutKeys] section.
+6. Fix the bug that windows hidden by CLOSESOON appear when qvwm is
+   restarted.
+7. Fix the bug that DesktopColor is blue instead of green (default) if 
+   a DesktopColor variable is not specified.
+8. Fix the bug that the size of window like xterm is not multiple of
+   character size.
+9. Fix the bug that window focus is lost if you try to switch virtual
+   page with Ctrl+arrow to the impossible directory in the end of 
+   virtual screen.
+10. Fix the bug that the action is incorrect when mouse cursor enters
+    a separator in menu or you click it.
+11. Fix the bug that qvwm freezes when there is one window and you try
+    to switch active window with Alt+Tab.
+12. Disable to switch virtual page with Ctrl+arrow when the start menu 
+    is shown.
+13. Fix the bug that the window of xv moves to the right-down directory.
+14. Like Windows 95, the icon and string in taskbar button do not move
+    until you release mouse button after pushing down tarkbar button.
+15. Show a menu gradually if GradMenuMap is True. (the function of
+    Windows 98 beta)
+16. No titlebar animation if TitlebarMotion is False.
+17. The taskbar automatically hides gradually if GradTaskbarMotion is
+    True.
+18. You can use shortcut key for the selection of menu item. (specified
+    by (&<character>))
+19. Fix the bug that the menu shown by right-click of taskbar button
+    does not accept key operations when the window is minimized.
+20. When there is one window, qvwm moves to the page where the window
+    exists and shows it.
+21. Japanese character shows properly even when it is abbreviated by
+    "...".
+22. Titlebar color gradation if GradTitlebar is True. (the function of 
+    Windows 98 beta)
+
+beta10 -> beta10a
+-----------------
+1. By default, qvwm uses g++ for the compile because gcc doesn't work
+   in some environments. (use 'make CXX=gcc' if you want to use gcc)
+2. Fix the bug of a routine to abbreviate a long string by "...".
+3. Fix the bug of a routine to start a debugger when qvwm compiled
+   with DEBUG option crashes.
+4. Fix the bug that qvwm grabs some key inputs even though they are
+   not set as shortcut keys.
+5. Add 'OpaqueResize' for resizing a window, while changing 'OpaqueMove'
+   only for moving a window.
+6. Avoid compile errors (bzero() conflict) using gcc 2.8 on SunOS 4. 
+7. Set a taskbar clock format (strftime() format) using 'ClockFormat'.
+   Set the locale with 'ClockLocaleName'.  (Abolish 'Clock12Hours',
+   which is substituted by ClockFormat = "%l:%M %p") 
+8. Fix the bug that qvwm occurs an error when UseClock is False.
+9. Define qvwm default colors (gray, dark gray, light gray, blue, and
+   green) as qvgray, qvdarkgray, qvlightgray, qvblue, and qvgreen, 
+   respectively.  (Use a configuration file)
+
+beta10a -> beta11
+-----------------
+1. Fixes the bug that the configure script determines no X11 when your
+   compiler cannot find header files of X11 without -I option.
+2. Qvwm restores the form of mouse cursor of the root window when
+   exiting.
+3. Timer uses no signal.
+4. You can use a include statement in a configuration file.
+5. You can include " in a configuration file by writing \".
+6. You can use ~ (home directory) and environment variables ($HOME
+   etc.).
+7. Qvwm quits normally when your configuration file has an error.
+8. Changes some qvwm internal function's names. (The old names are left
+   for backward compatibility)
+9. Changes some application attribute's names. (The old names are left
+   for backward compatibility)
+10. Adds QVWM_CHANGE_WIN_BACK. (changes an active window in reverse
+    order of QVWM_CHANGE_WIN)
+11. The task switcher enables you to switch an active window to
+    minimized windows.
+12. Add QVWM_SWITCH_TASK_BACK. (switches an active window in reverse
+    order of QVWM_SWITCH_TASK)
+13. Add QVWM_CHANGE_WIN_INSCR and QVWM_CHANGE_WIN_INSCR_BACK.
+    (QVWM_CHANGE_WIN and QVWM_CHANGE_WIN_BACK within a screen)
+14. Fixes the bug that the space of minimized windows is reserved in
+    arranging all windows.
+15. Changes how to set a menu's shortcut key from a (&?) notation to a
+    \&? notation. (? is a character)
+16. You can allocate a shortcut key to a button of the exit dialog
+    with a \&? notation.
+17. Adds QVWM_DESKTOP_FOCUS. (activates the desktop)
+18. Qvwm restarts when a SIGHUP signal is received.
+19. Fixes the bug that you cannot move a window over the edges of the
+    screen when OpaqueMove is False and EdgeResistance is positive.
+20. The contents of a window are not redrawn on resizing when FullOpaque
+    is False.
+21. Adds QVWM_POPUP_DESKTOP_MENU. (pop up the desktop menu)
+22. Expands the start menu and child menus not obliquely but horizontally
+    or vertically when GradMenuMap is True.
+
+beta11 -> beta11a
+-----------------
+1. Fix the bug that you fail to compile qvwm with gcc 2.8 or later.
+
+beta11a -> beta12
+-----------------
+1. Fix the bug that the desktop is activated after a transient or
+   NO_FOCUS window is unmapped when ClickToFocus is True.
+2. Not activate the desktop when a NO_FOCUS window is mapped.
+3. A new mapped window is activated when ClickToFocus is False.
+4. Fix the bug that QVWM_EXPAND makes qvwm freeze.
+5. Fix the bug that qvwm judges a window is in the next virtual page
+   when it locates in the edge of a virtual page.
+6. Add PagingSpeed. (switch virtual pages smoothly)
+7. Can use pixmaps in the background of parts. (TitlebarImage,
+   TitlebarActiveImage, FrameImage, FrameActiveImage, TaskbarImage,
+   MenuImage, MenuActiveImage, PagerImage, DialogImage, ButtonImage,
+   ButtonActiveImage and SwitcherImage)
+8. Qvwm retrieves a wall paper pixmap according to PixmapPath(old name
+   is IconPath).
+9. Add DialogStringColor, IconStringColor, SwitcherStringColor and
+   StartMenuLogoColor.
+10. Add NO_CTRLBTN, NO_BUTTON1, NO_BUTTON2 and NO_BUTTON3 as window
+    attributes. 
+11. You can use a pixmap for the left logo of the start menu by
+    StartMenuLogoImage.
+12. Add FrameTitleHeight, FrameBorderWidth, TaskbarButtonHeight and
+    IndicatorSize.
+
+beta12 -> beta12a
+-----------------
+1. Fix the bug that you can go over the range of a virtual screen with 
+   QVWM_PAGING_??.
+2. Fix the bug that qvwm sometimes crashes on restarting.
+3. You can specify a shortcut key with a keycode. (#xx, decimal)
+4. A window moves by ShiftMoveRatio/CtrlMoveRatio * 13 dot when you
+   move it using the keyboard pressing shift/control key.
+5. Change the default of fonts to -*-*-medium-r-normal-*-14-* instead
+   of -*-*-medium-r-normal--14-* because xfstt does not understand
+   the latter style.
+6. Fix the bug that qvwm fails to search pixmaps specified with an
+   absolute path.
+7. Qvwm allows ~user for a path.
+8. Change the policy again so that a newly mapped window is not
+   activated when ClickToFocus is False.  Instead, if FocusOnMap is
+   True, a newly mapped window is activated.
+9. Fix the bug that qvwm crashes when an include file specified in the 
+   configuration file does not exist.
+10. Add QVWM_SHOW_TASKBAR (appear the taskbar) and QVWM_HIDE_TASKBAR
+    (disappear the taskbar) when TaskbarAutoHide is True.
+11. Display an hourglass when qvwm executes the external commands.
+    (The displayed time is specified by HourGlassTime.)
+12. Fix the bug that the change of a menu focus is strange when the
+    mouse cursor is moved with the button pressed.
+13. Add DefaultIcon (default pixmap of an icon used in titlebars and
+    taskbar buttons), DefaultLargeIcon (default pixmap of an icon used 
+    in the task switcher), and DefaultShortcutIcon (default pixmap of
+    a shortcut icon).
+
+beta12a -> beta13
+-----------------
+1. Add CursorColor variable so that users can specify the color of
+   the mouse cursor.
+2. Make qvwm GNOME compliant.
+3. Qvwm can understand some of MWM hints.
+4. Add FOCUS_ON_CLICK attribute so that specified windows of
+   application are activated only when clicked.
+5. Support sound effects. (OpeningSound, EndingSound, RestartSound,
+   MaximizeSound, MinimizeSound, RestoreSound, and ExpandSound)
+6. Add SoundPath variable so that users can specify directories where
+   sound files are put.
+7. Change the directory organization.
+
+beta13 -> beta13a
+-----------------
+1. Fix the bug that, when qvwm opens a window of non-GNOME-compliant
+   applications, it is sometimes maximized or something.
+2. Fix the bug that some compilers emit errors at list.h.
+3. Add sound support for FreeBSD and NetBSD.
+
+beta13a -> 1.0
+--------------
+1. Fix the bug that all windows are positioned at (0, 0).
+2. Fix the bug that qvwm crashes by using some shortcut keys when the
+   desktop is active.
+3. Fix the bug of sound data manipulation.
+4. Distinguish definitions of select() between HP-UX 9.x and 10.x.
+5. Better appearance when only a maximize button in a titlebar.
+6. Support sound for OpenBSD.
+7. Include French version of documentation.
+8. A miniature window can be moved out of the pager when it is dragged 
+   with a middle button of mouse.
+9. Hide the taskbar if the mouse pointer is out of the taskbar when
+   TaskbarAutoHide is True and the start menu is dismissed.
+10. Specify the page where a window created by an external command is
+    located by attaching one of some prefixes before the command.
+    (PAGE[<x>,<y>,<identifier>], PAGECUR[<identifier>])
+11. Start qvwm without reading any configuration files by -n option.
+12. Execute commands specified in a [Startup] section in starting qvwm.
+13. Limit the number of restarting so that qvwm does not restart
+    infinitely when FailureOnRestart is True
+14. Display the information of the position or the size of a window
+    when moving or resizing it if UseInfoDisplay is True.
+15. Speed up titlebar gradation.
+16. Colors of titlebar gradation are the same with the default of
+    Windows98.
+17. Appearance of the taskbar is the same with Windows98.
+18. Change the default logo of the start menu.
+19. Change the shape of cursor when executing external commands.
+20. Restart without reading any configuration files when parse error
+    of a configuration file.
+21. The taskbar is not kept on top when OnTopTaskbar is False.
+22. The titlebars of the pager and the exit dialog are also graded
+    when GradTitlebar is True.
+23. Fix the bug that move/resize is continued even if clicking other than
+    the titlebar of the window after move/resize is selected in menus.
+24. Fix the bug that the current page is sometimes moved to a strange
+    place when a STICKY window is activated by clicking a taskbar button.
+25. Fix the bug that a miniature window in the pager corresponding to
+    a STICKY window is located in a strange place when switching pages.
+26. Fix the bug that some taskbar buttons are sometimes not displayed
+    when the taskbar has more than 2 rows.
+27. Fix the bug that the relation between a window and the
+    corresponding miniature window is sometimes incorrect.
+28. Moving shortcut icons is the same with Windows98 with 256 colors.
+29. Show a check mark depending on status when a toggle function is
+    specified in menu items.
+30. Mark the current position of the taskbar in menus when functions
+    for changing the taskbar position are specified in menu items.
+31. Cannot select the direcions where the page cannot move when page
+    switching functions (QVWM_*_PAGING) are specified in menu items.
+32. Fix the bug on the direction where child menus are mapped.
+33. Put an image in one of 9 positions in the desktop. (top, bottom,
+    left, right, center, top left, top right, bottom left, and bottom right)
+    (DesktopImage and DesktopImagePosition)
+
+1.0 -> 1.0.1
+------------
+1. Fix the bug of failing make all with Imakefile.
+2. Avoid that the performance is lowered in X server which does not
+   equip SaveUnder facility.
+3. Fix the bug that DesktopImage is not drawn in the desktop sometimes.
+4. Use WallPaper/WallPaperPosition instead of
+   DesktopImage/DesktopImagePosition.  Set TILE to WallPaperPosition
+   if you want to tile a wall paper in the desktop.
+5. Fix the bug that a part of the taskbar is not redrawn when you show 
+   the exit dialog and then dismiss it.
+6. Fix so that qvwm is compiled with the newest version of egcs.
+7. Fix the bug of window expanding code using QVWM_EXPAND*.
+8. Fix the bug that the arguments are ignored when PAGE or PAGECUR is
+   prefixed to external commands. 
+9. Enable to include spaces in <identifier> of PAGE and PAGECUR prefixes.
+10. Check syntax errors of PAGE and PAGECUR prefixes.
+
+1.0.1 -> 1.0.2
+--------------
+1. Fix the bug that qvwm crashes when you shrink the height of the
+   taskbar that is located in the top or bottom.
+2. Fix the bug that switching to the down page is disabled in the
+   top-most page and switching to the up page is disabled in the
+   bottom-most page when the active page is switched from menus.
+3. The active window is not switched if you move the mouse cursor with 
+   a Shift key pressed when ClickToFocus is Folse.
+4. Fix the bug that qvwm crashes when ~ or environment variables are
+   used for pathname in some environments.
+5. Fix the bug that qvwm crashes when you start another window manager 
+   from qvwm.
+6. GradWindowMapStyle variable enables to map or unmap windows gradually.
+7. Fix StartMenuLogoColor in default.qvwm-theme to qvblue.
+
+1.0.2 -> 1.1
+------------
+1. Qvwm enables images like icons to animate. (.ani format) If you set 
+   ImageAnimation variable to False, this facility is disabled.
+2. Qvwm can run on XFree86 on top of OS/2.
+3. Fix the bug that qvwm crashes when MenuImage and MenuActiveImage is 
+   specified and qvwm fails to load MenuImage.
+4. Fix the bug that qvwm crashes when failing to load images used for
+   menu items.
+5. Fix the bug that qvwm freezes after qvwm crashes, starts gdb, and
+   displays the stack trace.
+6. Add UseDebugger variable to set whether qvwm displays the stack
+   trace by using gdb when qvwm crashes.
+7. A tooltip is displayed if you point icons, etc. by mouse for a
+   while.  (The delay time is set by TooltipDelayTime, the raise
+   speed by TooltipMotionSpeed, and the time keeping displayed by
+   TooltipDiaplayTime.)
+8. Add variables to specify the message displayed in tooltip.
+   (MinimizeButtonMessage, MaximizeButtonMessage, CloseButtonMessage,
+   RestoreButtonMessage, StartButtonMessage, and ClockMessageFormat)
+9. The image specified by WallPaper variable is tiled in the desktop.
+   WallPaperPosition variable is used no longer.
+10. Add [Accessories] section.  You can your favorite images in your
+    favorite position.  (OnTop, Background, or Application style)
+11. Qvwm delays loading the images until you extract child menus.
+12. Qvwm enables an image to be located in the left of menu items in
+    menus like CtrlMenu, not only StartMenu.
+13. Fix the bug that qvwm stops during sound effects.
+14. Support Imlib.  You can use image formats Imlib supports if you
+    link Imlib at compiling.  (In case of using Imakefile, define
+    USE_IMLIB in Config.tmpl)
+15. Understand X Session Management Protocol.
+16. Qvwm changes the size of the start menu, depending on the size of
+    images used in it.
+17. Change the name of PixmapPath variable to ImagePath; and change
+    default image directory from qvwm/pixmaps to qvwm/images.
+18. Change IconPixmap in [ExitDialog] section to IconImage.
+
+1.1 -> 1.1.1
+------------
+1. Fix the bug that the taskbar is raised for a while if you switch
+   virtual pages when the taskbar is automatically hidden.
+2. Fix the bug that the initial states of windows are not registered
+   in Gnome environment.
+3. Fix the bug that Gnome pager does not refrect the virtual desktop
+   of qvwm correctly.
+4. Fix the bug that indicators are not shown in the taskbar.
+5. Deal with windows with the initial state iconic correctly when qvwm 
+   starts.
+6. Understand file specification with ~ and $ not only in ImagePath or
+   include state.
+7. Fix the bug that a window size cannot be restored if it is
+   maximized using a shortcut key.
+
+1.1.1 -> 1.1.2
+--------------
+1. Fix some bugs of memory leaks.
+2. Fix the bug of timer.
+3. Add DefaultFont variable, which allows you to specify the default
+   font of qvwm.
+4. Fix the bug that qvwm crashes when you use Acrobat Reader and so on.
+5. Fix the bug that qvwm does not release unused resources of X server.
+6. Ignore the specification of initial state (minimize or maximize) of
+   windows which already exist at restarting qvwm.
+7. Use LocaleName instead when ClockLocaleName is not specified.
+
+1.1.2 -> 1.1.3
+--------------
+1. Fix the bug that qvwm sometimes crashes at exiting.
+2. Fix the bug that colormap does not change properly.
+3. Support 64bit architectures.
+4. Warn if all applications are not terminated at exiting qvwm when
+   UseConfirmDialog is True.
+5. Deal with temporary files more securely.
+6. Fix so that the compilation of qvwm does not fail when using gcc
+   2.95 or later.
+7. Fix the bug that the configure script option --with-qvwmdir does
+   not reflect the change of prefix.
+8. Change the qvwm's license to the GPL.
+
+1.1.3 -> 1.1.4
+--------------
+1. Attach a Korean configuration file.
+2. Fix the bug that qvwm cannot play wav files in Sun and *BSD.
+3. Fix the bug that the compilation of qvwm with a debug option fails.
+4. Fix the errors of copyright.
+5. Support ALSA.
+6. Support esd.
+7. Fix the bug that qvwm does not notify the location of a window of
+   the application when it is mapped first.
+8. Fix the bug that the pager is not located properly when PagerGeometry
+   is specified with a negative position value. (e.g. 3x3-4-4)
+9. Fix the bug that some transient windows which should not be shown
+   are mapped. (e.g. JPEG quolity dialog of xv)
+10. Fix the bug that a qvwm internal function assigned to a shortcut
+    key is not executed properly if it is specified using a key code
+    followed by #.
+11. Fix the bug that a window is mapped in a strange position if it is
+    mapped and then unmapped by an application located in other than
+    page(0,0) of the virtual screen and if qvwm is restarted thereafter.
+    (e.g. file dialog of Netscape)
+12. Fix the bug that qvwm sometimes crashes when a colormap of an
+    application is changed.
+13. Fix the bug that qvwm sometimes crashes when a window is lowered
+    in the bottom of the window stack.
+14. Fix the bug that a window decoration becomes strange if an application
+    changes the position or size of the window maximized by qvwm.
+15. Fix the bug that qvwm cannot properly handle transient windows mapped
+    before the main window is mapped. (xmms's playlist, etc.)
+16. Modify the font specifications by XLFD so that xfstt does not make
+    qvwm crash. (Xfstt requires all 14 entries of XLFD)
+17. Fix the bug that the whole image of the selected shortcut icon
+    does not become semi-transparent when IconSize is greater than 32.
+18. Fix the bug that a menu item selected by a shortcut key is not
+    activated if it is an item with a child menu.
+
+1.1.4 -> 1.1.5
+--------------
+1. Fix the bug that a configure option --with-qvwmdir is not applied
+   to an install directory of rc/, sounds/, and images/.
+2. The configure script decides whether XSMP can be enabled automatically.
+3. Change so that installed system.qvwmrc includes default.qvwm-theme, 
+   which is installed to the same directory.
+4. A titlebar string is shortened by '...' as well as a taskbar button
+   string if it is too long.
+5. A tooltip for a titlebar is shown when its string is abbreviated by
+   '...' and the mouse cursor points a titlebar for a while.
+6. Change so that a tooltip for a taskbar button is shown only when
+   its string is abbreviated by '...'.
+7. Fix the bug that SnappingEdges does not work to the left and bottom
+   edges.
+8. Fix the bug that SnappingMove does not work in pages other than (0,0).
+9. Fix the bug that path specification by ~user makes qvwm crash.
+10. Fix the bug that transient windows are located at the bottom of a
+    window with an ONTOP attribute.
+11. Fix the bug that titlebar gradation is very strange when qvwm cannot
+    allocate enough colors.
+12. Change so that the speed of titlebar animation, etc. does not
+    depend on machine power as much as possible.
+13. Add two variables: TaskbarShowDelay(delay for starting to show the
+    taskbar) and TaskbarHideDelay(delay for starting to hide the taskbar)
+    when TaskbarAutoHide is True.
+14. Fix the bug that qvwm cannot open files if it is restarted repeatedly.
+15. The desktop is activated when you switch virtual pages even if
+    NoDesktopFocus is True.
+
+1.1.5 -> 1.1.6
+--------------
+1. Fix the bug that application specific settings do not become valid
+   when you set them with a window title name in [Applications] section.
+2. Fix the bug that Netscape cannot accept any key inputs after you
+   select an item shown by "More..." in a pulldown menu in Netscape.
+3. Enable to switch virtual pages to diagonal directions when you move 
+   a mouse cursor to each corners in the screen.
+4. Fix the bug that dialogs of a dialog are not on top of the first
+   dialog. (e.g. Proxies dialog from Preference dialog in Netscape)
+5. Fix the bug that dialogs of a dialog are not minimized at the same
+   time when the main window is minimized.
+6. Hide a strange icon window of Tgif when Tgif is minimized.
+7. Work around the glitch that the window of Tgif does not redraw
+   correctly when minimized Tgif is restored.
+8. Add LockDragState variable: you can keep dragging a window even if
+   you release a mouse button until clicking it again.
+9. Enable to specify application specific settings with command line
+   name in [Applications] section for a window that registers WM_COMMAND.
+   (see xprop)
+10. Fix the bug that a title bar of a window is sometimes located
+    outside of the screen when the same dialog are shown twice in
+    gimp, etc.
+11. Fix the bug that the height of menu items does not change even if
+    you specify small images for them when the start menu includes
+    some separators.
+
+1.1.6 -> 1.1.7
+--------------
+1. Fix the bug that qvwm crashes when a WM_COMMAND property of an
+   application window is incorrect.
+2. Fix the bug that a tooltip is not displayed when the start button
+   is pointed by the mouse cursor.
+3. Adjust the size of the indicator area in the taskbar when an
+   indicator program is terminated.
+4. Start a screensaver specified by a ScreenSaver variable if the
+   system is kept idle during the time specified by a ScreenSaverDelay 
+   variable.
+5. Fix the bug that a shortcut key does not work in the task switcher
+   if you change the key assignment with xmodmap.
+6. Recognize properly any keys to which the same key symbol is assigned.
+7. Fix the bug that the taskbar buttons are not relocated when a
+   minimized window is closed.
+8. Fix the bug that window redraw of rxvt with inheritPixmap turned on
+   is strange.
+9. Improve so that rxvt with inheritPixmap turned on does not make a
+   window frame transparent.
+10. Fix the bug that a strange tooltip is sometimes shown after you
+    close a window.
+
+1.1.7 -> 1.1.8
+--------------
+1. Fix the bugs of memory management.
+2. Use mkstemp() instead of tmpnam() for security.  (This is affected
+   only when qvwm use Imlib)
+3. Fix the bug that the command-line option -clientId is not recognized,
+   which was recognized in older versions.
+
+1.1.8 -> 1.1.9
+--------------
+1. Fix the bug that qvwm's accessory windows are sometimes not located
+   properly if the user specifies the position with a +x+y form.
+2. Fix the bug that the icons of gmc are not restored when the session
+   is restored.
+3. Fix the bug that qvwm sometimes crashes if a program for an
+   indicator is not found.
+4. Fix the bug that a window is sometimes not located at a position
+   that the application specifies.
+5. Fix the bug that the active window loses an input focus after the
+   user moves or resizes the other window with NO_FOCUS, or uses its
+   menus.
+6. Fix the bug that the active window loses an input focus after the
+   user shows and dismisses the exit dialog.
+7. Enable to show only the taskbar buttons for windows in the current
+   screen when a TaskbarButtonInScr variable is True.
+8. Enable to switch show/hide the taskbar and the pager using
+   QVWM_TOGGLE_TASKBAR and QVWM_TOGGLE_PAGER variables, respectively.
+
+1.1.9 -> 1.1.10
+---------------
+1. Allow to specify paths for images and sounds in configure.  Those
+   are reflected to ImagePath and SoundPath in installed configuration
+   files.
+2. Fix the bug that compiling audio.cc fails on SunOS/Solaris.
+3. Restore the configure script so that the compile does not fail in
+   egcs 2.95.
+4. Support ALSA (Advanced Linux Sound Architecture) ver 0.5.
+5. Add sound control variables: EnableSound, EnableAlsa, and EnableEsd.
+   (EnableAlsa and EnableEsd are valid if qvwm is compiled as using
+   these.)
+6. Fix the bug that a maximized netscape window becomes a wierd state
+   if you open a new web page.
+7. Fix the bug that qvwm sometimes crashes at start if enabling both
+   screen saver facility and sound facility.
+8. Allow to send commands to qvwm by writing to /tmp/qvwm-<display_name>
+   from other processes.  This facility is validated only if qvwm is
+   compiled with the --enable-rmtcmd option (default) and if the
+   AllowRemoteCmd variable is True (non-default).
+9. Add the DisableDesktopChange, which disallows users to move and
+   resize the taskbar, the pager, and shortcut icons.
+10. Add the GEOMETRY attribute for the [Applications] section, which
+    is used to specify a window geometry.
+11. Add window rearrangement functions: QVWM_OVERLAP_INSCR,
+    QVWM_TILE_HORZ_INSCR, QVWM_TILE_VERT_INSCR, QVWM_MINIMIZE_ALL_INSCR,
+    QVWM_RESTORE_ALL, QVWM_RESTORE_ALL_INSCR, QVWM_CLOSE_ALL, and
+    QVWM_CLOSE_ALL_INSCR.  Change QVWM_OVERLAP, QVWM_TILE_HORZ,
+    QVWM_TILE_VERT, and QVWM_MINIMIZE to functions for all windows.
+12. Fix the bug that a window is sometimes not activated even if you
+    click the window body when ClickingRaises is True.
+13. The display specified by the -display option is set to the DISPLAY
+    environment variable so that qvwm can launch indicators and
+    applications on the same display.
+14. Add control functions of the taskbar and the pager:
+    QVWM_ENABLE_AUTOHIDE, QVWM_DISABLE_AUTOHIDE, QVWM_ENABLE_TASKBAR,
+    QVWM_DISABLE_TASKBAR, QVWM_ENABLE_PAGER, and QVWM_DISABLE_PAGER.
+15. Fix the bug that qvwm sometimes crashes when the user closes
+    a minimized window from the menu of a taskbar button and then
+    activates another window.
+16. Fix the bug that a dialog of netscape is located in the left
+    or up virtual page after the second time when netscape is located
+    in a page which has negative coordinates.
+
+1.1.10 -> 1.1.11
+----------------
+1. Fix the bug that two icons are shown for the same window in the
+   task switcher.
+2. Add sound events: RestoreUpSound, RestoreDownSound, MenuPopupSound,
+   MenuCommandSound, OpenSound, CloseSound, PagerSound, and PagingSound.
+3. Change OpengingSound, EndingSound, and RestartSound to
+   SystemStartSound, SystemExitSound, and SystemRestartSound, respectively.
+4. Fix the bug that qvwm puts an error when a specifiged sound file is
+   "".
+5. Fix the bug that qvwm sometimes becomes unstable after playing sounds.
+6. Change the default coloring as in Windows 2000.
+7. Fix the bug that part of the clock in the indicator area is hidden
+   after all indicators terminated.
+
+1.1.11 -> 1.1.12
+----------------
+1. Fix the bug that qvwm sometimes crashes if sound is enabled at exit.
+2. Fix the bug that a close button does not disappear and a maximize
+   button disappears when you set NO_BUTTON3 to an application.
+3. Fix the bug that the CPU utilization becomes 100% after you send a
+   remote command to qvwm.
+4. Enable to send a remote command like QVWM_RESTORE to certain window.
+5. Eanble to change spacing between short cut icons using
+   IconHorizontalSpacing and IconVerticalSpacing.
+6. Add german.qvwmrc, portuguese.qvwmrc, and italian.qvwmrc.
+7. Fix the bug that a part of a menu is left on the screen after you
+   execute a command from the menu.
+8. Add QVWM_TOGGLE_{FOCUS, BORDER, BORDER_EDGE, BUTTON1, BUTTON2, BUTTON3,
+   CTRLBTN, TBUTTON, TITLE}.
+
+---
+Translated partially by Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>

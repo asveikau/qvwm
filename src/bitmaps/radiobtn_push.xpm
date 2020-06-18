@@ -1,0 +1,25 @@
+/* XPM */
+static char *radiobtn_push[] = {
+/* width height num_colors chars_per_pixel */
+"    12    12        6            1",
+/* colors */
+". c None",
+"# c #808080",
+"a c #000000",
+"b c #b8bcb8",
+"c c #f8fcf8",
+"d c #d8dcd8",
+/* pixels */
+"....####....",
+"..##aaaa##..",
+".#aabbbbaac.",
+".#abbbbbbdc.",
+"#abbbbbbbbdc",
+"#abbbbbbbbdc",
+"#abbbbbbbbdc",
+"#abbbbbbbbdc",
+".#abbbbbbdc.",
+".#ddbbbbddc.",
+"..ccddddcc..",
+"....cccc...."
+};

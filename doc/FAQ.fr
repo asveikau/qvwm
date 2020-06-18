@@ -1,0 +1,148 @@
+FAQ                                                         [charset:iso-8859-1]
+===
+
+Concepts
+--------
+Q. Qu'est-ce que Qvwm ?
+R. Qvwm est un gestionnaire de fenêtres pour X Window à la Windows 95/98/NT.
+   Qvwm a à peu près la même interface que Windows 95/98/NT. Initialement, le
+   nom de Qvwm dérive de "95 Window Manager" ('q' ayant la même prononciation
+   en Japonais et presque la même forme que '9', et 'v' étant le chiffre
+   romain pour '5'). Mais il est également "98 Window Manager" car 'v'
+   signifie aussi '8' (un 'v' inversé verticalement étant identique au
+   caractère kanji pour '8').
+
+Q. Pourquoi les icônes fournies sont-elles inversées horizontalement ?
+R. Qvwm est d'un aspect identique à Windows 95/98/NT. Au premier regard,
+   il n'est pas toujours évident de déterminer quel système tourne sur la
+   machine. Pour éviter ce problème, nous avons inversé toutes les icônes
+   horizontalement. La deuxième raison est que nous nous révoltons légèrement
+   contre Microsoft.
+
+Q. Quel est l'avenir de qvwm ?
+R. Nous sommes en train de réécrire qvwm à l'aide de libqv (une bibliothèque
+   de classes que nous sommes en train de développer). Une nouvelle version
+   de qvwm permettra de le configurer avec une interface à la Windows et de
+   manipuler le dialogue de sortie au clavier.
+   Reportez-vous à http://libqv.qvwm.org/index-en.html pour
+   plus d'informations sur libqv.
+
+
+Installation
+------------
+Q. Le script configure s'arrête avec le message d'erreur "test: argument
+   expected" sous Solaris 2.x.
+R. Corrigez la ligne dans configure de :
+
+      if test $ac_cv_func_vfork_works = no; then
+en
+      if test "$ac_cv_func_vfork_works" = no; then
+
+   Apparemment, il s'agit d'un bug dans autoconf 2.12. Faites-moi savoir si
+   vous parvenez à régler ce problème plus simplement.
+
+Q. Qvwm indique "Can't open display" au lancement.
+R. Vous avez probablement lancé qvwm depuis une console (en gros, un écran
+   type MS-DOS incapable d'afficher des graphismes). Etant donné que qvwm est
+   un gestionnaire de fenêtres qui ne tourne que sous X Window, vous devez
+   d'abord lancer X Window en exécutant xinit (ou startx). Si vous avez
+   modifié votre .xinitrc conformément à INSTALL.fr, qvwm devrait démarrer
+   automatiquement.
+
+
+Fonctionnement
+--------------
+Q. Je ne peux pas fermer une fenêtre en cliquant sur le bouton de fermeture
+   (le [x] en haut à droite).
+R. Vous ne pouvez pas utiliser le bouton de fermeture quand la fenêtre est
+   suspendue. Choisissez Kill dans le menu système pour forcer la
+   fermeture.
+
+Q. J'ai cliqué sur le bouton d'agrandissement mais la fenêtre n'est pas
+   aggrandie.
+R. Certaines applications limitent la taille maximale de leur fenêtre. Dans
+   ces situations, la fenêtre ne s'aggrandit qu'à sa taille maximale.
+
+Q. Je ne peux pas changer la taille d'une fenêtre.
+R. Certaines applications limitent les tailles maximum et/ou minimum de leur
+   fenêtre. Dans ces situations, vous ne pouvez pas excéder ces limitations
+   de taille.
+
+Q. Il se passe un certain temps entre le moment ou vous cliquez sur un bouton
+   et le moment ou il apparaît réellement enfoncé.
+R. Cela semble être la nature de X Window.
+
+Q. Qvwm s'arrête bizarrement et mon clavier est bloqué.
+R. Connectez-vous depuis une autre machine et lancez qvwm par
+   'qvwm -display machine_a_probleme:0', puis quittez proprement.
+
+Q. Il se passe un certain temps entre le moment ou le bouton démarrer est
+   enfoncé et celui ou le menu démarrer apparaît.
+R. Pour accélérer son initialisation, qvwm ne lit les pixmaps que lorsque vous
+   appuyez sur le bouton démarrer pour la première fois. C'est pourquoi, la
+   première apparition du menu démarrer prend un peu plus de temps.
+
+Q. Ma fenêtre n'apparaît pas, bien qu'un bouton soit apparu sur la barre des
+   tâches et qu'elle ne soit pas minimisée.
+R. Il se peut qu'elle soit affichée en dehors de l'écran virtuel. Choisissez
+   'déplacer' dans le menu du bouton de la barre des tâches affiché en
+   cliquant avec le bouton de droite, et déplacez-la avec les touches
+   fléchées. Vous finirez par la faire rentrer à l'intérieur de l'écran
+   virtuel si vous êtes chanceux. Vous pouvez aussi augmenter la taille de
+   l'écran virtuel et relancer qvwm.
+  
+Q. Je ne peux pas faire glisser les fenêtres d'un écran à l'autre.
+R. Rapprochez votre curseur de souris du bord de l'écran. Ou vous pouvez
+   augmenter la valeur de PagingBeltSize.
+
+Configuration
+--------------
+Q. Je n'arrive pas à double cliquer correctement.
+R. Augmentez la valeur de DoubleClickTime ou de DoubleClickRange.
+
+Q. Je souhaite que la barre de titre se déplace plus vite en réduisant ou
+   aggrandissant les fenêtres.
+R. Diminuez la valeur de TitlebarMotionSpeed.
+
+Q. Je souhaite diminuer le temps nécessaire pour changer de fenêtre
+   virtuelle.
+R. Diminuez la valeur de PagingResistance.
+
+Q. Je souhaite changer la taille de l'écran virtuel.
+R. Modifiez la valeur de PagingSize.
+
+Q. Je souhaite modifier la taille et la position du pager.
+R. Modifiez la valeur de PagerGeometry.
+
+Q. Je souhaite changer le papier peint.
+R. Indiquez le chemin complet du fichier xpm que vous souhaitez utiliser.
+
+Q. Je souhaite ne pas avoir de boîte de dialogue en quittant qvwm.
+R. Fixez UseExitDialog à False.
+
+Q. Ma machine a un processeur lent, c'est pourquoi je ne souhaite afficher que
+   le cadre des fenêtres quand je les déplace.
+R. Fixez OpaqueMove à False.
+
+Q. Je souhaite que la fenêtre sous le curseur soit la fenêtre active.
+R. Fixez ClickToFocus à False.
+
+Q. Je souhaite que la fenêtre active soit la première.
+R. Fixez AutoRaise à True.
+
+Q. Je souhaite changer le temps d'attente de l'AutoRaise.
+R. Diminuez la valeur d'AutoRaiseDelay.
+
+Q. Je souhaite utiliser mes propres icônes.
+R. Indiquez le répertoire de vos icônes et placez-y vos icônes. Leur taille
+   doit être de 32x32.
+
+Q. Une fenêtre de kinput2 clignote quand j'entre des caractères Japonais
+   sous Netscape.
+R. Ajoutez la ligne suivante à la section [Applications] de votre fichier
+   de configuration.
+
+     "Kinput2"   NO_FOCUS
+
+---
+Traduction par Miodrag Vallat <miodrag@ifrance.com>

@@ -1,0 +1,1055 @@
+.de EX
+.ne 5
+.if n .sp 1
+.if t .sp .5
+.nf
+.in +.5i
+..
+.de EE
+.fi
+.in -.5i
+.if n .sp 1
+.if t .sp .5
+..
+
+.TH QVWM 1x "1 April 2006" "Version 1.1.12-8-IKu"
+
+.SH NAME
+qvwm \- Windows 95/98 like window manager for X11
+
+.SH SYNPSIS
+.B qvwm
+[ \fIoptions\fP ]
+
+.SH DESCRIPTION
+
+Qvwm is a simple, lightweight Windows 95-like window manager for X11.  It
+looks much like Windows 95/98, and provides the functions of start menu,
+taskbar, task switcher, configurable keyboard shortcuts and an imitation of
+desktop shortcuts.  Also, it supports virtual screen and a pager functions,
+which are common for X window managers. Furthermore, it deals with any
+languages because it is considered with internationalization.
+
+Qvwm is written in C++, without depending on twm or fvwm.  
+
+.SH OPTIONS
+Qvwm accepts the following options on the command line:
+
+.TP
+\fB--clientid\fP \fIclient_id\fP
+Specifies the client Id from the previous session.
+It is equivalent to \fB-id\fP or \fB-clientId\fP.
+.TP
+\fB--config\fP
+Displays compile options.
+It is equivalent to \fB-cfg\fP.
+.TP
+\fB--display\fP \fIdisplay_name\fP
+Specifies the display name that qvwm uses by display_name. If you don't
+specify this option, qvwm uses the environment variable $DISPLAY.
+It is equivalent to \fB-d\fP or \fB-display\fP.
+.TP
+\fB--help\fP
+Displays simple description of qvwm command line options.
+.TP
+\fB--noparse\fP
+Starts qvwm without reading any configuration files.
+It is equivalent to \fB-n\fP.
+.TP
+\fB--rcfile\fP \fIrcfile_name\fP
+Specifies the configuration file that qvwm reads on startup by rcfile_name. 
+By default, $HOME/.qvwmrc is read; if it doesn't exist, 
+<QVWMDIR>/system.qvwmrc.
+It is equivalent to \fB-f\fP.
+.TP
+\fB--restart\fP
+Starts qvwm without executing a [Startup] section in a configuration file.
+It is equivalent to \fB-r\fP.
+.TP
+\fB--synch\fP
+Executes qvwm on synchronization mode.  Although qvwm with this option 
+works slowly, qvwm may work stably.
+It is equivalent to \fB-s\fP or \fB-synch\fP.
+.TP
+\fB--version\fP
+Displays the version and copyright of qvwm.
+It is equivalent to \fB-v\fP.
+
+
+.SH VARIABLE CONFIGURATION
+The following are variables you specify in the configuration file's
+[Variables] section. The values in parentheses are default.
+.TP
+\fBAllowRemoteCmd\fP (False)
+Sets whether qvwm allows other processes of the user that starts qvwm
+to send internal commands to it.
+.TP
+\fBAutoRaise\fP (False)
+Sets whether the active window raises on top automatically when ClickToFocus
+is False.
+.TP
+\fBAutoRaiseDelay\fP (500)
+Sets the delay time taken to raise the active window automatically by the
+millisecond. (more than 0)
+.TP
+\fBButtonColor\fP (gray)
+Sets the button color.
+.TP
+\fBButtonStringColor\fP (black)
+Sets the button string color.
+.TP
+\fBCascadeMenuFont\fP (null)
+Sets the font for the cascade memu, that is, child menus of the start menu.
+If this variable is not specified, DefaultFont is used.
+.TP
+\fBClickToFocus\fP (True)
+If True, qvwm activates the window you click. Otherwise, the active window
+changes according to the movement of mouse cursor.
+.TP
+\fBClickingRaises\fP (True)
+If True, a window is raised even if you click the client area.
+When ClickToFocus is True, ClickingRaises is always True.
+.TP
+\fBClockFormat\fP ("%R")
+Sets the format of the taskbar clock.  The format follows strftime(3).
+.TP
+\fBClockLocaleName\fP ("")
+Sets the locale of taskbar clock.
+(see /usr/X11R6/lib/X11/locale/locale.alias)
+.TP
+\fBClockMessageFormat\fP ("%A, %B %e, %Y")
+Sets the format of the message of the taskbar clock tooltip.  The
+format follows strftime(3).
+.TP
+\fBClockStringColor\fP (black)
+Sets the taskbar clock string color.
+.TP
+\fBCloseButtonMessage\fP ("Close")
+Sets the message of the close button tooltip.
+.TP
+\fBCloseSound\fP (NULL)
+Sets the sound file played back when a window is closed.
+.TP
+\fBCtrlMenuFont\fP (null)
+Sets the font for the control memu.  If this variable is not specified,
+DefaultFont is used.
+.TP
+\fBCtrlMoveRatio\fP (1.0)
+Sets the ratio to the normal movement (13 dots) when you move a window
+using the keyboard pressing a control key.
+.TP
+\fBCursorColor\fP (white)
+Sets the cursor color.
+.TP
+\fBDefaultFolderIcon\fP (null)
+Sets the default icon for menu items, which open submenus.  If you do not
+specify, it will be a little 16x16 folder picture.
+.TP
+\fBDefaultFont\fP ("-*-*-medium-r-normal-*-14-*")
+Sets the default font.
+.TP
+\fBDefaultIcon\fP (null)
+Sets the default image of an icon used in titlebars and taskbar buttons.  The
+size must be 16x16.  If this variable is not specified, a default logo is
+used.  (Currently, it is the Debian swirl logo, but can be changed by
+editing the source src/bitmaps/logo16.xpm file.)
+.TP
+\fBDefaultLargeIcon\fP (null)
+Sets the default image of an icon used in the task switcher.  The
+size must be 32x32.  If this variable is not specified, the built-in
+Windows logo is used.
+.TP
+\fBDefaultMenuItemIcon\fP (null)
+Sets the default icon for normal menu items, ie for this items, which run
+programs or execute commands.  No icon is used, if you do not specify it here,
+nor in your menu specifications.
+.TP
+\fBDefaultShortcutIcon\fP (null)
+Sets the default image of a shortcut icon.  The size must be 32x32.
+If this variable is not specified, the built-in image is used.
+.TP
+\fBDesktopActiveColor\fP (blue)
+Sets the desktop active color for the selected shortcut icon.
+.TP
+\fBDesktopColor\fP (royalblue)
+Sets the desktop color.  If you set WallPaper to Windows2000, the
+desktop is filled with this color.
+.TP
+\fBDialogColor\fP (gray)
+Sets the exit dialog color.
+.TP
+\fBDialogFont\fP (null)
+Sets the font for the exit dialog.  If this variable is not specified,
+DefaultFont is used.
+.TP
+\fBDialogImage\fP ("")
+Sets the exit dialog background image.
+.TP
+\fBDialogStringColor\fP (black)
+Sets the exit dialog string color.
+.TP
+\fBDisableDesktopChange\fP (False)
+Sets whether the user cannot move or resize the taskbar, the pager,
+and icons.
+.TP
+\fBDisableTaskbarDragging\fP (True)
+Forbids dragging the taskbar with mouse.  Set to False to enable dragging.
+.TP
+\fBDoubleClickRange\fP (5)
+Sets the max distance between two clicks for double click by the dot. 
+(more than 1)
+.TP
+\fBDoubleClickTime\fP (400)
+Sets the max interval between two clicks for double click by the millisecond.
+(more than 1)
+.TP
+\fBEdgeResistance\fP (0)
+Sets the resistance needed for moving the frame of a window over the
+edges of the screen.
+.TP
+\fBEnableAlsa\fP (True)
+Sets whether you enable ALSA (Advanced Linux Sound Architecture) if OS
+supports it.
+.TP
+\fBEnableEsd\fP (True)
+Sets whether you enable EsounD if installed.
+.TP
+\fBEnableSound\fP (True)
+Sets whether you enable the sound facility.
+.TP
+\fBExpandSound\fP (NULL)
+Sets the sound file played back when a window is expanded by
+QVWM_EXPAND_?? functions.
+.TP
+\fBFocusOnMap\fP (False)
+Sets whether a newly mapped window is activated automatically when
+ClickToFocus is False.
+.TP
+\fBFrameActiveColor\fP (gray)
+Sets the window frame active color.
+.TP
+\fBFrameActiveImage\fP ("")
+Sets the window frame active background image.
+.TP
+\fBFrameColor\fP (gray)
+Sets the window frame inactive color.
+.TP
+\fBFrameImage\fP ("")
+Sets the window frame inactive background image.
+.TP
+\fBFrameBorderWidth\fP (2)
+Sets the border width of a window frame, excluding shade width.
+.TP
+\fBFrameTitleHeight\fP (18)
+Sets the titlebar height of a window frame.
+.TP
+\fBFullOpaque\fP (True)
+Sets whether the contents of a window are redrawn on resizing.
+.TP
+\fBGradMenuMap\fP (False)
+Sets whether a menu is shown gradually.
+.TP
+\fBGradMenuMapSpeed\fP (15)
+Sets the speed at which a menu is shown gradually.
+The speed is faster if this value is smaller. (more than 1)
+.TP
+\fBGradTaskbarMotion\fP (True)
+Sets whether the taskbar hides gradually when TaskbarAutoHide is True.
+.TP
+\fBGradTaskbarMotionSpeed\fP (20)
+Sets the speed of the taskbar on automatically hiding or raising.
+The speed is faster if this value is smaller. (more than 1)
+.TP
+\fBGradTitlebar\fP (False)
+Sets whether the titlebar color is graded from left to right.
+.TP
+\fBGradTitlebarColors\fP (40)
+Sets the number of colors used for the graded titlebar effect.
+The more colors, the smoother the gradation. (more than 1)
+.TP
+\fBGradWindowMapSpeed\fP (50)
+Sets the speed when windows are mapped and unmapped gradually.
+The speed is faster if this value is smaller. (more than 1)
+.TP
+\fBGradWindowMapStyle\fP (Normal)
+Sets the style for mapping and unmapping windows.  Select one of
+Normal, TopToBottom, LeftToRight, CenterToTopBottom,
+CenterToLeftRight, and CenterToAll.
+.TP
+\fBHourGlassTime\fP (1000)
+Sets the time (msec) during which an hourglass is displayed when the
+external commands are executed.
+.TP
+\fBIconBackColor\fP (white)
+Sets the background color for icon bitmap of application by the color name
+or the format #RGB/#RRGGBB/#RRRGGGBBB/#RRRRGGGGBBBB.
+.TP
+\fBIconFont\fP (null)
+Sets the font for the shortcut icon.  If this variable is not specified,
+DefaultFont is used.
+.TP
+\fBIconForeColor\fP (black)
+Sets the foreground color for icon bitmap of application by the color name
+or the format #RGB, etc.
+.TP
+\fBIconHorizontalSpacing\fP (43)
+Sets the horizontal spacing between short cut icons.
+.TP
+\fBIconSize\fP (32)
+Sets the icon size.
+.TP
+\fBIconStringColor\fP (white)
+Sets the icon string color.
+.TP
+\fBIconVerticalSpacing\fP (43)
+Sets the vertical spacing between short cut icons.
+.TP
+\fBImageAnimation\fP (True)
+Sets whether qvwm makes images like shortcut icons animate.
+.TP
+\fBIndicatorSize\fP (16)
+Sets the indicator size.  This value should be smaller than
+TaskbarButtonHeight-6.
+.TP
+\fBLocaleName\fP ("")
+Sets locale name of configuration file. By default, the environment
+variable $LANG is used. (see /usr/X11R6/lib/X11/locale/locale.alias)
+.TP
+\fBLockDragState\fP (False)
+Sets whether qvwm allows you to keep dragging even after releasing a mouse
+button until clicking it again.
+.TP
+\fBMaximizeButtonMessage\fP ("Maximize")
+Sets the message of the maximize button tooltip.
+.TP
+\fBMaximizeSound\fP (NULL)
+Sets the sound file played back when a window is maximized.
+.TP
+\fBMenuActiveColor\fP (blue)
+Sets the menu active color.
+.TP
+\fBMenuActiveImage\fP ("")
+Sets the menu active background image.
+.TP
+\fBMenuColor\fP (gray)
+Sets the menu color.
+.TP
+\fBMenuCommandSound\fP (NULL)
+Sets the sound file played back when a menu item is clicked.
+.TP
+\fBMenuItemMinimalHeight\fP (18)
+The minimal height of menu items, in pixels.  (Actual height depends on size
+of the icons you specify for your menu items or the default menu item icon.)
+.TP
+\fBMenuImage\fP ("")
+Sets the menu inactive background image.
+.TP
+\fBMenuStringActiveColor\fP (white)
+Sets the menu string active color.
+.TP
+\fBMenuStringColor\fP (black)
+Sets the menu string inactive color.
+.TP
+\fBMenuDelayTime\fP (500)
+Sets the delay time between pointing a menu item and starting to show
+the menu by the millisecond. (more than 0)
+.TP
+\fBMiniatureActiveColor\fP (white)
+Sets the color for active miniature window in the pager.
+.TP
+\fBMiniatureColor\fP (black)
+Sets the color for non-active miniature window in the pager.
+.TP
+\fBMinimizeButtonMessage\fP ("Minimize")
+Sets the message of the minimize button tooltip.
+.TP
+\fBMinimizeSound\fP (NULL)
+Sets the sound file played back when a window is minimized.
+.TP
+\fBNoDesktopFocus\fP (False)
+Sets whether you allow a focus to move the desktop when ClickToFocus
+is False and you move the mouse pointer on the desktop.
+.TP
+\fBNoFocusChangeMask\fP (Shift)
+Sets the modifier key by which you can move a mouse cursor without
+changing focus to windows below temporarily when ClickToFocus is False.
+For this modifier key, you can specify Shift, Ctrl, Alt, Meta,
+Mod1-Mod5, or None.
+.TP
+\fBNoResizeOverTaskbar\fP (False)
+Sets whether qvwm allows you to resize a window over the taskbar.
+.TP
+\fBNoSnappingMask\fP (Alt)
+Sets the modifier key by which you can suppress snapping edge,
+snapping move, and edge resistance temporarily.
+For this modifier key, you can specify Shift, Ctrl, Alt, Meta,
+Mod1-Mod5, or None.
+.TP
+\fBOnTopPager\fP (False)
+Sets whether the pager keeps on top.
+.TP
+\fBOnTopTaskbar\fP (True)
+Sets whether the taskbar keeps on top.
+.TP
+\fBOpaqueMove\fP (True)
+Sets whether you move a window using full-drag style.
+.TP
+\fBOpaqueResize\fP (True)
+Sets whether you resize a window using full-drag style.
+.TP
+\fBOpenSound\fP (NULL)
+Sets the sound file played back when an application is started.
+.TP
+\fBPagerActiveColor\fP (darkgray)
+Sets the pager active page color.
+.TP
+\fBPagerColor\fP (gray)
+Sets the pager color.
+.TP
+\fBPagerGeometry\fP (48x48+0+0)
+Sets the size and position of the pager by the following format.
+.EX
+[<width>{xX}<height>][{+-}<xoffset>{+-}<yoffset>]
+.EE
+.TP
+\fBPagerImage\fP ("")
+Sets the pager background image.
+.TP
+\fBPagerSound\fP (NULL)
+Sets the sound file played back when a virtual page is switched by
+clicking the pager.
+.TP
+\fBPagingBeltSize\fP (2)
+Sets the area of edges of the screen where the page switches if you move 
+mouse cursor and wait for the time of PagingResistance. If this value is 0,
+switching page does not happen when you move mouse cursor to the edges of
+screen. (0 or more than 0)
+.TP
+\fBPagingMovement\fP (100)
+Sets the movement on switching a page by a percentage to the size of
+the screen. (0 or more than 0)
+.TP
+\fBPagingResistance\fP (200)
+The page switches to the next page if you wait for this time, when you move
+mouse cursor to edges of the screen. (0 or more than 0)
+.TP
+\fBPagingSize\fP (1x1)
+Sets the size of virtual screen by the page unit by the following format.
+.EX
+<width>{xX}<height>
+.EE
+.TP
+\fBPagingSound\fP (NULL)
+Sets the sound file played back when a virtual page is switched by
+moving the mouse cursor or executing a shortcut key.
+.TP
+\fBPagingSpeed\fP (1)
+Sets how smoothly qvwm moves a virtual page when paging.  Bigger this
+value is, more smooth paging gets. (more than 1)
+.TP
+\fBImagePath\fP ("")
+Sets the directories where you locate the image files, separated by ':'.
+.TP
+\fBRestoreButtonMessage\fP ("Restore")
+Sets the message of the restore button tooltip.
+.TP
+\fBRestoreDownSound\fP (NULL)
+Sets the sound file played back when a window is restored from the
+maximized state.
+.TP
+\fBRestoreMinimize\fP (False)
+Sets whether a window is minimized when the window is active and the
+corresponding taskbar button is pushed.
+.TP
+\fBRestoreUpSound\fP (NULL)
+Sets the sound file played back when a window is restored from the
+minimized state.
+.TP
+\fBRestartOnFailure\fP (True)
+Sets whether qvwm automatically restarts on segmentation fault or bus
+error.
+.TP
+\fBScreenSaver\fP ("xlock")
+Sets your favorite screen saver program.
+.TP
+\fBScreenSaverDelay\fP (600)
+Sets the delay time in which a screen saver is started after your system
+becomes idle.  This delay time is specified by the second.  If this
+value is 0, a screen saver is never started.
+.TP
+\fBShiftMoveRatio\fP (1.0)
+Sets the ratio to the normal movement (13 dots) when you move a window
+using the keyboard pressing a shift key.
+.TP
+\fBSmartPlacement\fP (False)
+Sets whether qvwm locates a new window in free space automatically
+when screen has enough space.
+.TP
+\fBSnappingEdges\fP (0)
+Sets the distance from the edges of the screen, where a window snaps
+them.
+.TP
+\fBSnappingMove\fP (0)
+Sets the distance from the other windows, where a window snaps them.
+.TP
+\fBSoundPath\fP ("")
+Sets the directories where you locate the sound files, separated by ':'.
+.TP
+\fBStartButtonMessage\fP ("Start with this button.")
+Sets the message of the start button tooltip.
+.TP
+\fBStartButtonTitle\fP ("Start")
+Sets the string of the start button.
+.TP
+\fBStartMenuFont\fP (null)
+Sets the font for the start memu.  If this variable is not specified,
+DefaultFont is used.
+.TP
+\fBStartMenuLogoColor\fP (black)
+Sets the background color of the logo area in the start menu.
+.TP
+\fBStartMenuLogoImage\fP ("")
+Sets the logo image in the start menu.
+.TP
+\fBSwitcherActiveColor\fP (blue)
+Sets the task switcher active color.
+.TP
+\fBSwitcherColor\fP (gray)
+Sets the task switcher color.
+.TP
+\fBSwitcherImage\fP ("")
+Sets the task switcher background image.
+.TP
+\fBSwitcherStringColor\fP (black)
+Sets the task switcher string color.
+.TP
+\fBSystemExitSound\fP (NULL)
+Sets the sound file played back when qvwm terminates.
+.TP
+\fBSystemRestartSound\fP (NULL)
+Sets the sound file played back when qvwm restarts.
+.TP
+\fBSystemStartSound\fP (NULL)
+Sets the sound file played back when qvwm starts.
+.TP
+\fBTaskbarAutoHide\fP (False)
+Sets whether qvwm hides the taskbar automatically.
+.TP
+\fBTaskbarBoldFont\fP (null)
+Sets the bold font for the taskbar.  If this variable is not specified,
+DefaultFont is used.
+.TP
+\fBTaskbarButtonHeight\fP (22)
+Sets the taskbar button height.  This value affects the taskbar
+height, the start button height and the taskbar box height.
+.TP
+\fBTaskbarButtonInScr\fP (False)
+Sets whether the taskbar shows only the taskbar buttons for windows in
+the current screen.
+.TP
+\fBTaskbarColor\fP (gray)
+Sets the taskbar color.
+.TP
+\fBTaskbarFont\fP (null)
+Sets the font for the taskbar.  If this variable is not specified,
+DefaultFont is used.
+.TP
+\fBTaskbarHideDelay\fP (500)
+Sets the delay time between pointing the taskbar and starting to hide
+it by the millisecond.
+.TP
+\fBTaskbarImage\fP ("")
+Sets the taskbar backgound image.
+.TP
+\fBTaskbarPosition\fP (Bottom)
+Sets the initial position (Bottom, Top, Left, Right) of the taskbar.
+.TP
+\fBTaskbarRows\fP (1)
+Sets initial rows of the taskbar when the taskbar locates on top or bottom.
+(more than 1)
+.TP
+\fBTaskbarShowDelay\fP (0)
+Sets the delay time between pointing the hidden taskbar and starting
+to show the taskbar by the millisecond.
+.TP
+\fBTitleStringActiveColor\fP (white)
+Sets the title string active color.
+.TP
+\fBTitleStringColor\fP (gray)
+Sets the title string inactive color.
+.TP
+\fBTitleFont\fP (null)
+Sets the font for the titlebar.  If this variable is not specified,
+DefaultFont is used.
+.TP
+\fBTitlebarActiveColor\fP (blue)
+Sets the titlebar active color. (left-side color when gradation; see GradTitlebar)
+.TP
+\fBTitlebarActiveColor2\fP (green)
+Sets the titlebar active color. (right-side color when gradation; see GradTitlebar)
+.TP
+\fBTitlebarActiveImage\fP ("")
+Sets the titlebar active background image.
+.TP
+\fBTitlebarColor\fP (darkgray)
+Sets the titlebar inactive color. (left-side color when gradation; see 
+GradTitlebar)
+.TP
+\fBTitlebarColor2\fP (gray)
+Sets the titlebar inactive color. (right-side color when gradation;
+see GradTitlebar)
+.TP
+\fBTitlebarImage\fP ("")
+Sets the titlebar inactive background image.
+.TP
+\fBTitlebarMotion\fP (True)
+Sets whether you make the titlebar animate when maximizing and
+minimizing a window.
+.TP
+\fBTitlebarMotionSpeed\fP (100)
+Sets the speed of the titlebar when maximizing and minimizing a window.
+The speed is faster if this value is smaller. (more than 1)
+.TP
+\fBTooltipDelayTime\fP (500)
+Sets the delay time between pointing by mouse and raising a tooltip.(ms)
+.TP
+\fBTooltipDisplayTime\fP (6000)
+Sets the time during which tooltips keep displayed.(ms)
+.TP
+\fBTooltipMotionSpeed\fP (5)
+Sets the speed in which tooltips raise gradually.
+.TP
+\fBTopLeftPage\fP (+0+0)
+Sets the top-left page of virtual screen by the following format.
+.EX
+{+-}<xoffset>{+-}<yoffset>
+.EE
+The page you can see on startup of qvwm is (0, 0), and virtual screen is as
+follows if you set TopLeftPage to -1-1.
+.EX
++-----+-----+---
+|-1,-1| 0,-1|
++-----+-----+---
+|-1, 0| 0, 0| 
++-----+-----+---
+|     |     |
+.EE
+.TP
+\fBUseBoldFont\fP (False)
+Sets whether you use bold font for bold characters used in the taskbar.
+.TP
+\fBUseConfirmDialog\fP (False)
+Sets whether you use dialog box for confirmation if exiting qvwm when
+all applications are not terminated.
+.TP
+\fBUseDebugger\fP (True)
+Sets whether qvwm starts a debugger(gdb) and makes a stack trace
+output when qvwm crashes.
+.TP
+\fBUseExitDialog\fP (True)
+Sets whether you use dialog box at exiting qvwm.
+.TP
+\fBUseInfoDisplay\fP (False)
+Sets whether qvwm displays information on the position and the size
+when you move and resize a window.
+.TP
+\fBWallPaper\fP (Windows98)
+Sets the image of wall paper by full path. Some strings have special 
+meaning: Windows98 means the standard background (DesktopColor); "" means
+that background doesn't change.
+
+
+.SH INTERNAL COMMAND
+The followings are internal commands available for menus and shortcuts.
+[menu], [win], [icon], and [shortcut] mean that the command is
+available in menus, the control menu of window, the menu of icon, and
+shortcut keys, respectively.
+
+Window Manager
+.EX
+QVWM_EXIT                  exit qvwm
+QVWM_RESTART               restart qvwm
+.EE
+Window
+.EX
+QVWM_MOVE                  move a window [win]
+QVWM_RESIZE                resize a window size [win]
+QVWM_MAXIMIZE              maximize a window or restore if it is 
+                           already maximized [win]
+QVWM_MAXIMIZE_ONEWAY       maximize a window [win]
+QVWM_MINIMIZE              minimize a window [win]
+QVWM_RESTORE               restore a window size [win]
+QVWM_EXPAND                expand a window to all directions [win]
+QVWM_EXPAND_LEFT           expand a window to a left direction [win]
+QVWM_EXPAND_RIGHT          expand a window to a right direction [win]
+QVWM_EXPAND_UP             expand a window to an up direction [win]
+QVWM_EXPAND_DOWN           expand a window to a down direction [win]
+QVWM_RAISE                 raise a window [win]
+QVWM_LOWER                 lower a window [win]
+QVWM_CLOSE                 close a window (recommend) [win]
+QVWM_KILL                  close a window forcely [win]
+QVWM_TOGGLE_ONTOP          toggle switch of an ONTOP attribute [win]
+QVWM_TOGGLE_STICKY         toggle switch of a STICKY attribute [win]
+QVWM_TOGGLE_FOCUS          toggle switch of a focus attribute [win]
+QVWM_TOGGLE_BORDER         toggle switch of a border [win]
+QVWM_TOGGLE_BORDER_EDGE    toggle switch of a border edge [win]
+QVWM_TOGGLE_BUTTON1        toggle switch of a minimize button [win]
+QVWM_TOGGLE_BUTTON2        toggle switch of a restore button [win]
+QVWM_TOGGLE_BUTTON3        toggle switch of a close button [win]
+QVWM_TOGGLE_CTRLBTN        toggle switch of a control button [win]
+QVWM_TOGGLE_TBUTTON        toggle switch of a taskbar button [win]
+QVWM_TOGGLE_TITLE          toggle switch of a title bar [win]
+.EE
+Window Focus
+.EX
+QVWM_SWITCH_TASK           switch an active window [shortcut]
+QVWM_SWITCH_TASK_BACK      switch back an active window [shortcut]
+QVWM_CHANGE_WIN            change an active window
+QVWM_CHANGE_WIN_BACK       change back an active window
+QVWM_CHANGE_WIN_INSCR      change an active window within a screen
+QVWM_CHANGE_WIN_BACK_INSCR change back an active window in a screen
+QVWM_DESKTOP_FOCUS         make the desktop active
+QVWM_FOCUS                 give focus to a window 
+QVWM_RAISE_FOCUS           raise and give focus to a window
+
+.EE
+Window Rearrangement
+.EX
+QVWM_OVERLAP               overlap all windows
+QVWM_OVERLAP_INSCR         overlap windows within the screen
+QVWM_TILE_HORZ             horizontally tile all windows
+QVWM_TILE_HORZ_INSCR       horizontally tile windows within the screen
+QVWM_TILE_VERT             vertically tile all windows
+QVWM_TILE_VERT_INSCR       vertically tile windows within the screen
+QVWM_MINIMIZE_ALL          minimize all windows
+QVWM_MINIMIZE_ALL_INSCR    minimize windows within the screen
+QVWM_RESTORE_ALL           restore all windows
+QVWM_RESTORE_ALL_INSCR     restore windows within the screen
+QVWM_CLOSE_ALL             close all windows
+QVWM_CLOSE_ALL_INSCR       close windows within the screen
+.EE
+Menu
+.EX
+QVWM_POPUP_START_MENU      pop up the start menu
+QVWM_POPUP_DESKTOP_MENU    pop up the desktop menu
+QVWM_POPUP_MENU            pop up a window ctrl menu
+QVWM_POPDOWN_MENU          pop down a menu [menu]
+QVWM_POPDOWN_ALL_MENU      pop down all menus
+.EE
+Virtual Screen
+.EX
+QVWM_UP_PAGING             switch to the up page
+QVWM_DOWN_PAGING           switch to the down page
+QVWM_LEFT_PAGING           switch to the left page
+QVWM_RIGHT_PAGING          switch to the right page
+.EE
+Taskbar
+.EX
+QVWM_BOTTOM                move the taskbar to bottom
+QVWM_TOP                   move the taskbar to top
+QVWM_LEFT                  move the taskbar to left
+QVWM_RIGHT                 move the taskbar to right
+QVWM_TOGGLE_AUTOHIDE       toggle switch of TaskbarAutoHide
+QVWM_ENABLE_AUTOHIDE       enable TaskbarAutoHide
+QVWM_DISABLE_AUTOHIDE      disable TaskbarAutoHide
+QVWM_TOGGLE_TASKBAR        toggle switch of the taskbar show/hide
+QVWM_ENABLE_TASKBAR        show the taskbar
+QVWM_DISABLE_TASKBAR       hide the taskbar
+QVWM_SHOW_TASKBAR          appear the taskbar when TaskbarAutoHide
+QVWM_HIDE_TASKBAR          disappear the taskbar when TaskbarAutoHide
+.EE
+Pager
+.EX
+QVWM_TOGGLE_PAGER          toggle switch of the pager show/hide
+QVWM_ENABLE_PAGER          show the pager
+QVWM_DISABLE_PAGER         hide the pager
+.EE
+Icon
+.EX
+QVWM_LINEUP_ICON           line up shortcut icons
+QVWM_EXEC_ICON             execute the icon [icon]
+QVWM_DELETE_ICON           delete the icon [icon]
+.EE
+Others
+.EX
+QVWM_NONE                  no action
+QVWM_SEPARATOR             sepatator(no action) [menu]
+.EE
+
+
+.SH EXTERNAL COMMAND
+You can specify one of some prefixes before an external command.
+.IP EXEC 8
+Replace qvwm with the external command.  Use to switch qvwm to another
+window manager.
+.EX
+"EXEC twm"
+.EE
+.IP PAGE[<x>,<y>,<identifier>]
+Place the window created by the external command into page(x, y).
+Specify the title name, resource name, or resource class of the window
+as \fIidentifier\fP.
+.EX
+"PAGE[1, 1, XEyes] xeyes"
+.EE
+.IP PAGECUR[<identifier>]
+Place the window into the page, which was current, where the external 
+command was executed.
+
+
+.SH STARTUP
+You can specify external commands when qvwm starts.
+.EX
+[Startup]
+external command
+.EE
+\fIExternal command\fP is specified by enclosing it with "".  As
+described in EXTERNAL COMMAND section, you can specify the page where
+the window created by the external command is located.
+
+
+.SH MENU CONFIGURATION
+You can configure menus in the section beginning with [menu name] as
+follows:
+.EX
+item   image   action
+.EE
+or
+.EX
+item   image
++
+	child menu
+-
+.EE
+\fIitem\fP is specified by enclosing each item name with "".  You can
+include " by writing \\".  A character following to \\& is a shortcut key
+for the item and displayed with an underscore.
+\fIimage\fP is specified by enclosing the image name of the left of menus
+with "". In the first format, \fIaction\fP is specified by an external
+command or an internal command. If program is specified as action,
+enclose its name with "".
+.PP
+The second format is used when you want to expose child menu from the item.
+The part enclosed with + and - is the child menu.
+.PP
+You can specify the followings as menu name.
+.TP 5
+\fBStartMenu\fP
+The menu displayed when you click the start button
+.TP
+\fBCtrlMenu\fP
+The menu displayed when you click a control menu button with left
+mouse button or taskbar button with right mouse button
+.TP
+\fBDesktopMenu\fP
+The menu displayed when you click the desktop with right mouse button
+.TP
+\fBIconMenu\fP
+The menu displayed when you click an icon with right mouse button
+.TP
+\fBTaskbarMenu\fP
+The menu displayed when you click the taskbar with right mouse button
+
+
+.SH SHORTCUT CONFIGURATION
+You can configure shortcuts as follows:
+.EX
+[Shortcuts]
+name   image   action   [x][, y]
+.EE
+\fIname\fP is specified by enclosing the string below shortcut icon with "".
+\fIimage\fP is specified by enclosing the image name for shortcut icon with 
+"". The image must locate on IMGDIR directory which you specify in 
+'Config.tmpl' or on ImagePath directory in .qvwmrc. \fIaction\fP is specified
+by an internal command or an external command executed on double-clicking 
+shortcut icon. If either \fIx\fP or \fIy\fP is specified, qvwm locates 
+the shortcut
+in the position. When you begin x or y with '!', instead of specifying x or y 
+in absolute coordinates, qvwm locates the shortcut in the position of the
+multiple of an icon area. By default, shurtcuts are located in the order of
+description.
+
+
+.SH ATTRIBUTE CONFIGURATION
+You can configure attributes of each application as follows:
+.EX
+[Applications]
+application   attribute,...
+.EE
+Specify class name, instance name or title name enclosed with "" as 
+\fIapplication\fP. \fIAttributes\fP are as follows:
+.IP NO_BORDER 15
+The window has no border.
+.IP NO_BORDER_EDGE
+The window has no inner shade of a window frame.
+.IP NO_BUTTON1
+The window has no minimize button.
+.IP NO_BUTTON2
+The window has no maximize/restore button.
+.IP NO_BUTTON3
+The window has no close button.
+.IP NO_CTRLBTN
+The window has no control button.
+.IP NO_FOCUS
+The window is never activated.
+.IP NO_TBUTTON
+The taskbar button of the window is not displayed.
+.IP NO_TITLE
+The window has no title.
+.IP STICKY
+The window is always displayed even if you switch to any pages.
+.IP LARGE_IMG
+The large image(32x32) displayed in task switcher.
+(e.g. LARGE_IMG="xterm.xpm")
+.IP SMALL_IMG
+The small image(16x16) displayed in control menu of title bar or taskbar 
+button. (e.g. SMALL_IMG="xterm_s.xpm")
+.IP CLOSE_SOON
+The window is not displayed but closed soon.
+.IP ONTOP
+The window is kept on top of the screen.
+.IP INIT_MAXIMIZE
+The window is maximized on initializating.
+.IP INIT_MINIMIZE
+The window is minimized on initializating.
+.IP FOCUS_ON_CLICK
+The window is activated only when clicked.
+
+
+.SH EXIT DIALOG CONFIGURATION
+You can configure exit dialog as follows:
+.EX
+[ExitDialog]
+part   string or image   action
+.EE
+You can specify the followings as \fIpart\fP.
+.EX
+CancelButton      string for cancel button
+HelpButton        string help button
+IconImage         image displayed on top-left
+OKButton          string for OK button
+RadioButton       radio button
+StaticText        string for discription
+Title             string of title bar
+.EE
+\fIaction\fP is meaningful in case of radio button. Specify an internal 
+command above or an external command as action.  You can use \\& for a
+shortcut key in a string after OKButton, CancelButton and HelpButton.
+
+
+.SH SHORTCUT KEY CONFIGURATION
+You can configure shortcut keys as follows:
+.EX
+[ShortCutKeys]
+key  modifier  action
+.EE
+\fIkey\fP is the name of a key. Specify the string removed 'XK_' from
+symbols in /usr/include/X11/keysymdef.h. (You can know it with xev.)
+You can also use the key code for keys whose symbol is undefined.
+Specify the key code in the style of #xx. (xx is decimal)
+\fImodifier\fP is the name of a modifier key such as shift key,
+control key, alt key, etc. If you specify more than one modifier, use
+'|'. You can specify for modifiers as follows:
+.EX
+Shift       shift key
+Ctrl        control key
+Alt         alt key
+Meta        meta key
+Mod1-Mod5   no use (obsolete)
+None        no modifier
+.EE
+Specify an internal command or an extenal command as \fIaction\fP.
+
+
+.SH INDICATOR CONFIGURATION
+You can display a 16x16 window called indicator on the left of the clock
+of the taskbar. You can configure indicators as follows:
+.EX
+[Indicators]
+identifier  external command
+.EE
+Specify the title name, resource name, or resource class of a window for
+an indicator as \fIidentifier\fP. The window created by \fIprogram\fP
+becomes an indicator. (But the second or later window is shown as a normal
+window in the desktop.)
+
+
+.SH ACCESSORY CONFIGURATION
+You can put accessories, your favorite images including animation
+files, on the desktop.  You can configure accessories as follows:
+.EX
+[Accessories]
+image   location   style
+.EE
+Specify the name of an image file whose format qvwm supports for
+\fIimage\fP.  \fIlocation\fP is Top, Bottom, Left, Right, TopLeft,
+TopRight, BottomLeft, BottomRight, Center, or geometry position (like
++0+0).  \fIstyle\fP is Background, OnTop, or Application.
+Background means that the image is put below all windows and shortcut
+icons.  OnTop means that the image is put above all windows and
+shortcut icons.  Application means that the image has a window frame
+and you can move it.
+
+
+.SH INCLUDE STATEMENT
+You can read external files by using include statement in a
+configuration file.
+.EX
+include /home/kourai/.qvwmrc.local
+
+.SH PATH NAME
+You can use ~ for your home directory, ~user for user's home
+directory, and environment variables following to $.
+.EX
+include $HOME/.qvwmrc.local
+IconPath = ~/lib/qvwm/pixmaps
+
+.SH SUPPORTED IMAGE FORMATS
+Qvwm supports xpm format (extension .xpm).  If you use Imlib, qvwm also
+supports formats that Imlib supports (png, gif, etc.).  
+
+Qvwm may be compiled with support for animated icons for qvwm (extension
+.ani).  Because the animated icon files consist of separate images as they
+are, an animated icon file is supported if qvwm supports all formats of the
+images in the file.
+
+
+.SH REMOTE COMMAND
+The user can make qvwm execute internal commands by sending commands
+to /tmp/qvwm-\fIdisplay_name\fP.  This facility is valid only when
+qvwm is compiled with the remote command support and the
+AllowRemoteCmd variable is True.  The users that can send commands are
+only the user that starts qvwm and the root user.  
+.PP
+The command consists of strings of internal commands, which is devided
+by '\n'.  For example, if you send the QVWM_EXIT command, execute
+.EX
+echo "QVWM_EXIT" > /tmp/qvwm-:0.0
+.PP
+Some commands even accept parameters.  For instance, the following will raise
+and give focus to the Konsole program window, if such window exists:
+.EX
+echo "QVWM_RAISE_FOCUS konsole" > /tmp/qvwm-:0.0
+
+.SH FILES
+.IP $HOME/.qvwmrc 
+user configuration file
+.IP $HOME/.qvwm-theme
+user theme configuration file (conventionally included in .qvwmrc)
+.IP <QVWMDIR>/system.qvwmrc
+system configuration file (<QVWMDIR> is the directory specified at compile.)
+.IP /tmp/qvwm-\fIdisplay_name\fP
+FIFO for sending remote commands
+
+.SH WARNING
+Though qvwm's official version has been released, it may be not stable 
+enough in some environments.  I am not responsible for any damages arising
+out of the use of qvwm.
+
+
+.SH AUTHOR AND CONTRIBUTORS
+Primary author: Kenichi Kourai, http://www.csg.is.titech.ac.jp/~kourai/
+
+Current maintainer: Ivan Kurmanov, http://ahinea.com/projects/qvwm/
+
+Contributors: Falk Hueffner (from debian.org), Shuichi OONO and many others.

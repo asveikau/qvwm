@@ -1,0 +1,24 @@
+/* XPM */
+static char *radiobtn_normal[] = {
+/* width height num_colors chars_per_pixel */
+"    12    12        5            1",
+/* colors */
+". c None",
+"# c #808080",
+"a c #000000",
+"b c #f8fcf8",
+"c c #d8dcd8",
+/* pixels */
+"....####....",
+"..##aaaa##..",
+".#aabbbbaab.",
+".#abbbbbbcb.",
+"#abbbbbbbbcb",
+"#abbbbbbbbcb",
+"#abbbbbbbbcb",
+"#abbbbbbbbcb",
+".#abbbbbbcb.",
+".#ccbbbbccb.",
+"..bbccccbb..",
+"....bbbb...."
+};

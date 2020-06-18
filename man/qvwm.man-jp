@@ -1,0 +1,1024 @@
+.de EX
+.ne 5
+.if n .sp 1
+.if t .sp .5
+.nf
+.in +.5i
+..
+.de EE
+.fi
+.in -.5i
+.if n .sp 1
+.if t .sp .5
+..
+
+.TH QVWM 1 "1 June 2001" "Version 1.1.11"
+
+.SH 名前
+qvwm \- X11用のWindows 95/98風ウィンドウマネージャ
+
+.SH 形式
+.B qvwm
+[ \fBoptions\fP ]
+
+.SH 説明
+qvwmはX11用のWindows 95/98風ウィンドウマネージャです。基本的にはtwmやfvwmと
+は独立に一からC++で書かれています。限りなくWindows 95/98のルックアンドフィ
+ールに近くなることを目標にしており、タスクバーやショートカットを使うこと
+ができます。その上でより使いやすくするための拡張として、仮想画面やページャ
+などもサポートされています。また最初から国際化のことを考えて作られている
+ので、どのような言語も扱うことができます。
+
+.SH オプション
+.I qvwm
+には以下のオプションがあります。
+.TP
+\fB--clientid\fP \fIclient_id\fP
+以前のセッションからのクライアントIDを指定します。
+\fB-id\fPや\fB-clientId\fPと同等です。
+.TP
+\fB--config\fP
+qvwmがコンパイルされた時のコンパイルオプションを表示します。
+.TP
+\fB--display\fP \fIdisplay_name\fP
+qvwmが使用するディスプレイの名前を指定します。指定しなければqvwmを実行
+するマシンのディスプレイが使われます。
+\fB-d\fPや\fB-display\fPと同等です。
+.TP
+\fB--help\fP
+コマンドラインオプションの簡単な説明を表示します。
+.TP
+\fB--noparse\fP
+どの設定ファイルも読み込まずに起動します。
+\fB-n\fPと同等です。
+.TP
+\fB--rcfile\fP \fIrcfile_name\fP
+qvwmが開始時に読み込む設定ファイルを指定します。指定しなければ$HOME/.qvwmrc
+が読み込まれます。それが存在しない場合は<QVWMDIR>/system.qvwmrcが読み込
+まれます。
+\fB-f\fPと同等です。
+.TP
+\fB--restart\fP
+設定ファイルの中の[Startup]セクションを実行せずに起動します。
+\fB-r\fPと同等です。
+.TP
+\fB--synch\fP
+qvwmを同期モードで実行します。このオプションをつけると動作が遅くなります
+が、その代わり動作安定する可能性があります。
+\fB-s\fPや\fB-synch\fPと同等です。
+.TP
+\fB--version\fP
+バージョンとコピーライトを表示します。
+\fB-v\fPと同等です。
+
+.SH 変数設定
+設定ファイルで指定できる変数です。括弧内はデフォルト値で指定しなかった
+場合に使われます。
+.TP
+\fBAllowRemoteCmd\fP (False)
+qvwmを起動したユーザの他のプロセスから内部コマンドを送ることを許すかど
+うかを指定します。
+.TP
+\fBAutoRaise\fP (False)
+アクティブなウィンドウが自動的に手前にくるかどうかを指定します。
+ClickToFocusがTrueの時は意味がありません。
+.TP
+\fBAutoRaiseDelay\fP (500)
+AutoRaiseがTrueの時フォーカスを得たウィンドウが手前にくるまでの時間を
+ミリ秒単位で指定します。(0以上)
+.TP
+\fBButtonColor\fP (qvgray)
+ボタンの色を指定します。
+.TP
+\fBButtonStringColor\fP (black)
+ボタンの文字の色を指定します。
+.TP
+\fBCascadeMenuFont\fP (null)
+スタートメニューから新たに開かれるカスケードメニューのフォントを指定します。
+この変数が指定されなければ、DefaultFontが使われます。
+.TP
+\fBClickToFocus\fP (True)
+Trueの場合クリックしたウィンドウをアクティブにします。Falseの場合
+マウスカーソルの動きに合わせてアクティブウィンドウが変化します。
+.TP
+\fBClickingRaises\fP (True)
+Trueの場合、クランアント領域をクリックしてもウィンドウをレイズします。
+ClickToFocusがTrueの時はClikingRaisesは常にTrueになります。
+.TP
+\fBClockFormat\fP ("%R")
+タスクバーの時計のフォーマットを指定します。このフォーマットは
+strftime(3)に凖じます。
+.TP
+\fBClockLocaleName\fP ("")
+タスクバーの時計のロケールを指定します。
+(/usr/X11R6/lib/X11/locale/locale.aliasを参照して下さい)
+.TP
+\fBClockMessageFormat\fP ("%A, %B %e, %Y")
+タスクバーの時計のツールチップのメッセージのフォーマットを指定します。
+このフォーマットはstrftime(3)に凖じます。
+.TP
+\fBClockStringColor\fP (black)
+タスクバーの時計の文字の色を指定します。
+.TP
+\fBCloseButtonMessage\fP ("Close")
+閉じるボタンのツールチップのメッセージを指定します。
+.TP
+\fBCloseSound\fP (NULL)
+ウィンドウを閉じる時にならすサウンドファイルを指定します。
+.TP
+\fBCtrlMenuFont\fP (null)
+コントロールメニューのフォントを指定します。この変数が指定されなければ、
+DefaultFontが使われます。
+.TP
+\fBControlMoveRatio\fP (1.0)
+コントロールキーを押しながらキーボードでウィンドウを移動する時の、通常の
+移動量(13ドット)に対する割合を指定します。
+.TP
+\fBCursorColor\fP (white)
+カーソルの色を指定します。
+.TP
+\fBDefaultFont\fP ("-*-*-medium-r-normal-*-14-*")
+デフォルトのフォントを指定します。
+.TP
+\fBDefaultIcon\fP (null)
+タイトルバーとタスクバーボタンで使われるアイコンのデフォルトの画像を指
+定します。サイズは16x16です。この変数が指定されなければ、組み込みの
+Windowsロゴが使われます。
+.TP
+\fBDefaultLargeIcon\fP (null)
+タスクスイッチャで使われるアイコンのデフォルトの画像を指定します。サイ
+ズは32x32です。この変数が指定されなければ、組み込みのWindowsロゴが使わ
+れます。
+.TP
+\fBDefaultShortcutIcon\fP (null)
+ショートカットアイコンのデフォルトの画像を指定します。サイズは
+32x32です。この変数が指定されなければ、組み込みの画像が使われ
+ます。
+.TP
+\fBDesktopActiveColor\fP (qvblue)
+選択されたショートカットアイコンの色を指定します。
+.TP
+\fBDesktopColor\fP (qvgreen)
+デスクトップの色を指定します。WallPaperにWindows98を指定していれば、
+デスクトップはこの色で塗り潰されます。
+.TP
+\fBDialogColor\fP (qvgray)
+終了ダイアログの色を指定します。
+.TP
+\fBDialogFont\fP (null)
+終了ダイアログのフォントを指定します。この変数が指定されなければ、
+DefaultFontが使われます。
+.TP
+\fBDialogImage\fP ("")
+終了ダイアログの背景の画像を指定します。
+.TP
+\fBDialogStringColor\fP (qvgray)
+終了ダイアログの文字の色を指定します。
+.TP
+\fBDisableDesktopChange\fP (False)
+ユーザがタスクバー、ページャ、アイコンを動かせないようにするかどうかを
+指定します。
+.TP
+\fBDoubleClickRange\fP (5)
+ダブルクリックとみなされる最大距離を指定します。(1以上)
+.TP
+\fBDoubleClickTime\fP (400)
+ダブルクリックとみなされる最大間隔をミリ秒単位で指定します。(1以上)
+.TP
+\fBEdgeResistance\fP (0)
+ウィンドウの枠が画面の端を越えて動くための抵抗を指定します。
+.TP
+\fBEnableAlsa\fP (True)
+OSがサポートしている時、ALSA(Advanced Linux Sound Architecture)を有効
+にするかどうかを指定します。
+.TP
+\fBEnableEsd\fP (True)
+EsounDを有効にするかどうかを指定します。
+.TP
+\fBEnableSound\fP (True)
+サウンド機能を有効にするかどうかを指定します。
+.TP
+\fBExpandSound\fP (NULL)
+QVWM_EXPAND_??によってウィンドウを拡げる時にならすサウンドファイルを指定
+します。
+.TP
+\fBFocusOnMap\fP (False)
+ClickToFocusがFalseの時に新たに表示されたウィンドウを自動的にアクティブ
+にするかどうかを指定します。
+.TP
+\fBFrameActiveColor\fP (qvgray)
+アクティブなウィンドウの枠の色を指定します。
+.TP
+\fBFrameActiveImage\fP ("")
+アクティブなウィンドウの枠の背景の画像を指定します。
+.TP
+\fBFrameColor\fP (qvgray)
+非アクティブなウィンドウの枠の色を指定します。
+.TP
+\fBFrameImage\fP ("")
+非アクティブなウィンドウの枠の背景の画像を指定します。
+.TP
+\fBFrameBorderWidth\fP (2)
+ウィンドウの枠の幅を指定します。ただし陰影の部分の幅は含みません。
+.TP
+\fBFrameTitleHeight\fP (18)
+タイトルバーの高さを指定します。
+.TP
+\fBFullOpaque\fP (True)
+ウィンドウのサイズ変更時に内容を書き直すかどうかを指定します。
+.TP
+\fBGradMenuMap\fP (False)
+メニューが徐々に表示されるようにするかどうかを指定します。
+.TP
+\fBGradMenuMapSpeed\fP (15)
+メニューが徐々に表示される速度を指定します。小さい程速くなります。(1以上)
+.TP
+\fBGradTaskbarMotion\fP (True)
+タスクバーが自動的に隠れる時にそのサイズが徐々に変わるようにするかどうかを
+指定します。
+.TP
+\fBGradTaskbarMotionSpeed\fP (20)
+タスクバーのサイズを変える速度を指定します。小さい程速くなります。(1以上)
+.TP
+\fBGradTitlebar\fP (False)
+タイトルバーの色を左右にグラデーションするかどうかを指定します。
+.TP
+\fBGradTitlebarColors\fP (40)
+タイトルバーグラデーションに使われる色数を指定します。
+色数が多い程、グラデーションが滑らかになります。(1以上)
+.TP
+\fBGradWindowMapSpeed\fP (50)
+ウィンドウを徐々に表示・非表示する時の速度を指定します。小さい程速くな
+ります。(1以上)
+.TP
+\fBGradWindowMapStyle\fP (Normal)
+ウィンドウの表示・非表示の仕方を指定します。Normal, TopToBottom,
+LeftToRight, CenterToTopBottom, CenterToLeftRight, CenterToAllから選ん
+で下さい。
+.TP
+\fBHourGlassTime\fP (1000)
+外部コマンドを実行する時に砂時計が表示される時間をmsec単位で指定します。
+.TP
+\fBIconBackColor\fP (white)
+アプリケーションが独自のアイコンビットマップをもっている時、その背景色
+を指定します。カラー名または#RRGGBBの形式で指定して下さい。
+.TP
+\fBIconFont\fP (null)
+ショートカットアイコンのフォントを指定します。この変数が指定されなければ、
+DefaultFontが使われます。
+.TP
+\fBIconForeColor\fP (black)
+アプリケーションが独自のアイコンビットマップをもっている時、その前景色
+を指定します。カラー名または#RRGGBBの形式で指定して下さい。
+.TP
+\fBIconHorizontalSpacing\fP (43)
+ショートカットアイコン間の横方向の間隔を指定します。
+.TP
+\fBIconSize\fP (32)
+ショートカットアイコンのサイズを指定します。
+.TP
+\fBIconStringColor\fP (white)
+ショートカットアイコンの文字の色を指定します。
+.TP
+\fBIconVerticalSpacing\fP (43)
+ショートカットアイコン間の縦方向の間隔を指定します。
+.TP
+\fBImageAnimation\fP (True)
+アイコンなどの画像をアニメーションさせるかどうかを指定します。
+.TP
+\fBIndicatorSize\fP (16)
+インジケータのサイズを指定します。この値はTaskbarButtonHeight-6以下で
+あるべきです。
+.TP
+\fBLocaleName\fP ("")
+設定ファイルで使用しているロケール名を指定します。デフォルトでは環境変数
+LANGを使いますが、それとは違うものが使いたければ指定して下さい。
+(/usr/X11R6/lib/X11/locale/locale.aliasを参照して下さい)
+.TP
+\fBLockDragState\fP (False)
+ウィンドウ等のドラッグ中にマウスボタンを離しても再度マウスをクリックする
+までドラッグし続けるようにするかどうかを指定します。
+.TP
+\fBMaximizeButtonMessage\fP ("Maximize")
+最大化ボタンのツールチップのメッセージを指定します。
+.TP
+\fBMaximizeSound\fP (NULL)
+ウィンドウを最大化する時にならすサウンドファイルを指定します。
+.TP
+\fBMenuActiveColor\fP (qvblue)
+アクティブなメニュー項目の色を指定します。
+.TP
+\fBMenuActiveImage\fP ("")
+アクティブなメニュー項目の背景の画像を指定します。
+.TP
+\fBMenuColor\fP (qvgray)
+メニューの色を指定します。
+.TP
+\fBMenuCommandSound\fP (NULL)
+メニュー項目がクリックされた時にならすサウンドファイルを指定します。
+.TP
+\fBMenuImage\fP ("")
+メニューの背景の画像を指定します。
+.TP
+\fBMenuStringActiveColor\fP (white)
+アクティブなメニュー項目の文字の色を指定します。
+.TP
+\fBMenuStringColor\fP (black)
+非アクティブなメニュー項目の文字の色を指定します。
+.TP
+\fBMenuDelayTime\fP (500)
+メニュー項目をポイントしてからメニューが表示され始めるまでの遅延時間を
+ミリ秒単位で指定します。(0以上)
+.TP
+\fBMiniatureActiveColor\fP (white)
+ページャの中のアクティブなミニチュアウィンドウの色を指定します。
+.TP
+\fBMiniatureColor\fP (black)
+ページャの中の非アクティブなミニチュアウィンドウの色を指定します。
+.TP
+\fBMinimizeButtonMessage\fP ("Minimize")
+最小化ボタンのツールチップのメッセージを指定します。
+.TP
+\fBMinimizeSound\fP (NULL)
+ウィンドウを最小化する時にならすサウンドファイルを指定します。
+.TP
+\fBNoDesktopFocus\fP (False)
+ClickToFocus が False の時に、マウスカーソルのデスクトップ上への移動に伴
+なって、フォーカスを移動させるかどうかを指定します。
+\fBNoFocusChangeMask\fP (Shift)
+ClickToFocusがFalseの時、マウスカーソルの移動中に一時的にフォーカスウィ
+ンドウを変化させないようにする修飾キーを指定します。修飾キーには
+Shift, Ctrl, Alt, Meta, Mod1〜Mod5またはNoneが指定できます。
+.TP
+\fBNoResizeOverTaskbar\fP (False)
+タスクバーを越えてサイズ変更できないようにするかどうかを指定します。
+.TP
+\fBNoSnappingMask\fP (Alt)
+snapping edge(ウィンドウを移動する際に画面の端に吸いつく)、
+snapping move(他のウィンドウの枠に吸いつく)、
+edge resistance(画面の端を越えて動きにくくする)の機能を一時的に抑制す
+るための修飾キーを指定します。修飾キーには
+Shift, Ctrl, Alt, Meta, Mod1〜Mod5またはNoneが指定できます。
+.TP
+\fBOnTopPager\fP (False)
+ページャを常に手前に表示するかどうかを指定します。
+.TP
+\fBOnTopTaskbar\fP (True)
+タスクバーを常に手前に表示するかどうかを指定します。
+.TP
+\fBOpaqueMove\fP (True)
+ウィンドウ等を移動する時に、フルドラッグ(枠だけでなくウィンドウ全体を
+動かす)するかどうかを指定します。
+.TP
+\fBOpaqueResize\fP (True)
+ウィンドウ等をサイズ変更する時に、フルドラッグ(枠だけでなくウィンドウ全体を
+動かす)するかどうかを指定します。
+.TP
+\fBOpenSound\fP (NULL)
+アプリケーションを起動する時にならすサウンドファイルを指定します。
+.TP
+\fBPagerActiveColor\fP (qvdarkgray)
+ページャの中のアクティブなページの色を指定します。
+.TP
+\fBPagerColor\fP (qvgray)
+ページャの色を指定します。
+.TP
+\fBPagerGeometry\fP (48x48+0+0)
+ページャのサイズと表示する位置を
+.EX
+[<width>{xX}<height>][{+-}<xoffset>{+-}<yoffset>]
+.EE
+で指定します。
+.TP
+\fBPagerImage\fP ("")
+ページャの背景の画像を指定します。
+.TP
+\fBPagerSound\fP (NULL)
+ページャをクリックして仮想ページを切り替えた時にならすサウンドファイル
+を指定します。
+.TP
+\fBPagingBeltSize\fP (2)
+画面の端の仮想画面の切り換えが起こる領域の幅を指定します。0なら画面の端にマ
+ウスカーソルがきても切り換えは起こりません。(0以上)
+.TP
+\fBPagingMovement\fP (100)
+ページングの時に移動する量を画面のサイズに対する比率で指定します。(0以上)
+.TP
+\fBPagingResistance\fP (200)
+画面の端にマウスカーソルがきた時にページングが起こるまでの時間を指定します。
+(0以上)
+.TP
+\fBPagingSize\fP (1x1)
+仮想画面のサイズを
+.EX
+<width>{xX}<height>
+.EE
+で指定します。ページ単位で指定して下さい。
+.TP
+\fBPagingSound\fP (NULL)
+マウスを動かすかショートカットキーによって仮想画面を切り替えた時になら
+すサウンドファイルを指定します。
+.TP
+\fBPagingSpeed\fP (1)
+ページングの時にどの程度滑らかに移動するかを指定します。この数値が大きい程
+滑らかに移動します。
+.TP
+\fBPixmapPath\fP ("")
+画像を置く位置を指定します。
+.TP
+\fBRestoreButtonMessage\fP ("Restore")
+元のサイズに戻すボタンのツールチップのメッセージを指定します。
+.TP
+\fBRestoreDownSound\fP (NULL)
+ウィンドウを最大化された状態から元のサイズに戻す時にならすサウンドファ
+イルを指定します。
+.TP
+\fBRestoreMinimize\fP (False)
+ウィンドウがアクティブの時、対応するタスクバー・ボタンを押した時に
+ウィンドウが最小化されるかどうかを指定します。
+.TP
+\fBRestoreUpSound\fP (NULL)
+ウィンドウを最小化された状態から元のサイズに戻す時にならすサウンドファ
+イルを指定します。
+.TP
+\fBRestartOnFailure\fP (True)
+セグメンテーション違反またはバスエラーが出た時にqvwmを自動的に再起動する
+かどうかを指定します。
+.TP
+\fBScreenSaver\fP ("xlock")
+スクリーンセーバーを指定します。
+.TP
+\fBScreenSaverDelay\fP (600)
+システムがアイドル状態になってからスクリーンセーバーが起動されるまでの遅
+延時間を秒単位で指定します。この値を0にすることでスクリーンセーバーを起動
+しないようにできます。
+.TP
+\fBShiftMoveRatio\fP (13)
+シフトキーを押しながらキーボードでウィンドウを移動する時の、通常の移動量
+(13ドット)に対する割合を指定します。
+.TP
+\fBSmartPlacement\fP (False)
+新しいウィンドウを配置する時に画面にスペースが空いていればそこに配置する
+かどうかを指定します。
+.TP
+\fBSnappingEdges\fP (0)
+ウィンドウを画面の端にどのくらい近づけたら吸いつくかを指定します。
+.TP
+\fBSnappingMove\fP (0)
+ウィンドウを他のウィンドウの枠にどのくらい近づけたら吸いつくかを指定します。
+.TP
+\fBSoundPath\fP ("")
+サウンドファイルを置くディレクトリを':'で区切って指定します。
+.TP
+\fBStartButtonMessage\fP ("Start with this button.")
+スタートボタンのツールチップのメッセージを指定します。
+.TP
+\fBStartButtonTitle\fP ("Start")
+スタートボタンに使用する文字列を""で囲って指定します。
+.TP
+\fBStartMenuFont\fP (null)
+スタートメニューのフォントを指定します。この変数が指定されなければ、
+DefaultFontが使われます。
+.TP
+\fBStartMenuLogoColor\fP (qvdarkgray)
+スタートメニューのロゴの背景色を指定します。
+.TP
+\fBStartMenuLogoImage\fP ("")
+スタートメニューのロゴの画像を指定します。
+.TP
+\fBSwitcherActiveColor\fP (qvblue)
+タスクスイッチャの中のアクティブタスクの色を指定します。
+.TP
+\fBSwitcherColor\fP (qvgray)
+タスクスイッチャの色を指定します。
+.TP
+\fBSwitcherStringColor\fP (black)
+タスクスイッチャの文字の色を指定します。
+.TP
+\fBSwitcherImage\fP ("")
+タスクスイッチャの背景の画像を指定します。
+.TP
+\fBSystemExitSound\fP (NULL)
+qvwmが終了する時にならすサウンドファイルを指定します。
+.TP
+\fBSystemRestartSound\fP (NULL)
+qvwmを再起動する時にならすサウンドファイルを指定します。
+.TP
+\fBSystemStartSound\fP (NULL)
+qvwmを立ち上げる時にならすサウンドファイルを指定します。
+.TP
+\fBTaskbarAutoHide\fP (False)
+タスクバーを自動的に隠すかどうかを指定します。
+.TP
+\fBTaskbarButtonHeight\fP (22)
+タスクバーボタンの高さを指定します。この値はタスクバーの高さ、スタート
+ボタンの高さ、タスクバーボックスの高さにも影響を与えます。
+.TP
+\fBTaskbarButtonInScr\fP (False)
+タスクバーが画面内にあるウィンドウのタスクバーボタンだけを表示するよう
+にするかどうかを指定します。
+.TP
+\fBTaskbarBoldFont\fP (null)
+タスクバーのボールドフォントを指定します。この変数が指定されなければ、
+DefaultFontが使われます。
+.TP
+\fBTaskbarColor\fP (qvgray)
+タスクバーの色を指定します。
+.TP
+\fBTaskbarFont\fP (null)
+タスクバーのフォントを指定します。この変数が指定されなければ、
+DefaultFontが使われます。
+.TP
+\fBTaskbarHideDelay\fP (500)
+タスクバーをポイントしてから隠され始めるまでの時間を指定します。
+.TP
+\fBTaskbarImage\fP ("")
+タスクバーの背景の画像を指定します。
+.TP
+\fBTaskbarPosition\fP (Bottom)
+タスクバーの初期位置(Bottom, Top, Left, Right)を指定します。
+.TP
+\fBTaskbarRows\fP (1)
+タスクバーが上下にある時の段数の初期値を指定します。(1以上)
+.TP
+\fBTaskbarShowDelay\fP (0)
+隠されているタスクバーをポイントしてから表示され始めるまでの時間を指定
+します。
+.TP
+\fBTitleStringActiveColor\fP (white)
+アクティブなタイトルの文字の色を指定します。
+.TP
+\fBTitleStringColor\fP (qvgray)
+非アクティブなタイトルの文字の色を指定します。
+.TP
+\fBTitleFont\fP (null)
+タイトルのフォントを指定します。この変数が指定されなければ、
+DefaultFontが使われます。
+.TP
+\fBTitlebarActiveColor\fP (qvblue)
+アクティブなタイトルバーの色を指定します。グラデーションを行なう際には左側
+の色になります。
+.TP
+\fBTitlebarActiveColor2\fP (qvgreen)
+アクティブなタイトルバーの色を指定します。グラデーションを行なう際には右側
+の色になります。
+.TP
+\fBTitlebarActiveImage\fP ("")
+アクティブなタイトルバーの背景の画像を指定します。
+.TP
+\fBTitlebarColor\fP (qvdarkgray)
+非アクティブなタイトルバーの色を指定します。グラデーションを行なう際には左
+側の色になります。
+.TP
+\fBTitlebarColor2\fP (qvgray)
+非アクティブなタイトルバーの色を指定します。グラデーションを行なう際には右
+側の色になります。
+.TP
+\fBTitlebarImage\fP ("")
+非アクティブなタイトルバーの背景の画像を指定します。
+.TP
+\fBTitlebarMotion\fP (True)
+最大化・最小化の時にタイトルバーをアニメーションさせるかどうかを指定します。
+.TP
+\fBTitlebarMotionSpeed\fP (100)
+最大化・最小化の時のタイトルバーの動くスピードを指定します。小さい程速くなり
+ます。(1以上)
+.TP
+\fBTooltipDelayTime\fP (500)
+マウスでポイントしてからツールチップが表示されるまでの時間を指定します。(ms)
+.TP
+\fBTooltipDisplayTime\fP (6000)
+ツールチップが表示されてから消えるまでの時間を指定します。
+.TP
+\fBTooltipMotionSpeed\fP (5)
+ツールチップが表示される速度を指定します。
+.TP
+\fBTopLeftPage\fP (+0+0)
+仮想画面の左上のページを
+.EX
+{+-}<xoffset>{+-}<yoffset>
+.EE
+で指定します。qvwm起動時のページを(0,0)とすると-1-1と指定した場合仮想画面は
+次のようになります。
+.EX
++-----+-----+---
+|-1,-1| 0,-1|
++-----+-----+---
+|-1, 0| 0, 0| 
++-----+-----+---
+|     |     |
+.EE
+.TP
+\fBUseBoldFont\fP (False)
+タスクバーボタンで使われる太字にボールドフォントを使うかどうかを指定しま
+す。
+.TP
+\fBUseConfirmDialog\fP (False)
+全てのアプリケーションを終了せずにqvwmを終了しようとした時に、確認のため
+のダイアログボックスを出すかどうかを指定します。
+.TP
+\fBUseDebugger\fP (True)
+qvwmの異常終了した時にデバッガ(gdb)を起動してスタックトレースを表示するか
+どうかを指定します。
+.TP
+\fBUseExitDialog\fP (True)
+終了時にダイアログボックスを出すかどうかを指定します。
+.TP
+\fBUseInfoDisplay\fP (False)
+ウィンドウを移動する時とサイズ変更の時に位置とサイズ情報を表示するかどう
+かを指定します。
+.TP
+\fBWallPaper\fP (Windows98)
+壁紙にする画像を指定します。Windows95と指定すると
+標準の背景(DesktopColor)になり、""と指定すると背景は変化しません。画像
+はフルパスで指定されていなければ、ImagePathで指定されたディレクトリ
+から探されます。
+.TP
+\fBWallPaperPosition\fP (Tile)
+イメージの貼りつけ方または貼りつける場所を指定します。Tile, Center,
+TopLeft, TopRight, BottomLeft, BottomRight, Top, Bottom, Left, Right
+の中から選んで下さい。
+
+.SH 内部コマンド
+qvwmのメニューやショートカット等で使用できる内部コマンドには以下のもの
+があります。[menu]、[win]、[icon]、[shortcut]はそれぞれメニュー、ウィ
+ンドウのコントロールメニュー、アイコンのメニュー、ショートカット・キー
+からのみ利用可能であることを示します。
+
+ウィンドウマネージャ
+.EX
+QVWM_EXIT                  qvwmを終了する
+QVWM_RESTART               qvwmを再起動する
+.EE
+ウィンドウ
+.EX
+QVWM_MOVE                  ウィンドウを移動する[win]
+QVWM_RESIZE                ウィンドウのサイズを変更する[win]
+QVWM_MAXIMIZE              ウィンドウを最大化する[win]
+QVWM_MINIMIZE              ウィンドウを最小化する[win]
+QVWM_RESTORE               ウィンドウのサイズを元に戻す[win]
+QVWM_EXPAND                ウィンドウを全方向に広げる[win]
+QVWM_EXPAND_LEFT           ウィンドウを左方向に広げる[win]
+QVWM_EXPAND_RIGHT          ウィンドウを右方向に広げる[win]
+QVWM_EXPAND_UP             ウィンドウを上方向に広げる[win]
+QVWM_EXPAND_DOWN           ウィンドウを下方向に広げる[win]
+QVWM_RAISE                 ウィンドウを一番上に移動する[win]
+QVWM_LOWER                 ウィンドウを一番下に移動する[win]
+QVWM_CLOSE                 ウィンドウを閉じる[win]
+QVWM_KILL                  ウィンドウを強制的に閉じる[win]
+QVWM_TOGGLE_ONTOP          ONTOP属性のトグル切り換え[win]
+QVWM_TOGGLE_STICKY         STICKY属性のトグル切り換え[win]
+QVWM_TOGGLE_FOCUS          フォーカス属性のトグル切り換え[win]
+QVWM_TOGGLE_BORDER         外枠表示のトグル切り換え[win]
+QVWM_TOGGLE_BORDER_EDGE    内枠表示のトグル切り換え[win]
+QVWM_TOGGLE_BUTTON1        最小化ボタン表示のトグル切り換え[win]
+QVWM_TOGGLE_BUTTON2        元に戻すボタン表示のトグル切り換え[win]
+QVWM_TOGGLE_BUTTON3        閉じるボタン表示のトグル切り換え[win]
+QVWM_TOGGLE_CTRLBTN        コントロールボタン表示のトグル切り換え[win]
+QVWM_TOGGLE_TBUTTON        タスクバーボタン表示のトグル切り換え[win]
+QVWM_TOGGLE_TITLE          タイトルバー表示のトグル切り換え[win]
+.EE
+ウィンドウ・フォーカス
+.EX
+QVWM_SWITCH_TASK           スイッチャでウィンドウを切換[shortcut]
+QVWM_SWITCH_TASK_BACK      スイッチャでウィンドウを切換(逆順)[shotcut]
+QVWM_CHANGE_WIN            アクティブウィンドウを変更
+QVWM_CHANGE_WIN_BACK       アクティブウィンドウを変更(逆順)
+QVWM_CHANGE_WIN_INSCR      画面内のアクティブウィンドウを変更
+QVWM_CHANGE_WIN_BACK_INSCR 画面内のアクティブウィンドウを変更(逆順)
+QVWM_DESKTOP_FOCUS         デスクトップをアクティブにする
+.EE
+ウィンドウ整列
+.EX
+QVWM_OVERLAP               ウィンドウを重ねて配置
+QVWM_OVERLAP_INSCR         ウィンドウを重ねて配置
+QVWM_TILE_HORZ             全てのウィンドウを左右にタイリング
+QVWM_TILE_HORZ_INSCR       画面内のウィンドウを左右にタイリング
+QVWM_TILE_VERT             全てのウィンドウを上下にタイリング
+QVWM_TILE_VERT_INSCR       画面内のウィンドウを上下にタイリング
+QVWM_MINIMIZE_ALL          全てのウィンドウを最小化する
+QVWM_MINIMIZE_ALL_INSCR    画面内のウィンドウを最小化する
+QVWM_RESTORE_ALL           全てのウィンドウを元に戻す
+QVWM_RESTORE_ALL_INSCR     画面内のウィンドウを元に戻す
+QVWM_CLOSE_ALL             全てのウィンドウを閉じる
+QVWM_CLOSE_ALL_INSCR       画面内のウィンドウを閉じる
+.EE
+メニュー
+.EX
+QVWM_POPUP_START_MENU      スタートメニューを出す
+QVWM_POPUP_DESKTOP_MENU    デスクトップメニューを出す
+QVWM_POPUP_MENU            アクティブウィンドウのメニューを出す
+QVWM_POPDOWN_MENU          メニューを消す[menu]
+QVWM_POPDOWN_ALL_MENU      全てのメニューを消す
+.EE
+仮想画面
+.EX
+QVWM_UP_PAGING             上の仮想ページに切り替える
+QVWM_DOWN_PAGING           下の仮想ページに切り替える
+QVWM_LEFT_PAGING           左の仮想ページに切り替える
+QVWM_RIGHT_PAGING          右の仮想ページに切り替える
+.EE
+タスクバー
+.EX
+QVWM_BOTTOM                タスクバーを下に移動
+QVWM_TOP                   タスクバーを上に移動
+QVWM_LEFT                  タスクバーを左に移動
+QVWM_RIGHT                 タスクバーを右に移動
+QVWM_TOGGLE_AUTOHIDE       TaskbarAutoHideのトグル切り換え
+QVWM_ENABLE_AUTOHIDE       TaskbarAutoHideを有効にする
+QVWM_DISABLE_AUTOHIDE      TaskbarAutoHideを無効にする
+QVWM_TOGGLE_TASKBAR        タスクバー表示のトグル切り換え
+QVWM_ENABLE_TASKBAR        タスクバーを表示する
+QVWM_DISABLE_TASKBAR       タスクバーを非表示にする
+QVWM_SHOW_TASKBAR          TaskbarAutoHide時にタスクバーを出す
+QVWM_HIDE_TASKBAR          TaskbarAutoHide時にタスクバーを隠す
+.EE
+ページャ
+.EX
+QVWM_TOGGLE_PAGER          ページャ表示のトグル切り換え
+QVWM_ENABLE_PAGER          ページャを表示する
+QVWM_DISABLE_PAGER         ページャを非表示にする
+.EE
+アイコン
+.EX
+QVWM_LINEUP_ICON           ショートカットを整列させる
+QVWM_EXEC_ICON             アイコンを実行する[icon]
+QVWM_DELETE_ICON           アイコンを除去する[icon]
+.EE
+その他
+.EX
+QVWM_NONE                  何もしない
+QVWM_SEPARATOR             セパレータ(動作なし)[menu]
+.EE
+
+
+.SH 外部コマンド
+外部コマンドの前にはいくつかの修飾子の中の一つを指定できます。
+.IP EXEC 8
+qvwmをその外部コマンドで置き換える。他のウィンドウマネージャに切り替える時
+に使います。
+.EX
+例  "EXEC twm"
+.EE
+.IP PAGE[<x>,<y>,<識別子>]
+外部コマンドで作られるウィンドウを(x, y)ページに配置します。識別子にはウィ
+ンドウのタイトル名またはリソース名またはリソースクラスを指定して下さい。
+.EX
+例  "PAGE[1, 1, XEyes] xeyes"
+.EE
+.IP PAGECUR[<識別子>]
+外部コマンドで作られるウィンドウをコマンドが実行されたページに配置します。
+
+
+.SH スタートアップ
+qvwmの起動時に実行する外部コマンドは以下のように指定します。
+.EX
+[Startup]
+外部コマンド
+.EE
+\fI外部コマンド\fPは起動時に実行するプログラムを""で囲って指定します。
+外部コマンドの章にあるように、修飾子をつけることで、ウィンドウを配置する
+ページを指定できます。
+
+
+.SH メニュー設定
+メニューは[メニュー名]で始まるセクションに以下のような形式で設定できます。
+.EX
+項目名  画像名  選択時動作
+.EE
+または
+.EX
+項目名  画像名
++
+	子メニュー
+-
+.EE
+\fI項目名\fPはメニューのそれぞれの項目名を""で囲って指定します。その
+中で\\"と書くことで"を含めることができます。また\\&に続く一文字はその項
+目を選択するためのショートカットキーとなり、アンダースコアつきで表示
+されます。
+\fI画像名\fPはメニューの項目名の左に表示される画像の名前を""で囲って指
+定します。第１形式の\fI選択時動作\fPにはその項目を選んだ時に実行される
+プログラム名または内部コマンドを指定します。
+プログラム名を指定する場合には""で囲んで下さい。
+.PP
+第２形式はその項目から子メニューを出したい時に使います。+と-で囲まれた
+部分が子メニューになります。
+.PP
+メニューは次のものが設定できます。
+.TP 5
+\fBStartMenu\fP
+スタートメニューです。
+.TP
+\fBCtrlMenu\fP
+コントロールメニューボタンを左クリックした時や、タスクバーボタンを右ク
+リックした時に表示されるメニューです。
+.TP
+\fBDesktopMenu\fP
+デスクトップを右クリックした時に表示されるメニューです。
+.TP
+\fBIconMenu\fP
+アイコンを右クリックした時に表示されるメニューです。
+.TP
+\fBTaskbarMenu\fP
+タスクバーを右クリックした時に表示されるメニューです。
+
+.SH ショートカット設定
+ショートカットは以下の形式で設定できます。
+.EX
+[Shortcuts]
+ショートカット名  画像名  機能 [x座標][, y座標]
+.EE
+\fIショートカット名\fPはショートカット・アイコンの下に表示される文字列
+を""で囲って指定します。\fI画像名\fPはショートカット・アイコ
+ンに使われる画像名を""で囲って指定します。コンパイル時に指定
+したIMGDIRディレクトリの下または、.qvwmrcのImagePathディレクトリの下に置
+いておいて下さい。\fI機能\fPはショートカット・アイコンをダブルクリック
+した時に実行される内部コマンドまたは外部コマンドを指定します。\fIx座標\fP
+または\fIy座標\fPが指定されていれば、その位置にショートカットを配置します。
+x座標、y座標を絶対座標で指定する代わりに'!'で始めるとアイコン領域の倍数の
+位置に配置します。指定しなかった場合、記述されている順番に従って配置され
+ます。
+
+
+.SH 属性設定
+アプリケーションごとの属性は以下の形式で設定できます。
+.EX
+[Applications]
+アプリケーション名   属性,...
+.EE
+\fIアプリケーション名\fPはクラス名またはインスタンス名、タイトル名を""
+で囲って指定して下さい。属性には以下のものがあります。
+.IP NO_BORDER 15
+ウィンドウに枠がつかないようにします。
+.IP NO_BORDER_EDGE
+ウィンドウの枠の内側の陰影がつかないようにします。
+.IP NO_BUTTON1
+ウィンドウのタイトルバーに最小化ボタンを表示しないようにします。
+.IP NO_BUTTON2
+ウィンドウのタイトルバーに最大化及び元に戻すボタンを表示しないようにします。
+.IP NO_BUTTON3
+ウィンドウのタイトルバーに閉じるボタンを表示しないようにします。
+.IP NO_CTRLBTN
+ウィンドウのタイトルバーの左端にコントロールボタンを表示しないようにします。
+.IP NO_FOCUS
+ウィンドウがアクティブにならないようにします。
+.IP NO_TBUTTON
+そのウィンドウに対応するタスクバーボタンを表示しないようにします。
+.IP NO_TITLE
+ウィンドウにタイトルがつかないようにします。
+.IP STICKY
+仮想画面のどのページに切り替えても常に表示されるようにします。
+.IP LARGE_IMG
+タスクスイッチャで使われる大きい画像(32x32)を指定する。
+(例: LARGE_IMG="xterm.xpm")
+.IP SMALL_IMG
+タイトルバーやタスクバーボタンに表示される小さい画像(16x16)を
+指定する。(例: SMALL_IMG="xterm_s.xpm")
+.IP CLOSE_SOON
+ウィンドウを表示しないようにします。
+.IP ONTOP
+ウィンドウが常に画面の一番上になるようにします。
+.IP INIT_MAXIMIZE
+ウィンドウが初めて表示される時に最大化します。
+.IP INIT_MINIMIZE
+ウィンドウが初めて表示される時に最小化します。
+.IP GEOMETRY
+ウィンドウの位置、サイズを指定します。(例: GEOMETRY=100x100+0-0)
+
+
+.SH 終了ダイアログ設定
+終了ダイアログは以下の形式で設定できます。
+.EX
+[ExitDialog]
+部品名  文字列または画像名  機能
+.EE
+\fI部品名\fPには以下のものが指定できます：
+.EX
+CancelButton      キャンセルボタンの文字列
+HelpButton        ヘルプボタンの文字列
+IconImage         左上に表示する画像
+OKButton          OKボタンの文字列
+RadioButton       ラジオボタン
+StaticText        説明のための文字列
+Title             タイトルバーの文字列
+.EE
+ラジオボタンの場合だけ機能が意味をもちます。ここには上で述べた内部コマ
+ンドまたは外部コマンドを指定して下さい。OKButton、CancelButton、HelpButton
+で指定する文字列の中でショートカットキーを指定する\\&を使うことができます。
+
+
+.SH ショートカット・キー設定
+ショートカット・キーは以下の形式で設定できます。
+.EX
+[ShortCutKeys]
+キー  修飾キー  機能
+.EE
+\fIキー\fPはキーの名前です。/usr/include/X11/keysymdef.hのシンボルから
+XK_を除いたものを指定します。(xevでも調べることができます)シンボルが定
+義されていないキーについてはキーコードを指定することができます。
+キーコードは#xx(xxは十進数)の形式で指定して下さい。
+\fI修飾キー\fPはシフトキー、コントロールキー、アルトキーなとで、複数指
+定する時は'|'を使って下さい。修飾キーには以下のものが指定できます：
+.EX
+Shift       シフトキー
+Ctrl        コントロールキー
+Alt         アルトキー
+Meta        メタキー
+Mod1〜Mod5  使用せず(obsolete)
+None        修飾キーなし
+.EE
+\fI機能\fPは内部コマンドまたは外部コマンドを指定して下さい。
+
+
+.SH インジケータ設定
+タスクバーの時計の左にインジケータと呼ばれる16x16のウィンドウを出すことが
+できます。インジケータは以下の形式で設定できます。
+.EX
+[Indicators]
+識別名  外部コマンド
+.EE
+\fI識別名\fPはインジケータにするウィンドウのタイトル名またはリソース名または
+リソースクラスを指定して下さい。\fIプログラム名\fPで指定されたプログラムの
+作るウィンドウがインジケータになります。(ただし２つ以上のウィンドウを作る
+場合、２つ目以降は普通のウィンドウとして表示されます)
+
+
+.SH アクセサリ設定
+アニメーションファイルを含む画像をアクセサリとしてデスクトップに置くこ
+とができます。アクセサリは以下の形式で設定できます。
+.EX
+[Accessories]
+画像   位置   スタイル
+.EE
+\fI画像\fPにはqvwmがサポートしている形式の画像の名前を指定して下さい。
+\fI位置\fPにはTop, Bottom, Left, Right, TopLeft, TopRight, BottomLeft,
+BottomRight, Centerまたはジオメトリ(+0+0の形式)を指定して下さい。
+\fIスタイル\fPはBackground, Ontop, Applicationのいずれかを指定して下さい。
+Backgroundを指定すれば、その画像はどのウィンドウ、ショートカットアイコ
+ンよりも下に置かれます。OnTopを指定すれば、その画像はどのウィンドウ、
+ショートカットアイコンよりも上に置かれます。Applicationを指定すれば、
+その画像には枠がつき、動かすことができます。
+
+
+.SH include文
+設定ファイルの中でinclude文を使うことによって、外部から設定ファイルを読み
+込むことができます。
+.EX
+例  include /home/kourai/.qvwmrc.local
+.EE
+
+
+.SH パス名
+include文とPixmapPath変数の設定では、パスの最初の部分に自分のホームディレ
+クトリを表す~とuserのホームディレクトリを表す~user、$で始まる環境変数を
+使うことができます。
+.EX
+例  include $HOME/.qvwmrc.local
+    PixmapPath = ~/lib/qvwm/pixmaps
+.EE
+
+
+.SH サポートしている画像形式
+qvwmはxpm形式(拡張子.xpm)の画像をサポートしています。コンパイル時に
+Imlibを使うようにしていれば、Imlibがサポートしている形式の画像(jpeg等)
+を使うこともできます。また、qvwm用のアニメーションファイル(拡張子.ani)
+をサポートしています。このアニメーションファイルは複数の画像を作成時の
+形式のまま取り込んだものなので、中に含まれるすべての画像の形式がqvwmに
+よってサポートされていれば、そのアニメーションファイルもサポートされま
+す。
+
+
+.SH リモートコマンド
+/tmp/qvwm-\fIdisplay_name\fPにコマンドを送ることにより、qvwmに内部コマ
+ンドを実行させることができます。この機能はqvwmがリモート・コマンドをサ
+ポートするようにコンパイルされており、AllowRemoteCmd変数がTrueの時にの
+み有効になります。コマンドを送ることができるのはqvwmを起動したユーザま
+たはrootだけです。
+.PP
+コマンドは'\n'で区切られた内部コマンドの文字列から成ります。例えば、
+QVWM_EXITコマンドを送りたければ、
+.EX
+echo "QVWM_EXIT" > /tmp/qvwm-:0.0
+.EE
+とします。
+
+.SH ファイル
+.IP $HOME/.qvwmrc 28
+ユーザ設定ファイル
+.IP $HOME/.qvwm-theme
+ユーザテーマ設定ファイル(慣習的に.qvwmrcでincludeされる)
+.IP <QVWMDIR>/system.qvwmrc
+システム設定ファイル(<QVWMDIR>はコンパイル時に指定したディレクトリ)
+.IP /tmp/qvwm-\fIdisplay_name\fP
+リモートコマンド送信用FIFO
+
+
+.SH 警告
+qvwm は正式版になりましたが、環境によっては安定しないことがあります。
+qvwm を使用したことによるいかなる損害についても責任を負いかねますので、
+御自身の責任で使用して下さい。
+
+
+.SH 著者
+光来健一 (kourai@qvwm.org)

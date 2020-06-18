@@ -1,0 +1,140 @@
+About qvwm
+----------
+Qvwm is a Windows 95/98/NT like window manager for X Window System.  It
+allows Windows 95/98/NT users to use X Window System without hesitation
+and X Window System users to use Windows 95/98/NT without hesitation.
+
+The name qvwm derives from the following: 'q' stands for '9'(same
+pronunciation in Japanese and almost the same shape) and 'v' for '5'
+(V is 5 in Roman numerals).  Also, qvwm is "98 Window Manager" because
+'v' stands for '8'(vertically flipped, V is similar to 8 in kanji
+characters).
+
+The current version is 1.1.12 (Senzoku).
+
+
+Features
+--------
+- Written with C++ from scratch.
+- Internationalized without patches.
+- The same graphics with Windows 95/98/NT at a pixel level.
+- Enables the user to switch among windows using the task switcher.
+  (Alt+Tab)
+- Enables the user to make some windows taskbar indicators.
+- Enables the user to move and resize a whole window. (full-drag)
+- Virtual screen. (extension of Windows 95/98/NT)
+- Dialog box on the termination.
+- Titlebar animation on minimizing/maximizing a window.
+- Enables the user to make icons and background images animate.
+
+
+The latest version
+------------------
+You can get the latest version of qvwm from
+
+    http://www.qvwm.org/
+
+Also, this page is mirrored in the following sites:
+
+U.S.A
+    http://qvwm.kuntrynet.com/qvwm/
+        (Peter Hartman  <hartman@kuntrynet.com>)
+
+You can also download qvwm from the following site:
+
+Japan
+    ftp://ring.asahi-net.or.jp/pub/X/window_managers/qvwm/
+
+Japan
+    http://www.bkr-lab.utmc.or.jp/software/index.html#QVWM
+        (UTMC Ikebukuro Laboratory)
+         
+
+Bug reports or questions
+------------------------
+Please send e-mail to qvwm-support@qvwm.org if you report bugs or
+ask questions about qvwm.  But before sending e-mail, please read
+BUGS.en, TODO.en, FAQ.en and so on.  Previous mailing list articles
+are useful, too.
+
+In case that qvwm causes segmentation fault, you may get assertion
+failed error message if you define DEBUG compile option.  Even if you
+cannot get such an error, you can identify where qvwm crashes by
+analyzing dumped core with gdb.  The analysis of the core is done in
+the following:
+
+  1. Run 'gdb {qvwm} {core}' in the directory where the source codes
+     of qvwm exist. ({qvwm} is a path of qvwm executable dumped core;
+     {core} is a path of dumped core.) 
+  2. Run 'backtrace' in gdb command line.
+
+Please contact us if you have requests for qvwm.
+
+
+Mailing list
+------------
+We provide the qvwm mailing list for information exchange (qvwm-e ML).
+English is allowed in this mailing list.  To participate this mailing
+list, send a mail with the body
+
+	subscribe
+
+to 
+
+	qvwm-e-ctl@qvwm.org
+
+We also provide the qvwm mailing list for Japanese users (qvwm ML).
+JAPANESE and English are allowed in this mailing list.  To participate
+in this mailing list, send e-mail with the body
+
+	subscribe
+to
+
+	qvwm-ctl@qvwm.org
+
+
+Copyright
+---------
+Qvwm is distributed under the `GNU general public license.'
+Please refer to the `COPYING' file included with the release
+for a copy of the license proper.
+
+
+WARNING
+-------
+Qvwm official version has released, but it may be not enough stable in 
+some environments.  I do not responsible for any damages for using qvwm.
+
+
+Acknowledgement
+---------------
+I got many patches for version up of qvwm from the following people.  I am
+thankful for them.
+
+  Miodrag Vallat        <miodrag@ifrance.com>
+  Byung Yang            <byung@wam.umd.edu>
+  Jun Obama             <george@yk.rim.or.jp>
+  Falk Hueffner         <falk.hueffner@student.uni-tuebingen.de>
+  Toshiyuki Amagasa     <amagasa@dbms.cs.gunma-u.ac.jp>
+  Hajime Morito         <Hajime.Morito@ccsr.cam.ac.uk>
+  Chris Meadors         <cmeadors@acc7.ac.cc.md.us>
+  Mofeed Shahin         <shahin@ist.flinders.edu.au>
+  Osamu Kurati          <kurati@bigfoot.com>
+  Youichiro Koga        <y-koga@w3.mag.keio.ac.jp>
+  Kenji Minoura         <minoru@i21x12.fuis.fukui-u.ac.jp>
+  Don Crimbchin         <djc2@andrew.cmu.edu>
+  Nozomu Kobayashi      <nozomu@ssf.abk.nec.co.jp>
+  Shuichi Oono          <jr5pdx@debian.or.jp>
+  Tamito Kajiyama       <kajiyama@etl.go.jp>
+  Takayuki Kusano       <AE5T-KSN@asahi-net.or.jp>
+  Francois Petitjean    <francois.petitjean@bureauveritas.com>
+  Kasamatsu Kenichi     <camatsu@geocities.co.jp>
+
+Thank you for those who reported useful information in mailing list etc.
+
+---
+Kenichi Kourai
+kourai@qvwm.org
+
+---
+Translated partially by Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>

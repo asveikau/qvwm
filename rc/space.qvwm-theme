@@ -1,0 +1,111 @@
+;
+; space.qvwm-theme
+;
+;   qvwm theme file (space theme)
+;
+;   This file should be included in the main configuration file (.qvwmrc)
+;   using include statement.
+;
+
+[Variables]
+DefaultIcon		= "def16.ani"	; default titlebar/taskbar-button icon
+DefaultLargeIcon	= "def32.ani"	; default task switcher icon
+DefaultShortcutIcon	= "icon32.ani"	; default shortcut icon
+DefaultFont		= "-*-*-medium-r-normal-*-14-*-*-*-*-*-*-*"
+
+; desktop
+WallPaper		= "space.ani"	; image tiled in the desktop
+DesktopColor		= black		; shortcut background color
+DesktopActiveColor	= qvblue	; shortcut active color
+CursorColor		= white		; cursor color
+
+; titlebar
+FrameTitleHeight	= 18
+TitlebarImage		= "space2.ani"	; titlebar background image
+;TitlebarActiveImage	= ""		; titlebar active background image
+GradTitlebar		= True		; titlebar gradation
+GradTitlebarColors	= 40		; titlebar gradation colors
+TitlebarColor		= qvdarkgray	; titlebar color (inactive)
+TitlebarColor2		= qvgrey	; titlebar right-side color (inactive)
+TitlebarActiveColor	= black		; titlebar color (active)
+TitlebarActiveColor2	= white		; titlebar right-side color (active)
+TitleStringColor	= white		; title string color (inactive)
+TitleStringActiveColor	= white		; title string color (active)
+
+; frame
+FrameBorderWidth	= 2
+;FrameImage		= ""		; frame background image
+;FrameActiveImage	= ""		; frame active background image
+FrameColor		= black		; window frame color
+FrameActiveColor	= white
+
+; pager
+PagerImage		= "space2.ani"	; pager background image
+PagerColor		= qvgray	; pager color
+PagerActiveColor	= qvdarkgray	; selected page color
+MiniatureColor		= yellow	; non-active mini window color in pager
+MiniatureActiveColor	= red		; active mini window color in pager
+
+; taskbar
+TaskbarButtonHeight	= 22
+TaskbarImage		= "space2.ani"	; taskbar background image
+TaskbarColor		= qvgray	; taskbar color
+ClockStringColor	= white		; clock string color
+UseBoldFont		= False		; use bold font for emphasis
+
+; indicator
+IndicatorSize		= 16
+
+; shortcut icon
+IconSize		= 32		; icon size
+IconStringColor		= white
+IconStringActiveColor	= white
+IconForeColor		= black		; icon foreground color
+IconBackColor		= white		; icon background color
+
+; menu
+MenuImage		= "space2.ani"	; menu background image
+;MenuActiveImage	= ""		; menu background image
+MenuColor		= qvgray	; menu color
+MenuActiveColor		= white		; selected menu item color
+MenuStringColor		= white		; menu string color (unselected)
+MenuStringActiveColor	= black		; menu string color (selected)
+
+; startmenu
+;StartMenuLogoImage	= ""
+StartMenuLogoColor	= qvblue
+
+; dialog
+DialogImage		= "space2.ani"	; dialog background image
+DialogColor		= qvgray	; dialog color
+DialogStringColor	= white
+
+; switcher
+SwitcherImage		= "space2.ani"	; switcher background image
+SwitcherColor		= qvgray	; task switcher color
+SwitcherActiveColor	= white		; icon selected color
+SwitcherStringColor	= white
+
+; button
+ButtonColor		= qvgray	; button color
+ButtonActiveColor	= qvgray	; button active color
+ButtonStringColor	= white		; button string color
+ButtonStringActiveColor	= white		; button string active color
+
+; tooltip
+TooltipColor		= qvyellow
+TooltipStringColor	= black
+
+; sounds
+SystemStartSound	= "chimes.wav"
+SystemExitSound		= "chimes.wav"
+SystemRestartSound	= "chimes.wav"
+;MaximizeSound		= ""
+;MinimizeSound		= ""
+;RestoreUpSound		= ""
+;RestoreDownSound	= ""
+;ExpandSound		= ""
+
+
+[Accessories]
+"qvwmdesk.ani"		TopRight	Background

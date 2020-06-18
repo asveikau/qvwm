@@ -1,0 +1,22 @@
+PROBLEMES (BUGS)                                           [charset:iso-8859-1]
+----------------
+- Il n'est pas possible d'utiliser Meta+Suppr dans certains environnements.
+- Alt+Tab active une fenêtre dans laquelle se trouve le pointeur de la souris
+  si FocusOnClick est désactivé (False) et qu'il existe deux fenêtres ne se
+  recouvrant pas.
+
+- Le focus peut devenir incorrect si vous cliquez sur un élément de menu et
+  déplacez le pointeur en dehors du menu.
+- Les fichiers .au ne sont pas joués sous Linux.
+- Qvwm plante parfois en redémarrant.
+- Il arrive qu'une fenêtre sans contenu apparaisse (raison inconnue).
+- L'affichage clignote si vous utilisez une application qui utilise une
+  colormap privée.
+- La barre des tâches clignote avant de se masquer si vous la retailler quand
+  TaskbarAutoHide est activée.
+- Il arrive que le focus soit attribué à une fenêtre inactive.
+- Qvwm plante en utilisant tgif (non reproductible).
+- Il arrive que qvwm se bloque (raison inconnue).
+
+---
+Traduction par Miodrag Vallat <miodrag@ifrance.com>

@@ -1,0 +1,155 @@
+
+Qvwm source version 1.1.12 
+http://ftp.debian.org/debian/pool/main/q/qvwm/qvwm_1.1.12.orig.tar.gz
+
+plus patches to version 1.1.12-3 from Debian.org
+http://ftp.debian.org/debian/pool/main/q/qvwm/qvwm_1.1.12-3.diff.gz
+
+(downloaded on 2006-03-16)
+
+
+2006-03-16  Ivan Kurmanov, http://ahinea.com/en/
+
+* Fixed: window and taskbar button naming is now based on
+  WM_NAME window property primarily and WM_ICON_NAME as the
+  second best.  This avoids "Untitled" name for some
+  applications/windows.
+
+* Added restart item to the default start menu
+ 
+* Two new configuration variables for menu look preferences:
+  DefaultMenuItemIcon and DefaultFolderIcon
+
+* New configuration variable: DisableTaskbarDragging.  Should speak for
+  itself.
+
+
+2006-03-17  Ivan Kurmanov
+
+* Window maximization is now more intuitive: if a window is maximized already,
+  it is restored when you press Alt-Enter.
+
+  (QVWM_MAXIMIZE function is now toggling the maximized state, so for an
+  already maximized window it does Restore instead.  There is also new
+  QVWM_MAXIMIZE_ONEWAY function for the old, unconditional behaviour.)
+
+* Respect INIT_MAXIMIZE and INIT_MINIMIZE window options (as
+  configured in .qvwmrc) on qvwm restart
+
+* Startmenu's logo (which is usually a vertically-laid text) is now optional
+
+* Internal: CreateImageFromFile() now does not choke on an empty string
+
+
+2006-03-19  Ivan Kurmanov
+
+* Removed useless shit lines from the taskbar (between the start button and
+  the task buttons, and between the task buttons and the system tray area)
+
+* Menu item icons are now centered in their little cells.
+  For sub-menus a little folder icon is now hard-coded
+  default, but there is no longer a default for non-folder
+  menu items.  (Previously there was an ugly X icon default.)
+
+* MenuItemMinimalHeight configuration variable.  Sets the default height of
+  the menu items.  Default value: 18;
+
+* Left margin fixed for menu items (it was too big)
+
+
+2006-03-20  Ivan Kurmanov
+
+* Fixed tooltip flicker, which happened sometimes at screen bottom.
+
+* Menu drawing-padding (left margin) and positioning
+  improved.  Care taken to avoid putting a menu out of the
+  visible screen boundary, if possible.  Menu items' height
+  now depends on the font used, but MenuItemMinimalHeight
+  variable is still respected.
+
+* Two new externally-accessible functions for window
+  management: QVWM_FOCUS and QVWM_RAISE_FOCUS; via remote
+  command interface they accept a window name parameter.
+
+
+2006-03-21
+
+* Reimplemented task switcher layout.  It is now vertical,
+  like a menu.  
+
+  In case, when there are lots of windows open, it will
+  scroll vertically as you go through the window list.  It
+  will keep the appropriate part of it visible.
+
+  Also, system does not longer freeze while you switch
+  tasks.
+
+* Fixed a bug which stopped qvwm from reading the .qvwmrc
+  file on restart, if it had found a syntax error there in
+  the past.  So, even if you had corrected the rc file, you
+  still were forced to quit and start it.  Not anymore.
+
+* Added xterm to the default hard-coded start menu.  (You'll
+  be able to start xterm if qvwm failed to parse its config
+  file.)
+
+* Disabling and enabling taskbar now changes maximum window
+  sizes accordingly (but not immediately).
+
+
+2006-03-25 released qvwm 1.1.12-6-IKu
+
+* Fixed a little menu drawing glitch: checked mark (a tick)
+  and selected mark (a bullet) were not aligned with the
+  item name text.  (Would only be noticible with a
+  significantly larger than default MenuItemMinimalHeight
+  value.)
+
+2006-03-28 released qvwm 1.1.12-7-IKu 
+
+* Now will try harder to find a suitable or any at all font
+  to use as the default.  (Patch comes from Kenichi Kourai.)
+
+* Do not include <X11/xpm.h> file.  (Patch comes from
+  Debian's version 1.1.12-4.)
+
+* Made animated image support configurable at compile-time
+  and disabled by default.
+
+2006-04-01 
+
+* New qv_deanimate utility, which is a simple tool to
+  extract the first frame's image from an animated image
+  file.
+
+* Fixed a little restart bug, which caused windows with
+  INIT_MAXIMIZE to be maximized over the taskbar.
+
+* Brought the manpage man/qvwm.man up-to-date with all my
+  changes.  (Only the English version.)
+
+2006-04-01 released qvwm 1.1.12-8-IKu
+
+2007-05-09 16:11
+
+* Fixed a menu problem: when a menu is drawn under the
+  mouse pointer, menu immediately reacted as if the
+  user moved the pointer.  The menu item under the
+  pointer would immediately be given focus.  (A
+  submenu would be open, if there is one.)
+
+  This is fixed now.  The mouse pointer makes a
+  difference only when it was moved by the user.
+
+* Better handling of taskbar enabling/disabling.
+  Recalculate sizes of other windows and reposition them.
+
+* fixed: segmentation fault when focus is at the root window
+  (desktop?) and user tries application-window-specific
+  commands like QVWM_MAXIMIZE and similar.
+
+2011-03-13
+
+* Fixed a compilation error in switcher.cc (for some compiler 
+  versions); thanks to Michael Sanders for reporting
+

@@ -1,0 +1,867 @@
+.de EX
+.ne 5
+.if n .sp 1
+.if t .sp .5
+.nf
+.in +.5i
+..
+.de EE
+.fi
+.in -.5i
+.if n .sp 1
+.if t .sp .5
+..
+
+.TH QVWM 1 "26 Septembre 1999" "Version 1.1.2"
+
+.SH NAME
+qvwm \- Gestionnaire de fenetres X11 a la Windows 95/98
+
+.SH SYNPSIS
+.B qvwm
+[\fB-display\fP \fIecran\fP] [\fB-f\fP \fIfichier_rc\fP] [ \fB-v\fP ] [ \fB-n\fP ] [ \fB-r\fP ] [ \fB-synch\fP ]
+
+.SH DESCRIPTION
+Qvwm est un gestionnaire de fenetres pour X11 a la Windows 95, ecrit a partir
+de zero en C++ sans heriter de twm ou fvwm. Son objectif est de s'approcher
+le plus possible de l'aspect de Windows 95, et il fournit une barre des
+taches et des raccourcis. De plus, il supporte des ecrans virtuels et un
+pager de facon a etre un gestionnaire de fenetres pratique. Enfin, il
+s'adapte a tous les langages car il est concu en tenant compte de
+l'internationalisation.
+
+.SH OPTIONS
+.I qvwm dispose des options suivantes :
+.TP
+\fB-display\fP \fIecran\fP
+Indidique par ecran le display X a utiliser. Si cette option est omise,
+qvwm utilise le contenu de la variable d'environnement $DISPLAY.
+.TP
+\fB-f\fP \fIfichier_rc\fP
+Indique dans fichier_rc le fichier de configuration que qvwm doit lire a son
+demarrage. Par defaut, $HOME/.qvwmrc est utilise ; s'il n'existe pas, alors
+ce sera <QVWMDIR>/system.qvwmrc.
+.TP
+\fB-n\fP
+Ne charge aucun fichier de configuration.
+.TP
+\fB-r\fP
+N'execute pas la section [Startup] du fichier de configuration.
+.TP
+\fB-v\fP
+Affiche le numero de version et le copyright de qvwm.
+.TP
+\fB-synch\fP
+Lance qvwm en mode synchronise. Bien que cette option rende qvwm tres lent,
+il peut y gagner en stabilite.
+
+.SH CONFIGURATION DES VARIABLES
+Cette section liste les variables pouvant etre precisees dans le fichier de
+configuration. La valeur entre parentheses est celle par defaut.
+.TP
+\fBAutoRaise\fP (False)
+Determine si la fenetre active doit venir au premier plan automatiquement
+quand ClickToFocus est reglee a False.
+.TP
+\fBAutoRaiseDelay\fP (500)
+Fixe le temps d'attente avant que la fenetre active soit placee au
+premierplan, en millisecondes (doit etre superieur a 0).
+.TP
+\fBButtonColor\fP (qvgray)
+Fixe la couleur des boutons.
+.TP
+\fBButtonStringColor\fP (black)
+Fixe la couleur du texte des boutons.
+.TP
+\fBCascadeMenuFont\fP (null)
+Fixe la police de caracteres utilisee pour les menus en cascade, c'est a
+dire les sous menus du menu demarrer. Si cette variable n'est pas presente,
+DefaultFont est utilisee.
+.TP
+\fBClickToFocus\fP (True)
+Si mise a True, qvwm active la fenetre dans laquelle vous cliquez. Sinon, la
+fenetre active change selon la position du pointeur de la souris.
+.TP
+\fBClickingRaises\fP (True)
+Si mise a True, les fenetres sont mises au premier plan meme si vous cliquez
+dans la zone client. Si ClickToFocus vaut True, alors ClickingRaises vaut
+toujours True.
+.TP
+\fBClockFormat\fP ("%R")
+Fixe le format de l'horloge. Le format est celui utilise par strftime(3).
+.TP
+\fBClockLocaleName\fP ("")
+Fixe la langue de l'horloge.
+(voir /usr/X11R6/lib/X11/locale/locale.alias)
+.TP
+\fBClockMessageFormat\fP ("%A %B %e %Y")
+Fixe le format du message apparaissant dans la bulle d'aide de l'horloge. Le
+format est celui utilise par strftime(3).
+.TP
+\fBClockStringColor\fP (black)
+Fixe la couleur du texte de l'horloge.
+.TP
+\fBCloseButtonMessage\fP ("Fermer")
+Fixe le message de la bulle d'aide du bouton de fermeture.
+.TP
+\fBCtrlMenuFont\fP (null)
+Fixe la police de caracteres utilisee pour le menu systeme. Si cette variable
+n'est pas presente, DefaultFont est utilisee.
+.TP
+\fBCtrlMoveRatio\fP (1.0)
+Fixe l'amplitude par rapport au deplacement normal (13 points) quand les
+fenetres sont deplacees au clavier avec la touche controle enfoncee.
+.TP
+\fBCursorColor\fP (white)
+Fixe la couleur du pointeur de la souris.
+.TP
+\fBDefaultFont\fP ("-*-*-medium-r-normal-*-14-*")
+Fixe la police de caracteres utilisee par defaut.
+.TP
+\fBDefaultIcon\fP (null)
+Fixe l'icone par defaut pour les barres de titre et les boutons de la barre
+des taches. La taille doit etre 16x16. Si cette variable est omise, le logo
+Windows par defaut est utilise.
+.TP
+\fBDefaultLargeIcon\fP (null)
+Fixe l'icone par defaut pour la fenetre de changement de taches. La taille doit
+etre 32x32. Si cette variable est omise, le logo Windows par defaut est
+utilise.
+.TP
+\fBDefaultShortcutIcon\fP (null)
+Fixe l'icone par defaut pour les raccourcis. La taille doit etre 32x32. Si
+cette variable est omise, le pixmap par defaut est utilise.
+.TP
+\fBDesktopActiveColor\fP (qvblue)
+Fixe la couleur de fond du titre de raccourci selectionne.
+.TP
+\fBDesktopColor\fP (qvgreen)
+Fixe la couleur de fond du bureau. Si vous fixez WallPaper a Windows98, le
+bureau a cette couleur.
+.TP
+\fBDialogColor\fP (qvgray)
+Fixe la couleur de fond du dialogue de fin.
+.TP
+\fBDialogFont\fP (null)
+Fixe la police de caracteres utilisee dans le dialogue de fin. Si cette
+variable n'est pas presente, DefaultFont est utilisee.
+.TP
+\fBDialogImage\fP ("")
+Fixe la texture de fond du dialogue de fin.
+.TP
+\fBDialogStringColor\fP (black)
+Fixe la couleur du texte dans le dialogue de fin.
+.TP
+\fBDoubleClickRange\fP (5)
+Fixe la distance maixmale en points entre deux clics pour qu'ils soient
+consideres comme un double clic (au moins 1).
+.TP
+\fBDoubleClickTime\fP (400)
+Fixe l'intervalle de temps maximal en millisecondes entre deux clics pour
+qu'ils soient consideres comme un double clic (au moins 1).
+.TP
+\fBEdgeResistance\fP (0)
+Fixe la resistance opposee au mouvement du cadre d'une fenetre au dela d'un
+des bords de l'ecran.
+.TP
+\fBEnableAlsa\fP (True)
+Sets whether you enable ALSA (Advanced Linux Sound Architecture) if OS
+supports it.
+.TP
+\fBEnableEsd\fP (True)
+Sets whether you enable EsounD if installed.
+.TP
+\fBEnableSound\fP (True)
+Sets whether you enable the sound facility.
+.TP
+\fBEndingSound\fP (NULL)
+Fixe le fichier son a jouer quand qvwm se termine.
+.TP
+\fBExpandSound\fP (NULL)
+Fixe le fichier son a jouer quand une fenetre est aggrandie par l'une des
+fonctions QVWM_EXPAND_xx.
+.TP
+\fBFocusOnMap\fP (False)
+Indique si une fenetre etant mappee pour la premiere fois doit recevoir
+automatiquement le focus quand ClickToFocus est mise a False.
+.TP
+\fBFrameActiveColor\fP (qvgray)
+FIxe la couleur des decorations de la fenetre active.
+.TP
+\fBFrameActiveImage\fP ("")
+Fixe la texture des decorations de la fenetre active
+.TP
+\fBFrameColor\fP (qvgray)
+Fixe la couleur des decorations des fenetres inactives.
+.TP
+\fBFrameImage\fP ("")
+Fixe la texture des decorations des fenetres inactives.
+.TP
+\fBFrameBorderWidth\fP (2)
+Fixe la bordure des fenetres, sans compter la taille de l'ombrage.
+.TP
+\fBFrameTitleHeight\fP (18)
+Fixe la hauteur des barres de titre.
+.TP
+\fBFullOpaque\fP (True)
+Indique si la totalite du contenu des fenetres doivent etre redessines pendant
+son redimensionnement.
+.TP
+\fBGradMenuMap\fP (False)
+Indique si les menus doivent se derouler progressivement.
+.TP
+\fBGradMenuMapSpeed\fP (15)
+Fixe la vitesse a laquelle les menus se deroulent (au moins 1). Plus la valeur
+est faible, plus le deroulement est rapide.
+\fBGradTaskbarMotion\fP (True)
+Indique si la barre des taches doit se cacher progressivement si
+TaskbarAutoHide est mise a True.
+.TP
+\fBGradTaskbarMotionSpeed\fP (20)
+Fixe la vitesse de deplacement de la barre des taches lors d'un affichage ou
+d'un masqage automatique (au moins 1). Plus la valeur est faible, plus le
+deplacement est rapide.
+.TP
+\fBGradTitlebar\fP (False)
+Indique si la barre de titre est en degrade de couleur de gauche a droite.
+.TP
+\fBGradTitlebarColors\fP (40)
+Fixe le nombre de couleurs utilisees pour les degrades des barre de titre (au
+moins 1). Plus il y a de couleurs, plus le degrade est progressif.
+.TP
+\fBGradWindowMapSpeed\fP (50)
+Fixe la vitesse a laquelle les fenetres apparaissent et disparaissent
+progressivement (au moins 1). La vitesse est d'autant plus elevee que la valeur
+est faible.
+.TP
+\fBGradWindowMapStyle\fP (Normal)
+Fixe le style d'animation pour l'apparition et la disparition des fenetres,
+parmi la liste suivante : Normal, TopToBottom, LeftToRight, CenterToTopBottom,
+CenterToLeftRight, and CenterToAll.
+.TP
+\fBHourGlassTime\fP (1000)
+Fixe le temps en milliseconds durant lequel un sablier est affiche quand une
+commande externe est executee.
+.TP
+\fBIconBackColor\fP (white)
+Fixe la couleur de fond des icones par un nom de couleur ou l'un des formats
+#RGB, #RRGGBB, #RRRRGGGBBB ou #RRRRGGGGBBBB.
+.TP
+\fBIconFont\fP (null)
+Fixe la police de caracteres utilisee pour les titres des raccourcis. Si cette
+variable n'est pas presente, DefaultFont est utilisee.
+.TP
+\fBIconForeColor\fP (black)
+Fixe la couleur des icones par un nom de couleur ou l'un des formats
+#RGB, #RRGGBB, #RRRRGGGBBB ou #RRRRGGGGBBBB.
+.TP
+\fBIconSize\fP (32)
+Fixe la taille des icones.
+.TP
+\fBIconStringColor\fP (white)
+Fixe la couleur des textes des icones.
+.TP
+\fBImageAnimation\fP (True)
+Indique si qvwm accepte des images animees pour les raccourci et icones.
+.TP
+\fBIndicatorSize\fP (16)
+Fixe la taille des indicateurs. Cette valeur doit etre inferieure a
+TaskbarButtonHeight-6.
+.TP
+\fBLocaleName\fP ("")
+Fixe la langue utilisee dans les fichiers de configuration. Par defaut, le
+contenu de la variable d'environnement $LANG est utilise (voir aussi
+/usr/X11R6/lib/X11/locale/locale.alias).
+.TP
+\fBMaximizeButtonMessage\fP ("Aggrandir")
+Fixe le message de la bulle d'aide des boutons d'aggrandissement.
+.TP
+\fBMaximizeSound\fP (NULL)
+Fixe le son a jouer quand une fenetre est aggrandie.
+.TP
+\fBMenuActiveColor\fP (qvblue)
+Fixe la couleur de l'element selectionne dans un menu.
+.TP
+\fBMenuActiveImage\fP ("")
+Fixe la texture de l'element selectionne dans un menu.
+.TP
+\fBMenuColor\fP (qvgray)
+Fixe la couleur des menus.
+.TP
+\fBMenuImage\fP ("")
+Fixe la texture des menus.
+.TP
+\fBMenuStringActiveColor\fP (white)
+Fixe la couleur du texte de l'element selectionne dans un menu.
+.TP
+\fBMenuStringColor\fP (black)
+Fixe la couleur du texte des elements de menu.
+.TP
+\fBMenuDelayTime\fP (500)
+Fixe le delai en millisecondes entre le pointage d'un element de menu et
+l'affichage du sous-menu associe, s'il y a lieu (au moins 0).
+.TP
+\fBMiniatureActiveColor\fP (white)
+Fixe la couleur de la miniature de la fenetre active dans le pager.
+.TP
+\fBMiniatureColor\fP (black)
+Fixe la couleur des miniatures des fenetres inactives dans le pager.
+.TP
+\fBMinimizeButtonMessage\fP ("Reduire")
+Fixe le message de la bulle d'aide des boutons de reduction.
+.TP
+\fBMinimizeSound\fP (NULL)
+Fixe le fichier son a jouer quand une fenetre est reduite.
+.TP
+\fBNoDesktopFocus\fP (False)
+Indique si le focus ne doit jamais se fixer sur le bureau quand ClickToFocus
+est mise a False et que le pointeur se trouve au dessus du bureau.
+.TP
+\fBNoResizeOverTaskbar\fP (False)
+Indique si le redimensionnement des fenetres au dela de la barre des taches
+est autorise.
+.TP
+\fBOnTopPager\fP (False)
+Indique si le pager est toujours visible.
+.TP
+\fBOnTopTaskbar\fP (True)
+Indique si la barre des taches est toujours visible.
+.TP
+\fBOpaqueMove\fP (True)
+Indique si le contenu des fenetres doit etre affiche pendant le deplacement.
+.TP
+\fBOpaqueResize\fP (True)
+Indique si le contenu des fenetres doit etre affiche pendant le
+redimensionnement.
+.TP
+\fBOpeningSound\fP (NULL)
+Fixe le fichier son a jouer au demarrage de qvwm.
+.TP
+\fBPagerActiveColor\fP (qvdarkgray)
+Fixe la couleur de la page active dans la pager.
+.TP
+\fBPagerColor\fP (qvgray)
+Fixe la couleur du pager.
+.TP
+\fBPagerGeometry\fP (48x48+0+0)
+Fixe la taille et la position du pager selon le format suivant :
+.EX
+[<largeur>{xX}<hauteur>][{+-}<decalage horizontal>{+-}<decalage vertical>]
+.EE
+.TP
+\fBPagerImage\fP ("")
+Fixe la texture de fond du pager.
+.TP
+\fBPagingResistance\fP (200)
+Fixe le temps d'attente, en millisecondes, qui s'ecoule avant le changement
+de page quand le pointeur de la souris est sur un des bords de l'ecran (au
+moins 0)1
+.TP
+\fBPagingBeltSize\fP (2)
+Fixe la distance des bords en deca de laquelle il y a changement de page au
+bout du temps PagingResistance. Si cette valeur est fixee a 0, aucun
+changement de page n'a lieu quand le pointeur de la souris se trouve au bord
+de l'ecran.
+.TP
+\fBPagingMovement\fP (100)
+Fixe l'amplitude, en pourcentage de la taille de l'ecran, du deplacement de
+page (superieur a 0).
+.TP
+\fBPagingSize\fP (1x1)
+Fixe la taille de l'ecran virtuel en pages selon le format suivant :
+.EX
+<largeur>{xX}<hauteur>
+.EE
+.TP
+\fBPagingSpeed\fP (1)
+Fixe la vitesse a laquelle ont lieu les chagements de page (au moins 1). Plus
+la valeur est elevee, plus le changement est progressif.
+.TP
+\fBImagePath\fP ("")
+Fixe la liste des repertoires dans lesquels rechercher les fichiers icones,
+separes par des ':'.
+.TP
+\fBRestoreButtonMessage\fP ("Restaurer")
+Fixe le message des bulles d'aide des boutons de restauration.
+.TP
+\fBRestoreMinimize\fP (False)
+Indique si cliquer sur le bouton de la barre des taches de la fenetre active
+doit la reduire.
+.TP
+\fBRestoreSound\fP (NULL)
+Fixe le fichier son a jouer quand une fenetre est restauree.
+.TP
+\fBRestartOnFailure\fP (True)
+Indique si qvwm doit redemarrer automatiquement en cas d'erreur de
+segmentation ou de bus.
+.TP
+\fBRestartSound\fP (NULL)
+Fixe le fichier son a jouer au redemarrage de qvwm.
+.TP
+\fBShiftMoveRatio\fP (1.0)
+Fixe l'amplitude par rapport au deplacement normal (13 points) quand les
+fenetres sont deplacees au clavier avec la touche shift enfoncee.
+.TP
+\fBSmartPlacement\fP (False)
+Indique si les nouvelles fenetres doivent etre placees de facon a ne pas
+recouvrir d'autres fenetres s'il y a suffisamment de place disponible a
+l'ecran.
+.TP
+\fBSnappingEdges\fP (0)
+Fixe la distance des bords de l'ecran en deca de laquelle les fenetres s'y
+collent.
+.TP
+\fBSnappingMove\fP (0)
+Fixe la distance aux autres fenetres, en deca de laquelle les fenetres se
+collent.
+.TP
+\fBSoundPath\fP ("")
+Fixe la liste des repertoires dans lesquels rechercher les fichiers sons,
+separes par des ':'.
+.TP
+\fBStartButtonMessage\fP ("Cliquez ici pour commencer")
+Fixe le message de la bulle d'aide du bouton demarrer.
+.TP
+\fBStartButtonTitle\fP ("Demarrer")
+Fixe le titre du bouton demarrer.
+.TP
+\fBStartMenuFont\fP (null)
+Fixe la police de caracteres utilisee dans le menu demarrer. Si cette variable
+n'est pas presente, DefaultFont est utilisee.
+.TP
+\fBStartMenuLogoColor\fP (qvdarkgray)
+Fixe la couleur de fond du logo dans le menu demarrer.
+.TP
+\fBStartMenuLogoImage\fP ("")
+Fixe le logo a utiliser dans le menu demarrer.
+.TP
+\fBSwitcherActiveColor\fP (qvblue)
+Fixe la couleur de la fenetre selectionnee dans la fenetre de changement de
+taches.
+.TP
+\fBSwitcherColor\fP (qvgray)
+Fixe la couleur des fenetres non selectionnees dans la fenetre de changement de
+taches.
+.TP
+\fBSwitcherImage\fP ("")
+Fixe la texture de la fenetre de changement de taches.
+.TP
+\fBSwitcherStringColor\fP (black)
+Fixe la couler du texte de la fenetre de changement de taches.
+.TP
+\fBTaskbarAutoHide\fP (False)
+Indique si la barre des taches doit etre masquee automatiquement.
+.TP
+\fBTaskbarBoldFont\fP (null)
+Fixe la police de caracteres gras pour la barre des taches. Si cette variable
+n'est pas presente, DefaultFont est utilisee.
+.TP
+\fBTaskbarButtonHeight\fP (22)
+Fixe la hauteur des boutons de la barre des taches. Cette valeur influe sur
+la hauteur de la barre des taches, celle du bouton demarrer et celle des
+indicateurs.
+.TP
+\fBTaskbarColor\fP (qvgray)
+Fixe la couleur de la barre des taches.
+.TP
+\fBTaskbarFont\fP (null)
+Fixe la police de caracteres utilisee pour la barre des taches. Si cette
+variable n'est pas presente, DefaultFont est utilisee.
+.TP
+\fBTaskbarImage\fP ("")
+Fixe la texture de la barre des taches.
+.TP
+\fBTaskbarPosition\fP (Bottom)
+Fixe la position initiale (Bottom : en bas, Top : en haut, Left : a gauche,
+Right : a droite) de la barre des taches.
+.TP
+\fBTaskbarRows\fP (1)
+Fixe la hauteur initiale de la barre des taches quand celle-ci est en
+position horizontale (au moins 1).
+.TP
+\fBTitleStringActiveColor\fP (white)
+Fixe la couleur du texte du titre de la fenetre active.
+.TP
+\fBTitleStringColor\fP (qvgray)
+Fixe la couleur du texte des titres des fenetres inactives.
+.TP
+\fBTitleFont\fP (null)
+Fixe la police de caracteres utilisee pour les barres de titre. Si cette
+variable n'est pas presente, DefaultFont est utilisee.
+.TP
+\fBTitlebarActiveColor\fP (qvblue)
+Fixe la couleur de la barre de titre active (celle de gauche en cas de
+degrade ; cf. GradTitlebar).
+.TP
+\fBTitlebarActiveColor2\fP (qvgreen)
+Fixe la couleur de la barre de titre active (celle de droite en cas de
+degrade ; cf. GradTitlebar).
+.TP
+\fBTitlebarActiveImage\fP ("")
+Fixe la texture de la barre de titre active.
+.TP
+\fBTitlebarColor\fP (qvdarkgray)
+Fixe la couleur des barres de titre inactives (celle de gauche en cas de
+degrade ; cf. GradTitlebar).
+.TP
+\fBTitlebarColor2\fP (qvgray)
+Fixe la couleur des barres de titre inactives (celle de droite en cas de
+degrade ; cf. GradTitlebar).
+.TP
+\fBTitlebarImage\fP ("")
+Fixe la texture des barres de titre inactives.
+.TP
+\fBTitlebarMotion\fP (True)
+Indique si les barres de titre doivent etre animees quand les fenetres sont
+aggrandies ou reduites.
+.TP
+\fBTitlebarMotionSpeed\fP (100)
+Fixe la vitesse des animations des barres de titre (au moins 1). Plus la
+valeur est faible, plus la vitesse est elevee.
+.TP
+\fBTooltipDelayTime\fP (800)
+Fixe le delai au bout duquel apparaissent les bulles d'aide.
+.TP
+\fBTooltipDisplayTime\fP (6000)
+Fixe la duree pendant laquelle restent affichees les bulles d'aide.
+.TP
+\fBTooltipMotionSpeed\fP (5)
+Fixe la vitesse des animations de bulles d'aide.
+.TP
+\fBTopLeftPage\fP (+0+0)
+Fixe la position de la page en haut a droite de l'ecran virtuel selon le
+format suivant :
+.EX
+{+-}<decalage horizontal>{+-}<decalage vertical>
+.EE
+La page visible au demarrage de qvwm est (0, 0), et l'ecran virtuel est
+comme suit si vous fixez TopLeftPage a -1-1 :
+.EX
++-----+-----+---
+|-1,-1| 0,-1|
++-----+-----+---
+|-1, 0| 0, 0| 
++-----+-----+---
+|     |     |
+.EE
+.TP
+\fBUseBoldFont\fP (False)
+Indique si une police de caracteres gras doit etre utilisee dans la barre
+des taches.
+.TP
+\fBUseDebugger\fP (True)
+Indique si qvwm doit lancer un debogueur (gdb) et faire afficher une trace
+d'execution en cas de plantage.
+.TP
+\fBUseExitDialog\fP (True)
+Indique si le dialogue de fin doit etre affiche a la sortie de qvwm.
+.TP
+\fBUseInfoDisplay\fP (False)
+Indique si qvwm doit afficher la position et la taille lors des deplacement
+et redimensionnement des fenetres.
+.TP
+\fBWallPaper\fP (Windows98)
+Fixe l'icone papier peint par son chemin complet. Certaines valeurs ont une
+signification particuliere : Windows98 force la couleur standard (voir
+DesktopColor) et "" empeche qvwm de modifier le fond d'ecran.
+
+
+.SH DEMARRAGE
+Vous pouvez executer des commandes au demarrage de qvwm.
+.EX
+[Startup]
+commande externe
+.EE
+\fIcommande externe\fP doit etre ecrite entre guillemets (""). Comme indique
+plus loin dans la section COMMANDES EXTERNES, vous pouvez preciser la page
+dans laquelle la fenetre de la commande doit s'afficher.
+
+
+.SH CONFIGURATION DES MENUS
+Vous pouvez configurer les menus dans la section commencant par [nom du menu]
+ainsi :
+.EX
+element   icone   action
+.EE
+ou
+.EX
+element   icone
++
+	sous menu
+-
+.EE
+\fIelement\fP doit etre ecrit entre guillemets (""). Vous pouvez utiliser le
+caractere " en ecrivant \\". Le caractere suivant \\& sert de raccourci-clavier
+pour l'element et est affiche avec un soulignement.
+\fIicone\fP doit egalement etre ecrit entre guillemets, et sera affiche a
+gauche du menu. Dans le premier format, \fIaction\fP peut etre soit un nom
+de commande extern entre guillemets, soit le nom d'une fonction interne de
+qvwm, dont la liste est :
+.EX
+QVWM_MAXIMIZE              aggrandir une fenetre
+QVWM_MINIMIZE              reduire une fenetre
+QVWM_RESTORE               restaurer une fenetre a sa taille initiale
+QVWM_MOVE                  deplacer une fenetre
+QVWM_RESIZE                redimensionner une fenetre
+QVWM_RAISE                 monter une fenetre
+QVWM_LOWER                 descendre une fenetre
+QVWM_EXPAND                etendre une fenetre dans toutes les directions
+QVWM_EXPAND_LEFT           etendre une fenetre vers la gauche
+QVWM_EXPAND_RIGHT          etendre une fenetre vers la droite
+QVWM_EXPAND_UP             etendre une fenetre vers le haut
+QVWM_EXPAND_DOWN           etendre une fenetre vers le bas
+QVWM_CLOSE                 fermer une fenetre (methode recommandee)
+QVWM_KILL                  fermer une fenetre "violemment"
+QVWM_EXIT                  quitter qvwm
+QVWM_RESTART               redemarrer qvwm
+QVWM_LINEUP_ICON           aligner les icones
+QVWM_SWITCH_TASK           changer de fenetre active (avec la fenetre de choix)
+QVWM_SWITCH_TASK_BACK      idem, mais dans l'autre sens
+QVWM_CHANGE_WIN            changer de fenetre active (sans la fenetre de choix)
+QVWM_CHANGE_WIN_BACK       idem, mais dans l'autre sens
+QVWM_CHANGE_WIN_INSCR      idem, mais en restant dans la meme page
+QVWM_CHANGE_WIN_BACK_INSCR idem, mais dans l'autre sens
+QVWM_DESKTOP_FOCUS         donner le focus au bureau
+QVWM_POPUP_START_MENU      afficher le menu demarrer
+QVWM_POPUP_DESKTOP_MENU    afficher le menu du bureau
+QVWM_POPUP_MENU            afficher le menu systeme
+QVWM_POPDOWN_MENU          refermer un menu
+QVWM_POPDOWN_ALL_MENU      refermer tous les menus
+QVWM_BOTTOM                placer la barre des taches en bas
+QVWM_LEFT                  placer la barre des taches a gauche
+QVWM_RIGHT                 placer la barre des taches a droite
+QVWM_TOP                   placer la barre des taches en haut
+QVWM_DOWN_PAGING           aller une page plus bas
+QVWM_LEFT_PAGING           aller une page plus a gauche
+QVWM_RIGHT_PAGING          aller une page plus a droite
+QVWM_UP_PAGING             aller une page plus haut
+QVWM_OVERLAP               arranger les fenetres en cascade
+QVWM_TILE_HORZ             arranger les fenetres en mosaique horizontale
+QVWM_TILE_VERT             arranger les fenetres en mosaique verticale
+QVWM_MINIMIZE_ALL          reduire toutes les fenetres de la page
+QVWM_TOGGLE_ONTOP          basculer l'attribut "toujours visible"
+QVWM_TOGGLE_AUTOHIDE       basculer le masquage automatique
+QVWM_TOGGLE_STICKY         basculer l'attribut "toujours presente"
+QVWM_SHOW_TASKBAR          afficher la barre des taches (en mode masquage auto.)
+QVWM_HIDE_TASKBAR          masquer la barre des taches (en mode masquage auto.)
+QVWM_SEPARATOR             separateur (aucune action)
+QVWM_NONE                  aucune action
+.EE
+Le deuxieme format est utilise pour faire apparaitre un sous menu, qui est
+defini entre les symboles + et -.
+.PP
+Les noms des menus pouvant etre configures sont :
+.TP 5
+\fBStartMenu\fP
+Le menu demarrer, affiche en cliquant sur le bouton demarrer
+.TP
+\fBCtrlMenu\fP
+Le menu systeme des fenetres, affiche en cliquant sur l'icone a gauche des
+fenetres avec le bouton gauche de la souris ou en cliquant sur le bouton de la
+barre des taches avec le bouton droit de la souris
+.TP
+\fBDesktopMenu\fP
+Le menu affiche en cliquant sur le bureau avec le bouton droit de la souris
+.TP
+\fBIconMenu\fP
+Le menu affiche en cliquant avec le bouton de droite sur un raccourci
+.TP
+\fBTaskbarMenu\fP
+Le menu affiche en cliquant avec le bouton de droite sur la barre des taches
+
+
+.SH CONFIGURATION DES RACCOURCIS
+Vous pouvez configurer les raccourcis ainsi :
+.EX
+[Shortcuts]
+nom   icone    action   [x][, y]
+.EE
+\fInom\fP doit etre ecrit entre guillemets (""), de meme que \fIicone\fP. Cette
+icone doit etre presente dans le repertoire IMGDIR specifie dans le fichier
+Config.tmpl lors de la compilation de qvwm, ou dans l'un des repertoires
+definis par la variable ImagePath. \fIaction\fP peut etre soit une fonction
+interne de qvwm, soit le nom d'une commande externe entre guillemets. Enfin, si
+\fIx\fP ou \fIy\fP est indique, qvwm fixera l'icone a la position precisee. Si
+une coordonnee commence par un point d'exclamation (!), la valeur est
+multipliee par la taille des raccourcis. Par defaut, qvwm place les raccourcis
+de haut en bas et de gauche a droite, dans l'ordre de creation.
+
+
+.SH CONFIGURATION DES ATTRIBUTS
+Vous pouvez configurer les attributs des applications ainsi :
+.EX
+[Applications]
+application   attribut,...
+.EE
+\fIapplication\fP est un nom de classe ou d'instance, ou un titre de fenetre,
+entre guillemets (""). \fIattribut\fP est un ou plusieurs attributs separes par
+des virgules (,) parmi la liste suivante :
+.IP NO_BORDER 15
+Pas de bordure de fenetre.
+.IP NO_BORDER_EDGE
+Pas d'ombre a l'interieur de la bordure.
+.IP NO_BUTTON1
+Pas de bouton de reduction.
+.IP NO_BUTTON2
+Pas de bouton d'aggrandissement/restauration.
+.IP NO_BUTTON3
+Pas de bouton de fermeture.
+.IP NO_CTRLBTN
+Pas d'icone de menu systeme.
+.IP NO_FOCUS
+La fenetre ne recoit jamais le focus (jamais activee).
+.IP NO_TBUTTON
+Pas de bouton correspondant sur la barre des taches.
+.IP NO_TITLE
+Pas de barre de titre.
+.IP STICKY
+Toujours presente, quelle que soit la page affichee.
+.IP LARGE_IMG
+La grande icone (32x32) affichee dans la fenetre de changement de taches
+(par exemple LARGE_IMG="xterm.xpm").
+.IP SMALL_IMG
+La petite icone (16x16) affichee a gauche de la barre de titre et dans le
+bouton de la barre des taches (par exemple SMALL_IMG="xterm_s.xpm").
+.IP CLOSE_SOON
+La fenetre est fermee immediatement sans s'afficher.
+.IP ONTOP
+Toujours visible.
+.IP INIT_MAXIMIZE
+Aggrandissement au premier affichage.
+.IP INIT_MINIMIZE
+Reduction au premier affichage.
+.IP FOCUS_ON_CLICK
+La fenetre n'est activee qu'en cliquant dedans.
+
+.SH CONFIGURATION DU DIALOGUE DE FIN
+Vous pouvez configurer le dialogue de fin ainsi :
+.EX
+[ExitDialog]
+element     message ou icone    action
+.EE
+Les \fIelement\fPs disponibles sont les suivants :
+.EX
+CancelButton      message du bouton annuler
+HelpButton        message du bouton aide
+IconImage         icone affichee en haut a gauche
+OKButton          message du bouton ok
+RadioButton       bouton radio
+StaticText        message descriptif
+Title             texte de la barre de titre
+.EE
+\fIaction\fP n'est necessaire que pour les boutons radio. Vous pouvez y mettre
+une fonction interne de qvwm ou un nom de commande externe entre guillemets.
+Vous pouvez preciser un raccourci clavier pour les boutons a l'aide de \\&.
+
+.SH CONFIGURATION DES RACCOURCIS CLAVIER
+Vous pouvez configurer les raccourcis clavier ainsi :
+.EX
+[ShortCutKeys]
+touche   modificateur   action
+.EE
+\fItouche\fP est le nom de la touche, a savoir l'un des symboles XK_xxx
+de /usr/include/X11/keysymdef.h, mais sans le prefixe 'XK_' (vous pouvez aussi
+les determiner a l'aide du programme xev).
+Vous pouvez egalement utiliser le code des touches pour lesquelles il n'existe
+pas de symbole, sous la forme #nn (nn en decimal).
+\fImodificateur\fP est le nom des modificateurs comme les touches shift,
+controle, alt, etc. Pour preciser plus d'un modificateur, utilisez le symbole
+'|'. Voici la liste des modificateurs :
+.EX
+Shift       touche shift
+Ctrl        touche controle
+Alt         touche alt
+Meta        touche meta
+Mod1-Mod5   ne pas utiliser (obsolete)
+None        aucun modificateur
+.EE
+Enfin, precisez une fonction interne de qvwm ou un nom de commande externe dans
+\fIaction\fP.
+
+.SH CONFIGURATION DES INDICATEURS
+Vous pouvez afficher des fenetres 16x16, denommees indicateurs, a gauche de
+l'horloge dans la barre des taches. Vous pouvez configurer les indicateurs
+ainsi :
+.EX
+[Indicators]
+identificateur  commande externe
+.EE
+\fIidentificateur\fP peut etre le titre, le nom de ressource ou la classe
+de ressource de la fenetre de l'identificateur. La fenetre creee par la
+\fIcommande externe\fP correspondant a \fIidentificateur\fP devient
+l'indicateur, cependant toute autre fenetre generee par le programme sera
+affichee normalement.
+
+.SH CONFIGURATION DU SUPERFLU
+Vous pouvez placer en superflu vos images (ou animations) preferees sur
+le bureau. Vous pouvez configurer le superflu ainsi :
+.EX
+[Accessories]
+image	position	style
+.EE
+\fIimage\fP designe un fichier image dans l'un des formats reconnus par qvwm.
+\fIposition\fP est soit l'une des positions predefinies Top (haut), Bottom
+(bas), Left (gauche), Right(droite), TopLeft (en haut a gauche), TopRight (en
+haut a droite), BottomLeft (en bas a gauche), BottomRight (en bas a droite),
+Center (au centre), ou une position precise (comme +0+0). \fIstyle\fP peut etre
+Background (image integree au fond d'ecran et recouverte par les fenetres),
+OnTop (image recouvrant les fenetres et raccourcis), ou Application (image
+disposant d'un cadre et d'une barre de titre et pouvant etre deplacee).
+
+.SH MOT-CLEF INCLUDE
+Vous pouvez inclure d'autres fichiers dans un fichier de configuration grace au
+mot-clef include.
+.EX
+exemple : include /home/kourai/.qvwmrc.local
+.EE
+
+.SH CHEMINS
+Vous pouvez utiliser ~ pour votre repertoire personnel, ~utilisateur pour
+le repertoire personnel d'un utilisateur, et les variables d'environnement
+prefixees par $.
+.EX
+exemple : include $HOME/.qvwmrc.local
+          IconPath = ~/lib/qvwm/pixmaps
+.EE
+
+.SH COMMANDES EXTERNES
+Vous pouvez preciser plusieurs modificateurs devant une commande externe.
+.IP EXEC 8
+Remplace qvwm par la commande externe. Surtout utile pour changer de
+gestionnaire de fenetres.
+.EX
+exemple : "EXEC twm"
+.EE
+.IP PAGE[<x>,<y>,<identificateur>]
+Place la fenetre cree par la commande externe dans la page (x, y). Indiquez
+le titre, le nom ou la classe de ressource de la fenetre comme
+\fIidentificateur\fP.
+.EX
+exemple : "PAGE[1, 1, XEyes] xeyes"
+.EE
+.IP PAGECUR[<identifier>]
+Place la fenetre dans la page ou a ete lancee la commande externe.
+
+.SH Formats d'image reconnus
+Qvwm reconnait le format xpm (extension .xpm). Si vous utilisez Imlib, qvwm
+reconnait egalement les formats reconnus par Imlib. De plus, qvwm reconnait les
+animations prevues pour lui (extension .ani). Comme ces animations contiennent
+des images fixes, un fichier d'animation n'est reconnu que si qvwm reconnait le
+format de chacune des images qu'il contient.
+
+.SH FICHIERS
+.IP $HOME/.qvwmrc 28
+fichier de configuration de l'utilisateur
+.IP $HOME/.qvwm-theme
+theme de l'utilisateur (generalement inclus par .qvwmrc)
+.IP <QVWMDIR>/system.qvwmrc
+fichier de configuration du systeme, <QVWMDIR> etant le repertoire indique a la
+compilation.
+
+.SH MISE EN GARDE
+Bien que qvwm ait ete diffuse officiellement, il peut manquer de stabilite dans
+certains environnements. En utilisant ce programme, vous etes seul responsable
+de ce qui peut en decouler.
+
+.SH AUTEUR
+Kenichi Kourai (kourai@qvwm.org)

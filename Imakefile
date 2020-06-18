@@ -1,0 +1,11 @@
+XCOMM
+XCOMM Imakefile for qvwm
+XCOMM
+
+#define IHaveSubdirs
+#define PassCDebugFlags
+
+SUBDIRS = src images sounds rc
+
+MakeSubdirs($(SUBDIRS))
+DependSubdirs($(SUBDIRS))

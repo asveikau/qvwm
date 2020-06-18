@@ -1,0 +1,96 @@
+;
+; clouds.qvwm-theme
+;
+;   qvwm theme file (clouds theme)
+;
+;   This file should be included in the main configuration file (.qvwmrc)
+;   using include statement.
+;
+
+[Variables]
+; defaults
+;DefaultIcon		= ""		; default titlebar/taskbar-button icon
+;DefaultLargeIcon	= ""		; default task switcher icon
+;DefaultShortcutIcon	= ""		; default shortcut icon
+DefaultFont		= "-*-*-medium-r-normal-*-16-*-*-*-*-*-*-*"
+
+; desktop
+WallPaper		= "clouds.xpm"	; wall paper
+DesktopColor		= skyblue3	; shortcut background color
+DesktopActiveColor	= qvblue	; shortcut active color
+CursorColor		= qvgreen
+
+; titlebar
+FrameTitleHeight	= 24
+TitlebarImage		= "clouds.xpm"	; titlebar background image
+TitlebarActiveImage	= "clouds2.xpm"	; titlebar active background image
+GradTitlebar		= False		; titlebar gradation
+GradTitlebarColors	= 40		; titlebar gradation colors
+TitlebarColor		= qvdarkgray	; titlebar color (inactive)
+TitlebarColor2		= qvgray	; titlebar right-side color (inactive)
+TitlebarActiveColor	= qvblue	; titlebar color (active)
+TitlebarActiveColor2	= qvgreen	; titlebar right-side color (active)
+TitleStringColor	= black		; title string color (inactive)
+TitleStringActiveColor	= white		; title string color (active)
+
+; frame
+FrameBorderWidth	= 4
+FrameImage		= "clouds.xpm"	; frame background image
+FrameActiveImage	= "clouds2.xpm"	; frame active background image
+FrameColor		= qvgray	; window frame color
+FrameActiveColor	= qvgray	; window frame color
+
+; pager
+PagerImage		= "clouds.xpm"	; pager background image
+PagerColor		= qvgray	; pager color
+PagerActiveColor	= qvdarkgray	; selected page color
+MiniatureColor		= yellow	; non-active mini window color in pager
+MiniatureActiveColor	= red		; active mini window color in pager
+
+; taskbar
+TaskbarButtonHeight	= 32
+TaskbarImage		= "clouds.xpm"	; taskbar background image
+TaskbarColor		= qvgray	; taskbar color
+ClockStringColor	= black		; clock string color
+UseBoldFont		= False		; use bold font for emphasis
+
+; indicator
+IndicatorSize		= 24
+
+; shortcut icon
+IconSize		= 32		; icon size
+IconStringColor		= black
+IconStringActiveColor	= white
+IconForeColor		= white		; icon foreground color
+IconBackColor		= black		; icon background color
+
+; menu
+MenuImage		= "clouds.xpm"	; menu background image
+MenuActiveImage		= "clouds2.xpm"	; menu background image
+MenuColor		= qvgray	; menu color
+MenuActiveColor		= qvblue	; selected menu item color
+MenuStringColor		= black		; menu string color (unselected)
+MenuStringActiveColor	= white		; menu string color (selected)
+
+; startmenu
+StartMenuLogoImage	= "logo_clouds.xpm"
+StartMenuLogoColor	= qvdarkgray
+
+; dialog
+DialogImage		= "clouds.xpm"	; dialog background image
+DialogColor		= qvgray	; dialog color
+
+; switcher
+SwitcherImage		= "clouds.xpm"	; switcher background image
+SwitcherColor		= qvgray	; task switcher color
+SwitcherActiveColor	= qvblue	; icon selected color
+
+; button
+ButtonColor		= qvgray	; button color
+ButtonActiveColor	= qvgray	; button color
+ButtonStringColor	= black		; button string color
+ButtonStringActiveColor	= white		; button string color
+
+; tooltip
+TooltipColor		= qvyellow
+TooltipStringColor	= black

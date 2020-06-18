@@ -1,0 +1,188 @@
+;
+;  german.qvwmrc
+;
+;    Bitte lesen Sie qvwm.man für weitere Details zu den Einstellungen.
+;
+
+[Variables]
+DoubleClickTime	    = 300
+DoubleClickRange    = 5
+TitlebarMotionSpeed = 100
+MenuDelayTime       = 400
+PagingResistance    = 250
+PagingMovement      = 100
+PagingBeltSize      = 2
+TopLeftPage         = -1-1
+PagingSize          = 3x3
+PagerGeometry       = 72x72-0-0
+TaskbarPosition     = Bottom
+WallPaper           = Windows95
+IconForeColor       = white
+IconBackColor       = black
+StartButtonTitle    = "Start"
+LocaleName          = ""
+UseBoldFont         = False
+UseExitDialog       = True
+UsePager            = True
+OpaqueMove          = True
+ClickToFocus        = True
+AutoRaise           = True
+AutoRaiseDelay      = 500
+ImagePath           = "@IMGDIR@"
+SoundPath           = "@SNDDIR@"
+MiniNonActiveColor  = yellow
+MiniActiveColor     = red
+
+;**********************************************************************
+; Einstellungen der Schrift
+;**********************************************************************
+TitleFont            = "-adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*"
+TaskbarFont          = "-adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*"
+TaskbarBoldFont      = "-adobe-helvetica-bold-r-*-*-12-*-*-*-*-*-*-*"
+CascadeMenuFont      = "-adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*"
+CtrlMenuFont         = "-adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*"
+StartMenuFont        = "-adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*"
+IconFont             = "-adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*"
+DialogFont           = "-adobe-helvetica-medium-r-*-*-12-*-*-*-*-*-*-*"
+
+;**********************************************************************
+; Menü Einstellungen
+;    <Unterpunkts> <Pixmap> <Aktion(Ausführbare Datei oder QVWM-Funktion)>
+;    oder
+;    <Unterpunkt> <Pixmap>
+;    +
+;        ... (Untermenü)
+;    -
+;
+;    Die Größe der Pixmaps ist 32x32 im Startmenü, 20x20 in anderen.
+;    Der dritte Parameter ist ein Programm, ein internes Komando
+;    (beginnt mit QVWM_) oder Name des Untermenüs.
+;**********************************************************************
+[StartMenu]
+"Programme"	""
++
+	"Xman"		"/usr/X11R6/lib/X11/3dpixmaps/small/small.xman_3d.xpm"	   "xman"
+	"Hilfe"         "small.logo_suse_3d.xpm" "hilfe"
+	"Emacs"		"emacs_s.xpm"	   "emacs"
+	"Xeyes"		"xeyes_s.xpm"	"xeyes"
+	"Xmag"		""		"xmag"
+	"Xrefresh"	""		"xrefresh"
+	"Shells"	""
+	+
+		"Xterm"		"xterm_s.xpm"	"xterm"
+		"Rxvt"		"xterm_s.xpm"	"rxvt"
+	-
+	"Betrachter"	""
+	+
+		"Xv"		""		"xv"
+		"Ghostview"	""		"ghostview"
+		"Xdvi"		""		"xdvi"
+		"Xanim"		""		"xanim"
+		"Mpeg_play"	""		"mpeg_play"
+	-
+	"Browser"	""
+	+
+		"Mosaic"	""		"xmosaic"
+		"Netscape"	"netscape_s.xpm" "netscape"
+	-
+	"Spiele"		""
+	+
+		"Maze"		""		"maze"
+		"Ico"		""		"ico"
+	-
+	"Uhren"	""
+	+
+		"Xclock"	""		"xclock"
+		"Oclock"	""		"oclock"
+	-
+-
+"Einstellungen"	"setting.xpm"
++
+	"Aufgabenleiste"	"taskbar.xpm"
+	+
+		"Unten"		""		QVWM_BOTTOM
+		"Oben"		""		QVWM_TOP
+		"Links"		""		QVWM_LEFT
+		"Rechts"	""		QVWM_RIGHT
+	-
+-
+"Suchen"		"retrieve.xpm"	""
+"Hilfe"			"help.xpm"	"xman"
+"Ausführen"		"run.xpm"	"xterm -geometry 60x1"
+""		""			QVWM_SEPARATOR
+"Beenden            "	"exit.xpm"	QVWM_EXIT
+
+
+;**********************************************************************
+; Einstellungen des Steuerungsmenüs
+;**********************************************************************
+[CtrlMenu]
+"Wiederherstellen      "	""	QVWM_RESTORE
+"Verschieben"		""		QVWM_MOVE
+"Größe ändern"		""		QVWM_RESIZE
+"Minimieren"		""		QVWM_MINIMIZE
+"Maximieren"		""		QVWM_MAXIMIZE
+""			""		QVWM_SEPARATOR
+"Schließen"		""		QVWM_CLOSE
+"Töten"			""		QVWM_KILL
+
+;**********************************************************************
+; Einstellungen des Desktopmenüs
+;**********************************************************************
+[DesktopMenu]
+"Auffrischen"		""		"xrefresh"
+"Neu starten"		""		QVWM_RESTART
+""			""		QVWM_SEPARATOR
+"Beenden"		""		QVWM_EXIT
+
+;**********************************************************************
+; Einstellungen der Desktopverknüpfungen
+;    <Name> <Pixmap> <Ausführbare Datei>
+;
+;    Die Größe der Pixmaps beträgt 32x32.
+;    Der dritte Parameter ist nur das Programm.
+;**********************************************************************
+[Shortcuts]
+"Hilfe"                 "small.logo_suse_3d.xpm" "hilfe"
+"Xman"		        "/usr/X11R6/lib/X11/3dpixmaps/small/small.xman_3d.xpm"	 "xman"
+"Emacs"			"emacs.xpm"	"emacs"
+"Xv"			"xv.xpm"	"xv"
+"Xterm"			"xterm.xpm"	"xterm"
+"Xcalc"			"xcalc.xpm"	"xcalc"
+"Xeyes"			"xeyes.xpm"	"xeyes"
+"Netscape"		"netscape.xpm"	"netscape"
+
+;**********************************************************************
+; Einstellungen der Attribute für jede Anwendung
+;    <Abwendung> <Attribut,...>
+;
+;    STICKY: nicht durch Paging beeinflusst
+;    NOFOCUS: nicht activ
+;**********************************************************************
+[Applications]
+"xbiff"		STICKY, NOFOCUS
+"console"	STICKY
+"Emacs"		SMALLPIX="emacs_s.xpm", LARGEPIX="emacs.xpm"
+"XTerm"		SMALLPIX="xterm_s.xpm", LARGEPIX="xterm.xpm"
+"Netscape"	SMALLPIX="netscape_s.xpm", LARGEPIX="netscape.xpm"
+"XCalc"		SMALLPIX="xcalc_s.xpm", LARGEPIX="xcalc.xpm"
+"XEyes"		SMALLPIX="xeyes_s.xpm", LARGEPIX="xeyes.xpm"
+"xv"		LARGEPIX="xv.xpm"
+
+;**********************************************************************
+; Einstellungen des Ausgangsdialogs
+;    <Teil> <Text oder Pixmap> (<interne Function>)
+;
+;    Die interne Funktion ist hier mit Radiobuttons näher spezifiziert.
+;**********************************************************************
+[ExitDialog]
+Title		"Beenden"
+StaticText	"Wie soll QVWM beendet werden?"
+RadioButton	"QVWM beenden und Änderungen speichern."	QVWM_EXIT
+RadioButton	"QVWM beenden ohne Änderungen zu speichern."	QVWM_EXIT
+RadioButton	"QVWM neu starten."				QVWM_RESTART
+RadioButton	"Einen Anderen Fenstermanager laden."		QVWM_NONE
+IconPixmap	"exit2.xpm"
+OKButton	"OK"
+CancelButton	"Abbrechen"
+HelpButton	"Hilfe"

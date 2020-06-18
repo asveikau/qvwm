@@ -1,0 +1,138 @@
+FAQ
+===
+
+Concepts
+--------
+Q. What's qvwm?
+A. Qvwm is a Windows 95/98/NT like window manager for X Window System.
+   Qvwm has almost the same GUI as Windows 95/98/NT.  Originally,
+   "Qvwm" was derived from "95 Window Manager" ('q' has the same pronounciation
+   in Japanese and almost the same shape as '9', and 'v' is '5' in Roman
+   number).  Also, qvwm is "98 Window Manager" because 'v' stands
+   for '8'(vertically flipped V is similar to 8 in kanji character).
+
+Q. Why do the accompanying pixmaps flip horizontally?
+A. Qvwm provides a similar GUI with Windows 95/98/NT.  At first glance,
+   you might not distinguish which OS runs on the machine.  To prevent
+   this confusion, we flip all pixmaps horizontally.  The second reason
+   is that we revolt against Microsoft slightly.
+
+Q. Where does qvwm go?
+A. We are rewriting qvwm with libqv (a class library for Windows like the
+   application we are developing).  A new version of qvwm will enable
+   you to customize it with a Windows like GUI and completely manipulate the
+   exit dialog with keyboard.
+
+   See http://libqv.qvwm.org/index-en.html for more
+   details of libqv.
+
+
+Installation
+------------
+Q. The configure script stops with "test: argument expected" in Solaris 2.x.
+A. Change the line in the configure script from:
+
+      if test $ac_cv_func_vfork_works = no; then
+
+   to
+
+      if test "$ac_cv_func_vfork_works" = no; then
+
+   It seems to be a bug in autoconf 2.12.  Let me (qvwm-support@qvwm.org) knowi
+   if you have a better solution.
+
+Q. Qvwm displays "Can't open display" when starting qvwm.
+A. You're trying to start qvwm from a console.  (Console is a MS-DOS like
+   screen that cannot display graphics basically.)  Since qvwm is a
+   window manager that can run only on X Window System, start X Window 
+   System first by executing xinit (or startx).  If you modify
+   ~/.xinitrc according to INSTALL.en, qvwm starts automatically.
+
+
+Function
+--------
+Q. I cannot close a window by clicking on the exit button ([x] button at
+   upper right). 
+A. You cannot use the exit button when the window is suspended.  Please
+   select Kill from the control menu to force exit.
+
+Q. I pressed a maximize button but the window is not maximized.
+A. Some applications limit the maximum size of the window. In such
+   cases, the window only moves to upper left and lost frame.
+
+Q. I cannot change the size of a window.
+A. Some applications limit the minimum and/or maximum size of the window.
+   In such cases, you cannot change the size over the limitation.
+
+Q. It takes some time after a button is pressed for something to happen.
+A. This seems to be the nature of X Window System.
+
+Q. Qvwm exits strangely and my keyboard hangs up.
+A. Login from remote host and run qvwm 'qvwm -display that_problem_machine:0'
+   and then quit correctly.
+
+Q. It takes some time after selecting a button until the start menu appears.
+A. To  make its initialization faster, qvwm reads pixmaps when you press their
+   start button for the first time. So, start menu is delayed the
+   first time.
+
+Q. Window doesn't appear though there is a taskbar button and it's not
+   minimized.
+A. It may be displayed at the outside of the virtual window. Select 'move' from
+   the  taskbar  button with right click and move it with cursor. You see it
+   at  the  inside  of  the  virtual  window  if  you're lucky. You may also
+   configure the size of virtual window bigger and restart qvwm.
+
+Q. I can't drag window to other screen properly.
+A. Move  your  mouse a little bit at the edge of the screen. Or you can set the 
+   value of PagingBeltSize bigger.
+
+Configuration
+--------------
+Q. I can't double click properly.
+A. Increase the value of DoubleClickTime or DoubleClickRange.
+
+Q. I would like to move title bar faster when minimize or maximize.
+A. Decrease the value of TitlebarMotionSpeed.
+
+Q. I would like to shorten the time to change the virtual window.
+A. Decrease the value of PagingResistance.
+
+Q. I would like to change the size of the virtual window.
+A. Change the value of PagingSize.
+
+Q. I want to change the place and the size of the pager.
+A. Please change the value of PagerGeometry.
+
+Q. I want to change the wall paper.
+A. Specify the full path of xpm file you want to use.
+
+Q. I don't want to show dialog box when exit.
+A. Set UseExitDialog False.
+
+Q. My machine has a slow CPU, so I want to show only the frame when dragging.
+A. Set OpaqueMove False.
+
+Q. I want the active window under the mouse cursor.
+A. Set ClickToFocus False.
+
+Q. I prefer the active window is the most upper.
+A. Set AutoRaise True.
+
+Q. I want to change the delay time of AutoRaise.
+A. Decrease the value of AutoRaiseDelay.
+
+Q. I want to use my original icons.
+A. Specify your icon directory and put the xpm file there. The size of the
+   icons is 32x32.
+
+Q. A window of kinput2 flickers when I input Japanese characters in
+   Netscape. 
+A. Add the following line in [Applications] section of your configuration
+   file: 
+
+     "Kinput2"   NO_FOCUS
+
+---
+Translated partially by Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
+Translation translated  by Bill Richter <wlr@jps.net>

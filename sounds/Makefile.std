@@ -1,0 +1,20 @@
+#
+# Makefile.std for qvwm sounds
+#
+
+SOUNDS = chimes.wav
+
+all:
+
+install:: $(SOUNDS)
+	@if [ -d $(SNDDIR) ]; then set +x; \
+	else (set -x; $(MKDIRHIER) $(SNDDIR)); fi
+	@for flag in ${MAKEFLAGS} ''; do \
+	case "$$flag" in *=*) ;; *[i]*) set +e;; esac; done; \
+	for i in $(SOUNDS); do \
+	(set -x; $(INSTALL) $$i $(SNDDIR)); \
+	done
+
+clean:
+
+depend:

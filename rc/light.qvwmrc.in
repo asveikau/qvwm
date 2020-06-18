@@ -1,0 +1,355 @@
+;
+;  light.qvwmrc
+;
+;    configuration file for slow machines
+;
+
+[Variables]
+LocaleName		= ""		; locale name used in this file
+ImagePath		= "@IMGDIR@"
+SoundPath		= "@SNDDIR@"
+RestartOnFailure	= True		; restart on seg fault/bus error
+UseDebugger		= False
+HourGlassTime		= 1000
+ImageAnimation		= False
+
+; window
+OpaqueMove		= False		; full drag move
+OpaqueResize		= False		; full drag resize
+FullOpaque		= False		; full drag resize with the contents
+ClickToFocus		= True		; activate on click of window
+FocusOnMap		= False		; activate a mapped window
+ClickingRaises		= True		; clicking in the client area raises
+NoDesktopFocus		= True		; prevent focus from moving to desktop
+NoFocusChangeMask	= Shift		; prevent focus change by this key
+TitlebarMotion		= False		; animation on minimizing or maximizing
+UseInfoDisplay		= False		; display info when moving and resizing
+
+; virtual screen (paging)
+PagingResistance	= 250		; edge resistance for switching page
+PagingMovement		= 100		; movement (%) on switching page
+PagingBeltSize		= 2		; switchable area of edge (dot)
+TopLeftPage		= -1-1		; top-left page of virtual screen
+PagingSize		= 3x3		; size of virtual screen
+PagingSpeed		= 1
+
+; pager
+UsePager		= True		; use pager
+PagerGeometry		= 72x72-0-0	; size and position of pager
+OnTopPager		= False		; keep page on top
+
+; taskbar
+UseTaskbar		= True		; use taskbar
+TaskbarPosition		= Bottom	; initial position
+TaskbarRows		= 1		; initial rows
+StartButtonTitle	= "Start"	; string for start button
+TaskbarAutoHide		= False		; hide taskbar automatically
+RestoreMinimize		= True		; minimize by pushing active tbutton
+NoResizeOverTaskbar	= False		; no resize over taskbar
+
+; taskbar clock
+UseClock		= True
+ClockLocaleName		= ""
+ClockFormat		= "%l:%M %p"		; 4:50 PM
+
+; menu
+MenuDelayTime		= 300		; delay from pointing to displaying
+MenuDelayTime2		= 300		; delay from losing focus to vanishing
+GradMenuMap		= False		; make a menu show gradually
+
+; dialog
+UseExitDialog		= True		; use exit dialog
+
+; dragging
+EdgeResistance		= 0		; resistance at edges;
+SnappingMove		= 0		; snap aligned to windows;
+SnappingEdges		= 0		; snap also to borders;
+NoSnappingMask		= Alt		; ignore snapping move by this key
+ShiftMoveRatio		= 4.0		; ratio for moving by shift+cursor
+CtrlMoveRatio		= 0.5		; ratio for moving by ctrl+cursor
+LockDragState		= False		; keep dragging until clicking again
+
+; placement
+SmartPlacement		= False		; place new windows at free locations
+
+; double click
+DoubleClickTime		= 400		; max interval between 2 clicks
+DoubleClickRange	= 5		; max range between 2 clicks
+
+; screen saver
+ScreenSaverDelay	= 0		; screen saver not used
+
+; sound
+EnableSound		= False		; enable sound facility
+
+; from default.qvwm-theme
+WallPaper		= ""		; wall paper
+GradTitlebar		= False		; titlebar gradation
+
+
+;**********************************************************************
+; Startup configuration
+;
+;    Executed only when starting qvwm.
+;**********************************************************************
+[Startup]
+;"PAGE[1, 0, Navigator] netscape"
+;"PAGE[0, 1, Emacs] emacs"
+
+
+;**********************************************************************
+; Menu configuration
+;    <item name> <pixmap name> <action(exec file or qvwm func)>
+;    or
+;    <item name> <pixmap name>
+;    +
+;        ... (child menu)
+;    -
+;
+;    Pixmap size is 32x32 in StartMenu section, 20x20 in the others.
+;    The third parameter is program, internal command (begining at
+;    QVWM_), or next section name.
+;    \&? sets a shortcut key '?' for the menu item.
+;**********************************************************************
+[StartMenu]
+include		/etc/X11/qvwm/menu.hook
+"\&Setting"	"debian-swirl-32x32.xpm"
++
+	"\&Taskbar"	""
+	+
+		"\&Bottom"	""		QVWM_BOTTOM
+		"\&Top"		""		QVWM_TOP
+		"\&Left"	""		QVWM_LEFT
+		"\&Right"	""		QVWM_RIGHT
+	-
+-
+"\&Find"		"debian-swirl-32x32.xpm"	""
+"\&Help"		"debian-swirl-32x32.xpm"	"xman"
+"\&Run"			"shell-32x32.xpm"		"xterm -geometry 60x1"
+""			""				QVWM_SEPARATOR
+"\&Exit qvwm        "	"debian-swirl-32x32.xpm"	QVWM_EXIT
+
+
+;**********************************************************************
+; Control Menu configuration
+;**********************************************************************
+[CtrlMenu]
+"\&Restore  "		""		QVWM_RESTORE
+"\&Move"		""		QVWM_MOVE
+"Re\&size"		""		QVWM_RESIZE
+"Mi\&nimize"		""		QVWM_MINIMIZE
+"Ma\&ximize"		""		QVWM_MAXIMIZE
+"\&Lower"		""		QVWM_LOWER
+""			""		QVWM_SEPARATOR
+"OnTop(Toggle)"		""		QVWM_TOGGLE_ONTOP
+"Sticky(Toggle)"	""		QVWM_TOGGLE_STICKY
+""			""		QVWM_SEPARATOR
+"\B\&Close"		""		QVWM_CLOSE
+"Kill"			""		QVWM_KILL
+
+;**********************************************************************
+; Desktop Menu configuration
+;**********************************************************************
+[DesktopMenu]
+"Re\&fresh"		""		"xrefresh"
+"Re\&start"		""		QVWM_RESTART
+"twm"			""		"EXEC twm"
+""			""		QVWM_SEPARATOR
+"\&xterm"		""		"xterm"
+""			""		QVWM_SEPARATOR
+"L\&ineup Icon"		""		QVWM_LINEUP_ICON
+"\&Up Paging"		""		QVWM_UP_PAGING
+"\&Down Paging"		""		QVWM_DOWN_PAGING
+"\&Left Paging"		""		QVWM_LEFT_PAGING
+"\&Right Paging"	""		QVWM_RIGHT_PAGING
+""			""		QVWM_SEPARATOR
+"\&Exit qvwm"		""		QVWM_EXIT
+
+
+;**********************************************************************
+; Icon Menu configuration
+;**********************************************************************
+[IconMenu]
+"\&Execute"		""		QVWM_EXEC_ICON
+"\&Delete"		""		QVWM_DELETE_ICON
+
+
+;**********************************************************************
+; Taskbar Menu configuration
+;**********************************************************************
+[TaskbarMenu]
+"\&Overlap"		""		QVWM_OVERLAP
+"Tile \&Horizontally"	""		QVWM_TILE_HORZ
+"Tile \&Vertically"	""		QVWM_TILE_VERT
+""			""		QVWM_SEPARATOR
+"\&Minimize All"	""		QVWM_MINIMIZE_ALL
+""			""		QVWM_SEPARATOR
+"\&Position"		""
++
+	"\&Bottom"		""		QVWM_BOTTOM
+	"\&Top"			""		QVWM_TOP
+	"\&Left"		""		QVWM_LEFT
+	"\&Right"		""		QVWM_RIGHT
+-
+""			""		QVWM_SEPARATOR
+"\&AutoHide(Toggle)"	""		QVWM_TOGGLE_AUTOHIDE
+
+
+;**********************************************************************
+; Shortcut configuration
+;    <title> <pixmap name> <external command> [<x>][, <y>]
+;      or
+;    <title> <pixmap name> <qvwm internal function> [<x>][, <y>]
+;
+;    Pixmap size is IconSize. (32x32 by default)
+;
+;    External command can has some prefixes.
+;       PAGE[<x>, <y>, <identifier>] locates the window in page(x, y).
+;       Identifier is the same as a [Indicator] section.
+;       PAGECUR[<identifier>] locates the window in the page where the
+;       shortcut is double-clicked.
+;       These prefixes are valid in an external command of the other
+;       sections.
+;
+;    Default x, y is determined, depending on the order written below.
+;    When x or y begins with '!', the real coordinate is the following
+;    number times icon area's width (height).
+;**********************************************************************
+[Shortcuts]
+"Emacs"			"editor-32x32.xpm"	"PAGE[1, 0, Emacs] emacs"
+"Xv"			"xv-32x32.xpm"		"xv"
+"Xterm"			"shell-32x32.xpm"	"xterm"
+"Xeyes"			"eyes-32x32.xpm"	"xeyes"
+"Netscape Navigator"	"netscape-32x32.xpm"	"PAGECUR[Navigator] netscape"
+"Exit"			"debian-swirl-32x32.xpm"	QVWM_EXIT
+"Xcalc"			"calculator-32x32.xpm"	"xcalc"		!1, 0
+
+
+;**********************************************************************
+; Shortcut key configuration
+;    <key> <modifier> <internal function>
+;
+;    See /usr/include/X11/keysymdef.h for a key symbol
+;    Alt and Meta are distinguished.
+;**********************************************************************
+[ShortCutKeys]
+F4		Alt		QVWM_CLOSE
+Escape		Ctrl		QVWM_POPUP_START_MENU
+Escape		Alt		QVWM_CHANGE_WIN
+Escape		Alt|Shift	QVWM_CHANGE_WIN_BACK
+Delete		Alt		QVWM_CHANGE_WIN_INSCR
+Delete		Alt|Shift	QVWM_CHANGE_WIN_BACK_INSCR
+Tab		Alt		QVWM_SWITCH_TASK
+Tab		Alt|Shift	QVWM_SWITCH_TASK_BACK
+space		Alt		QVWM_POPUP_MENU
+Insert		Alt		QVWM_DESKTOP_FOCUS
+BackSpace	Alt		QVWM_POPUP_DESKTOP_MENU
+Left		Ctrl		QVWM_LEFT_PAGING
+Right		Ctrl		QVWM_RIGHT_PAGING
+Up		Ctrl		QVWM_UP_PAGING
+Down		Ctrl		QVWM_DOWN_PAGING
+Up		Ctrl|Alt	QVWM_RAISE
+Down		Ctrl|Alt	QVWM_LOWER
+Return		Alt		QVWM_EXPAND
+Left		Alt		QVWM_EXPAND_LEFT
+Right		Alt		QVWM_EXPAND_RIGHT
+Up		Alt		QVWM_EXPAND_UP
+Down		Alt		QVWM_EXPAND_DOWN
+s		Alt		QVWM_SHOW_TASKBAR
+h		Alt		QVWM_HIDE_TASKBAR
+F1		Alt		"xman"
+;#22		None		QVWM_POPUP_START_MENU
+
+
+;**********************************************************************
+; Attribute configuration by each application
+;    <application> <attribute,...>
+;
+;    Application is title name, class name, or instance name.
+;     (see WM_NAME or WM_CLASS displayed by xprop)
+;    Attribute is:
+;       STICKY: not affect paging
+;       NO_FOCUS: not active
+;       NO_TITLE: no title
+;       NO_BORDER: no border
+;       NO_TBUTTON: no taskbar button
+;       SMALL_PIX: specifies small pixmap (16x16) (e.g. for control menu)
+;       LARGE_PIX: specifies large pixmap (32x32) (e.g. for task switcher)
+;       CLOSE_SOON: close a window soon (for irritating error windows)
+;       ONTOP: always keep a window on top
+;       INIT_MAXIMIZE: maximized on initializing
+;       INIT_MINIMIZE: minimized on initializing
+;**********************************************************************
+[Applications]
+"Ddd"		SMALL_PIX="debugger-16x16.xpm"
+"Emacs" 	SMALL_PIX="editor-16x16.xpm", LARGE_PIX="editor-32x32.xpm"
+"Fig"		SMALL_PIX="fig-16x16.xpm", LARGE_PIX="fig-32x32.xpm"
+"Freeamp"	SMALL_PIX="music-16x16.xpm", LARGE_PIX="music-32x32.xpm"
+"GV"		SMALL_PIX="ghostview-16x16.xpm", LARGE_PIX="ghostview-32x32.xpm"
+"Ghostview"	SMALL_PIX="ghostview-16x16.xpm", LARGE_PIX="ghostview-32x32.xpm"
+"Gimp"		SMALL_PIX="gimp-16x16.xpm", LARGE_PIX="gimp-32x32.xpm"
+"Kinput2"	NO_TITLE, NO_FOCUS, ONTOP
+"KTerm"		SMALL_PIX="shell-16x16.xpm", LARGE_PIX="shell-32x32.xpm"
+"Mahjongg"	SMALL_PIX="mahjongg-16x16.xpm"
+"Netscape"	SMALL_PIX="netscape-16x16.xpm", LARGE_PIX="netscape-32x32.xpm"
+"Netscape Download"	ONTOP
+"Netscape: subprocess diagnostics (stdout/stderr)"	CLOSE_SOON
+"XBoard"	SMALL_PIX="knight-16x16.xpm"
+"XCalc"		SMALL_PIX="calculator-16x16.xpm", NO_BORDER_EDGE
+"XClock"	SMALL_PIX="clock-16x16.xpm", NO_TBUTTON, NO_BORDER_EDGE
+"XDvi"		SMALL_PIX="tex-16x16.xpm", LARGE_PIX="tex-32x32.xpm"
+"XEyes"		SMALL_PIX="eyes-16x16.xpm", NO_BORDER
+"XKaetama"	SMALL_PIX="tetris-16x16.xpm"
+"XLoad"		SMALL_PIX="xload-16x16.xpm", LARGE_PIX="xload-32x32.xpm"
+"XMMS_Player"	SMALL_PIX="music-16x16.xpm", LARGE_PIX="music-32x32.xpm"
+"XMahjongg"	SMALL_PIX="mahjongg-16x16.xpm"
+"XTerm"		SMALL_PIX="shell-16x16.xpm", LARGE_PIX="shell-32x32.xpm"
+"XaoS"		SMALL_PIX="fractal-16x16.xpm", LARGE_PIX="fractal-32x32.xpm"
+"Xedit"		SMALL_PIX="editor-16x16.xpm", LARGE_PIX="editor-32x32.xpm"
+"Xmag"		SMALL_PIX="magnifier-16x16.xpm"
+"console"	STICKY, NO_TITLE
+"desktop_icon"	STICKY, NO_FOCUS, NO_TBUTTON
+"gcalc"		SMALL_PIX="calculator-16x16.xpm"
+"hanterm"	SMALL_PIX="shell-16x16.xpm", LARGE_PIX="shell-32x32.xpm"
+"mred"		SMALL_PIX="lambda-16x16.xpm"
+"oclock"	NO_TITLE, NO_BORDER
+"panel"		STICKY, NO_FOCUS, NO_TBUTTON
+"win:craft"	SMALL_PIX="craft-16x16.xpm"
+"win:craft_options"	SMALL_PIX="craft-16x16.xpm"
+"xbiff"		STICKY, NO_FOCUS
+"xfractint"	SMALL_PIX="fractal-16x16.xpm", LARGE_PIX="fractal-32x32.xpm"
+"xhextris"	SMALL_PIX="hextris-16x16.xpm"
+"xpdf"		SMALL_PIX="pdf-16x16.xpm"
+"xv"		SMALL_PIX="xv-16x16.xpm", LARGE_PIX="xv-32x32.xpm"
+
+
+;**********************************************************************
+; Indicator configuration
+;    <identifier> <exec file name>
+;
+;    Identifier is the title name, resource name or resource
+;    class of a window for an indicator.
+;**********************************************************************
+[Indicators]
+"xbiff"		"xbiff"
+"XEyes"		"xeyes"
+"xload"		"xload -nolabel -update 5 -bg gray"
+
+
+;**********************************************************************
+; Exit dialog configuration
+;    <part> <str or pixmap name> (<action>)
+;
+;    Action is specified in the case of RadioButton. (qvwm internal
+;    function or exec file name)
+;**********************************************************************
+[ExitDialog]
+Title		"Exit qvwm"
+StaticText	"What should I do?"
+RadioButton	"Exit qvwm."				QVWM_EXIT
+RadioButton	"Restart qvwm."				QVWM_RESTART
+RadioButton	"Start twm."				"EXEC twm"
+IconImage	"debian-swirl-32x32.xpm"
+OKButton	"\&Yes"
+CancelButton	"\&No"
+HelpButton	"\&Help"

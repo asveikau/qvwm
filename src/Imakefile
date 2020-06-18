@@ -1,0 +1,108 @@
+XCOMM
+XCOMM Imakefile for qvwm binary
+XCOMM
+
+#include "../Config.tmpl"
+
+#ifdef DEBUG
+CXXDEBUGFLAGS += -DDEBUG
+#endif
+#ifdef USE_SHAPE
+CXXDEFINES += -DUSE_SHAPE
+#endif
+#ifdef USE_SS
+CXXDEFINES += -DUSE_SS
+#endif
+#ifdef USE_IMLIB
+CXXDEFINES += -DUSE_IMLIB
+#endif
+#ifdef USE_XSMP
+CXXDEFINES += -DUSE_XSMP
+#endif
+#ifdef USE_ALSA
+CXXDEFINES += -DUSE_ALSA
+#endif
+#ifdef USE_ESD
+CXXDEFINES += -DUSE_ESD
+#endif
+#ifdef HAVE_USLEEP
+CXXDEFINES += -DHAVE_USLEEP
+#endif
+#ifdef HAVE_RAISE
+CXXDEFINES += -DHAVE_RAISE
+#endif
+
+CXXDEFINES += -DQVWMDIR=\"$(QVWMDIR)\" -DIMGDIR=\"$(IMGDIR)\" -DSNDDIR=\"$(SNDDIR)\" -DHAVE_VPRINTF -DPATH_RM=\"$(PATH_RM)\"
+
+CXXFLAGS = -g $(CXXDEBUGFLAGS) $(CXXDEFINES)
+INCLUDES += -I..
+CXX = g++
+/*CXX = gcc*/
+
+YACC = bison -y
+YFLAGS = -d
+LEX = flex
+/*LEXLIB = -ll*/
+
+#ifdef USE_IMLIB
+IMAGE_LIBS = -lImlib -ljpeg -ltiff -lungif -lpng -lz -lm
+#else
+IMAGE_LIBS = -lXpm
+#endif
+
+#ifdef USE_ALSA
+SNDLIB = -lasound
+#endif
+
+#ifdef USE_ESD
+SNDLIB = -lesd -laudiofile -lm
+#endif
+
+LOCAL_LIBRARIES = $(SMLIB) $(ICELIB) $(IMAGE_LIBS) $(XLIB) $(LEXLIB) $(SNDLIB)
+
+#ifdef NEED_XPG4
+LOCAL_LIBRARIES += -lxpg4
+#endif
+
+SRCS = main.cc event.cc qvwm.cc frame.cc resize.cc focus.cc fbutton.cc \
+       tbutton.cc sbutton.cc taskbar.cc menu.cc startmenu.cc window.cc \
+       util.cc colormap.cc configure.cc property.cc function.cc yaccsrc.cc \
+       lexsrc.cc parse.cc icon.cc qvwmrc.cc switcher.cc exit_dialog.cc \
+       button.cc string_button.cc radio_button.cc radio_set.cc dialog.cc \
+       system_dialog.cc paging.cc pager.cc timer.cc key.cc indicator.cc \
+       rearrange.cc move.cc resize_sp.cc debug.cc focus_mgr.cc desktop.cc \
+       mini.cc ctrl_button.cc titlebar.cc mwm.cc gnome.cc audio.cc \
+       audio_wav.cc audio_au.cc exec.cc info_display.cc tooltip.cc \
+       accessory.cc image.cc pixmap_image.cc anim_image.cc extra_image.cc \
+       session.cc confirm_dialog.cc screen_saver.cc remote_cmd.cc \
+       audiodev.cc audiodev_alsa.cc audiodev_esd.cc audiodev_oss.cc \
+       audiodev_sun.cc menu_func.cc
+
+OBJS = main.o event.o qvwm.o frame.o resize.o focus.o fbutton.o tbutton.o \
+       sbutton.o taskbar.o menu.o startmenu.o window.o util.o colormap.o \
+       configure.o property.o function.o yaccsrc.o lexsrc.o parse.o \
+       icon.o qvwmrc.o switcher.o exit_dialog.o button.o string_button.o \
+       radio_button.o radio_set.o dialog.o system_dialog.o paging.o pager.o \
+       timer.o key.o indicator.o rearrange.o move.o resize_sp.o debug.o \
+       focus_mgr.o desktop.o mini.o ctrl_button.o titlebar.o mwm.o gnome.o \
+       audio.o audio_wav.o audio_au.o exec.o info_display.o tooltip.o \
+       accessory.o image.o pixmap_image.o anim_image.o extra_image.o \
+       session.o confirm_dialog.o screen_saver.o remote_cmd.o \
+       audiodev.o audiodev_alsa.o audiodev_esd.o audiodev_oss.o \
+       audiodev_sun.o menu_func.o
+
+yaccsrc.cc yaccsrc.h: yaccsrc.yy
+	$(YACC) $(YFLAGS) yaccsrc.yy
+	$(MV) y.tab.c yaccsrc.cc
+	$(MV) y.tab.h yaccsrc.h
+
+lexsrc.cc: lexsrc.ll
+	$(LEX) lexsrc.ll
+	$(MV) lex.yy.c lexsrc.cc
+
+depend:: $(SRCS)
+
+qvwm.man: ../man/qvwm.man
+	$(LN) ../man/qvwm.man qvwm.man
+
+ComplexCplusplusProgramTarget(qvwm)

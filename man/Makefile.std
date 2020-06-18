@@ -1,0 +1,18 @@
+#
+# Makefile.std for qvwm man
+#
+
+MAN = qvwm.man
+#MAN = qvwm.man-jp
+#MAN = qvwm.man-fr
+
+all:
+
+install: $(MAN)
+	@if [ -d $(MANDIR) ]; then set +x; \
+	else (set -x; $(MKDIRHIER) $(MANDIR)); fi
+	$(INSTALL) $(MAN) $(MANDIR)/qvwm.$(MANSUFFIX)
+
+clean:
+
+depend:

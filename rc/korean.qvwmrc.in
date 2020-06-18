@@ -1,0 +1,386 @@
+;
+;  korean.qvwmrc
+;
+;    자세한 설정은 qvwm.man 을 읽어보세요.
+;
+
+[Variables]
+LocaleName		= "ko_KR.eucKR"	; 한국어 로케일
+ImagePath		= "@IMGDIR@"
+SoundPath		= "@SNDDIR@"
+RestartOnFailure	= True		; restart on seg fault/bus error
+UseDebugger		= False
+HourGlassTime		= 1000
+ImageAnimation		= True
+
+; window
+OpaqueMove		= True		; full drag move
+OpaqueResize		= True		; full drag resize
+FullOpaque		= True		; full drag resize with the contents
+ClickToFocus		= True		; activate on click of window
+FocusOnMap		= False		; activate a mapped window
+ClickingRaises		= True		; clicking in the client area raises
+NoDesktopFocus		= True		; prevent focus from moving to desktop
+NoFocusChangeMask	= Shift		; prevent focus change by this key
+TitlebarMotion		= True		; animation on minimizing or maximizing
+TitlebarMotionSpeed	= 10		; the speed (small is fast)
+AutoRaise		= True		; auto raise
+AutoRaiseDelay		= 300		; delay for auto raise (ms)
+UseInfoDisplay		= True		; display info when moving and resizing
+GradWindowMapStyle	= Normal	; style for mapping/unmapping windows
+GradWindowMapSpeed	= 10		; map/unmap animation speed
+MinimizeButtonMessage	= "최소화"
+MaximizeButtonMessage	= "최대화"
+CloseButtonMessage	= "닫기"
+RestoreButtonMessage	= "이전 크기로"
+
+; virtual screen (paging)
+PagingResistance	= 250		; edge resistance for switching page
+PagingMovement		= 100		; movement (%) on switching page
+PagingBeltSize		= 2		; switchable area of edge (dot)
+TopLeftPage		= -1-1		; top-left page of virtual screen
+PagingSize		= 3x3		; size of virtual screen
+PagingSpeed		= 5		; switch page gradually
+
+; pager
+UsePager		= True		; use pager
+PagerGeometry		= 72x72-0-0	; size and position of pager
+OnTopPager		= False		; keep pager on top
+
+; taskbar
+UseTaskbar		= True		; use taskbar
+TaskbarPosition		= Bottom	; initial position
+TaskbarRows		= 1		; initial rows
+TaskbarAutoHide		= False		; hide taskbar automatically
+RestoreMinimize		= True		; minimize by pushing active tbutton
+NoResizeOverTaskbar	= False		; no resize over taskbar
+GradTaskbarMotion	= True		; taskbar hides gradually
+GradTaskbarMotionSpeed	= 10		; the speed
+TaskbarShowDelay	= 0		; delay for automatic show (ms)
+TaskbarHideDelay	= 500		; delay for automatic hide (ms)
+OnTopTaskbar		= True		; keep taskbar on top
+TaskbarButtonInScr	= False
+StartButtonTitle	= "시작"	; string for start button
+StartButtonMessage	= "시작하려면 이곳을 누르십시요."
+
+; taskbar clock
+UseClock		= True
+ClockLocaleName		= "ko_KR.eucKR"
+ClockFormat		= "%l:%M %p"		; 4:50 PM
+;ClockFormat		= "%R"			; 16:50
+;ClockFormat		= "%a, %d %b %Y %R"	; Mon, 22 Jun 1998 16:50
+;ClockFormat		= "%T"			; 16:50:59
+ClockMessageFormat	= "%A, %B %e, %Y"	; Monday, July 22, 1999
+
+; menu
+MenuDelayTime		= 300		; delay from pointing to displaying
+MenuDelayTime2		= 300		; delay from losing focus to vanishing
+GradMenuMap		= True		; make a menu show gradually
+GradMenuMapSpeed	= 5		; the speed (small is fast)
+
+; dialog
+UseExitDialog		= True		; use exit dialog
+
+; dragging
+EdgeResistance		= 50		; resistance at edges;
+SnappingMove		= 5		; snap aligned to windows;
+SnappingEdges		= 5		; snap also to borders;
+NoSnappingMask		= Alt		; ignore snapping move by this key
+ShiftMoveRatio		= 4.0		; ratio for moving by shift+cursor
+CtrlMoveRatio		= 0.5		; ratio for moving by ctrl+cursor
+LockDragState		= False		; keep dragging until clicking again
+
+; placement
+SmartPlacement		= True		; place new windows at free locations
+
+; double click
+DoubleClickTime		= 400		; max interval between 2 clicks
+DoubleClickRange	= 5		; max range between 2 clicks
+
+; tooltip
+TooltipDelayTime        = 1000
+TooltipMotionSpeed      = 5
+TooltipDisplayTime	= 6000
+
+; screen saver
+ScreenSaver		= "xlock"	; screen saver program
+ScreenSaverDelay	= 600		; start after 10 minutes
+
+; sound
+EnableSound		= True		; enable sound facility
+EnableAlsa		= False		; enable ALSA (Linux only)
+EnableEsd		= False		; enable EsounD
+
+; theme
+include			@QVWMDIR@/debian.qvwm-theme
+
+
+;**********************************************************************
+; Startup configuration
+;
+;    Executed only when starting qvwm.
+;**********************************************************************
+[Startup]
+;"PAGE[1, 0, Navigator] netscape"
+;"PAGE[0, 1, Emacs] emacs"
+
+
+;**********************************************************************
+; Menu configuration
+;    <item name> <pixmap name> <action(exec file or qvwm func)>
+;    or
+;    <item name> <pixmap name>
+;    +
+;        ... (child menu)
+;    -
+;
+;    The third parameter is program, internal command (begining at
+;    QVWM_), or next section name.
+;    \&? sets a shortcut key '?' for the menu item.
+;**********************************************************************
+[StartMenu]
+include		/etc/X11/qvwm/menu.hook
+"설정(\&S)"	"debian-swirl-32x32.xpm"
++
+	"작업 표시줄(\&T)"	""
+	+
+		"아래(\&B)"	""		QVWM_BOTTOM
+		"위(\&T)"	""		QVWM_TOP
+		"왼쪽(\&L)"	""		QVWM_LEFT
+		"오른쪽(\&R)"	""		QVWM_RIGHT
+	-
+-
+"찾기(\&F)"		"debian-swirl-32x32.xpm"	""
+"도움말(\&H)"		"debian-swirl-32x32.xpm"	"xman"
+"실행...(\&R)"		"shell-32x32.xpm"		"hanterm -geometry 60x1"
+""			""				QVWM_SEPARATOR
+"시스템 종료...(\&U)"	"debian-swirl-32x32.xpm"	QVWM_EXIT
+
+
+;**********************************************************************
+; Control Menu configuration
+;**********************************************************************
+[CtrlMenu]
+"이전 크기로(\&R)"	""		QVWM_RESTORE
+"이동(\&M)"		""		QVWM_MOVE
+"크기(\&S)"		""		QVWM_RESIZE
+"최소화(\&N)"		""		QVWM_MINIMIZE
+"최대화(\&X)"		""		QVWM_MAXIMIZE
+"아래로(\&L)"		""		QVWM_LOWER
+""			""		QVWM_SEPARATOR
+"꼭대기로(Toggle)"	""		QVWM_TOGGLE_ONTOP
+"Sticky(Toggle)"	""		QVWM_TOGGLE_STICKY
+""			""		QVWM_SEPARATOR
+"닫기(\&C)"		""		QVWM_CLOSE
+"종료"			""		QVWM_KILL
+
+;**********************************************************************
+; Desktop Menu configuration
+;**********************************************************************
+[DesktopMenu]
+"새로 고침(\&F)"	""		"xrefresh"
+"시스템 다시 시작(\&S)"	""		QVWM_RESTART
+"twm"			""		"EXEC twm"
+""			""		QVWM_SEPARATOR
+"한텀(\&H)"		"xterm16.xpm"	"hanterm"
+""			""		QVWM_SEPARATOR
+"아이콘 줄 맞춤(\&I)"	""		QVWM_LINEUP_ICON
+"페이징(\&P)"		""
++
+	"위로(\&U)"		""		QVWM_UP_PAGING
+	"아래로(\&D)"		""		QVWM_DOWN_PAGING
+	"왼쪽으로(\&L)"		""		QVWM_LEFT_PAGING
+	"오른쪽으로(\&R)"	""		QVWM_RIGHT_PAGING
+-
+""			""		QVWM_SEPARATOR
+"시스템 종료(\&E)"	""		QVWM_EXIT
+
+
+;**********************************************************************
+; Icon Menu configuration
+;**********************************************************************
+[IconMenu]
+"열기(\&E)"		""		QVWM_EXEC_ICON
+"삭제(\&D)"		""		QVWM_DELETE_ICON
+
+
+;**********************************************************************
+; Taskbar Menu configuration
+;**********************************************************************
+[TaskbarMenu]
+"계단식 배열(\&O)"		""		QVWM_OVERLAP
+"수평 바둑판식 배열(\&H)"	""		QVWM_TILE_HORZ
+"수직 바둑판식 배열(\&V)"	""		QVWM_TILE_VERT
+""				""		QVWM_SEPARATOR
+"모든 창을 최소화(\&M)"		""		QVWM_MINIMIZE_ALL
+""				""		QVWM_SEPARATOR
+"위치(\&P)"			""
++
+	"아래(\&B)"		""		QVWM_BOTTOM
+	"위(\&T)"		""		QVWM_TOP
+	"왼쪽(\&L)"		""		QVWM_LEFT
+	"오른쪽(\&R)"		""		QVWM_RIGHT
+-
+""				""		QVWM_SEPARATOR
+"자동 숨김(Toggle)(\&A)"	""		QVWM_TOGGLE_AUTOHIDE
+
+
+;**********************************************************************
+; Shortcut configuration
+;    <title> <image name> <external command> [<x>][, <y>]
+;      or
+;    <title> <image name> <qvwm internal function> [<x>][, <y>]
+;
+;    Image size is IconSize. (32x32 by default)
+;
+;    External command can has some prefixes.
+;       PAGE[<x>, <y>, <identifier>] locates the window in page(x, y).
+;       Identifier is the same as a [Indicator] section.
+;       PAGECUR[<identifier>] locates the window in the page where the
+;       shortcut is double-clicked.
+;       These prefixes are valid in an external command of the other
+;       sections.
+;
+;    Default x, y is determined, depending on the order written below.
+;    When x or y begins with '!', the real coordinate is the following
+;    number times icon area's width (height).
+;**********************************************************************
+[Shortcuts]
+"Emacs"			"editor-32x32.xpm"	"PAGE[1, 0, Emacs] emacs"
+"Xv"			"xv-32x32.xpm"		"xv"
+"한텀"			"shell-32x32.xpm"	"hanterm"
+"Xeyes"			"eyes-32x32.xpm"	"xeyes"
+"Netscape Navigator"	"netscape-32x32.xpm"	"PAGECUR[Navigator] netscape"
+"시스템 종료"		"debian-swirl-32x32.xpm"	QVWM_EXIT
+"Xcalc"			"calculator-32x32.xpm"	"xcalc"		!1, 0
+
+
+;**********************************************************************
+; Shortcut key configuration
+;    <key> <modifier> <internal function>
+;
+;    See /usr/include/X11/keysymdef.h for a key symbol
+;    Alt and Meta are distinguished.
+;**********************************************************************
+[ShortCutKeys]
+F4		Alt		QVWM_CLOSE
+Escape		Ctrl		QVWM_POPUP_START_MENU
+Escape		Alt		QVWM_CHANGE_WIN
+Escape		Alt|Shift	QVWM_CHANGE_WIN_BACK
+Delete		Alt		QVWM_CHANGE_WIN_INSCR
+Delete		Alt|Shift	QVWM_CHANGE_WIN_BACK_INSCR
+Tab		Alt		QVWM_SWITCH_TASK
+Tab		Alt|Shift	QVWM_SWITCH_TASK_BACK
+space		Alt		QVWM_POPUP_MENU
+Insert		Alt		QVWM_DESKTOP_FOCUS
+BackSpace	Alt		QVWM_POPUP_DESKTOP_MENU
+Left		Ctrl		QVWM_LEFT_PAGING
+Right		Ctrl		QVWM_RIGHT_PAGING
+Up		Ctrl		QVWM_UP_PAGING
+Down		Ctrl		QVWM_DOWN_PAGING
+Up		Ctrl|Alt	QVWM_RAISE
+Down		Ctrl|Alt	QVWM_LOWER
+Return		Alt		QVWM_EXPAND
+Left		Alt		QVWM_EXPAND_LEFT
+Right		Alt		QVWM_EXPAND_RIGHT
+Up		Alt		QVWM_EXPAND_UP
+Down		Alt		QVWM_EXPAND_DOWN
+s		Alt		QVWM_SHOW_TASKBAR
+h		Alt		QVWM_HIDE_TASKBAR
+F1		Alt		"xman"
+;#22		None		QVWM_POPUP_START_MENU
+
+
+;**********************************************************************
+; Attribute configuration by each application
+;    <application> <attribute,...>
+;
+;    Application is title name, class name, or instance name.
+;     (see WM_NAME or WM_CLASS displayed by xprop)
+;    Attribute is:
+;       STICKY: not affect paging
+;       NO_FOCUS: not active
+;       NO_TITLE: no title
+;       NO_BORDER: no border
+;       NO_TBUTTON: no taskbar button
+;       SMALL_IMG: specifies small image (16x16) (e.g. for control menu)
+;       LARGE_IMG: specifies large image (32x32) (e.g. for task switcher)
+;       CLOSE_SOON: close a window soon (for irritating error windows)
+;       ONTOP: always keep a window on top
+;       INIT_MAXIMIZE: maximized on initializing
+;       INIT_MINIMIZE: minimized on initializing
+;**********************************************************************
+[Applications]
+"Ddd"		SMALL_PIX="debugger-16x16.xpm"
+"Emacs" 	SMALL_PIX="editor-16x16.xpm", LARGE_PIX="editor-32x32.xpm"
+"Fig"		SMALL_PIX="fig-16x16.xpm", LARGE_PIX="fig-32x32.xpm"
+"Freeamp"	SMALL_PIX="music-16x16.xpm", LARGE_PIX="music-32x32.xpm"
+"GV"		SMALL_PIX="ghostview-16x16.xpm", LARGE_PIX="ghostview-32x32.xpm"
+"Ghostview"	SMALL_PIX="ghostview-16x16.xpm", LARGE_PIX="ghostview-32x32.xpm"
+"Gimp"		SMALL_PIX="gimp-16x16.xpm", LARGE_PIX="gimp-32x32.xpm"
+"Kinput2"	NO_TITLE, NO_FOCUS, ONTOP
+"KTerm"		SMALL_PIX="shell-16x16.xpm", LARGE_PIX="shell-32x32.xpm"
+"Mahjongg"	SMALL_PIX="mahjongg-16x16.xpm"
+"Netscape"	SMALL_PIX="netscape-16x16.xpm", LARGE_PIX="netscape-32x32.xpm"
+"Netscape Download"	ONTOP
+"Netscape: subprocess diagnostics (stdout/stderr)"	CLOSE_SOON
+"XBoard"	SMALL_PIX="knight-16x16.xpm"
+"XCalc"		SMALL_PIX="calculator-16x16.xpm", NO_BORDER_EDGE
+"XClock"	SMALL_PIX="clock-16x16.xpm", NO_TBUTTON, NO_BORDER_EDGE
+"XDvi"		SMALL_PIX="tex-16x16.xpm", LARGE_PIX="tex-32x32.xpm"
+"XEyes"		SMALL_PIX="eyes-16x16.xpm", NO_BORDER
+"XKaetama"	SMALL_PIX="tetris-16x16.xpm"
+"XLoad"		SMALL_PIX="xload-16x16.xpm", LARGE_PIX="xload-32x32.xpm"
+"XMMS_Player"	SMALL_PIX="music-16x16.xpm", LARGE_PIX="music-32x32.xpm"
+"XMahjongg"	SMALL_PIX="mahjongg-16x16.xpm"
+"XTerm"		SMALL_PIX="shell-16x16.xpm", LARGE_PIX="shell-32x32.xpm"
+"XaoS"		SMALL_PIX="fractal-16x16.xpm", LARGE_PIX="fractal-32x32.xpm"
+"Xedit"		SMALL_PIX="editor-16x16.xpm", LARGE_PIX="editor-32x32.xpm"
+"Xmag"		SMALL_PIX="magnifier-16x16.xpm"
+"console"	STICKY, NO_TITLE
+"desktop_icon"	STICKY, NO_FOCUS, NO_TBUTTON
+"gcalc"		SMALL_PIX="calculator-16x16.xpm"
+"hanterm"	SMALL_PIX="shell-16x16.xpm", LARGE_PIX="shell-32x32.xpm"
+"mred"		SMALL_PIX="lambda-16x16.xpm"
+"oclock"	NO_TITLE, NO_BORDER
+"panel"		STICKY, NO_FOCUS, NO_TBUTTON
+"win:craft"	SMALL_PIX="craft-16x16.xpm"
+"win:craft_options"	SMALL_PIX="craft-16x16.xpm"
+"xbiff"		STICKY, NO_FOCUS
+"xfractint"	SMALL_PIX="fractal-16x16.xpm", LARGE_PIX="fractal-32x32.xpm"
+"xhextris"	SMALL_PIX="hextris-16x16.xpm"
+"xpdf"		SMALL_PIX="pdf-16x16.xpm"
+"xv"		SMALL_PIX="xv-16x16.xpm", LARGE_PIX="xv-32x32.xpm"
+
+
+;**********************************************************************
+; Indicator configuration
+;    <identifier> <exec file name>
+;
+;    Identifier is the title name, resource name or resource
+;    class of a window for an indicator.
+;**********************************************************************
+[Indicators]
+"xbiff"		"xbiff"
+"XEyes"		"xeyes"
+"xload"		"xload -nolabel -update 5 -bg gray"
+
+
+;**********************************************************************
+; Exit dialog configuration
+;    <part> <str or image name> (<action>)
+;
+;    Action is specified in the case of RadioButton. (qvwm internal
+;    function or exec file name)
+;**********************************************************************
+[ExitDialog]
+Title		"시스템 종료"
+StaticText	"다음 중에서 선택하십시오."
+RadioButton	"Exit qvwm with saving changes."	QVWM_EXIT
+RadioButton	"시스템 종료"				QVWM_EXIT
+RadioButton	"시스템 다시 시작"			QVWM_RESTART
+RadioButton	"twm 재시작"				"EXEC twm"
+IconImage	"debian-swirl-32x32.xpm"
+OKButton	"예(\&Y)"
+CancelButton	"아니오(\&N)"
+HelpButton	"도움말(\&H)"

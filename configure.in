@@ -1,0 +1,277 @@
+dnl Process this file with autoconf to produce a configure script.
+
+dnl Initialize with some random file to ensure the source is here.
+AC_INIT(src/qvwm.cc)
+
+QVWM_MAJOR_VERSION=1
+QVWM_MINOR_VERSION=1
+QVWM_MICRO_VERSION=12
+QVWM_PATCH_VERSION=9-IKu
+
+QVWM_VERSION=$QVWM_MAJOR_VERSION.$QVWM_MINOR_VERSION.$QVWM_MICRO_VERSION-$QVWM_PATCH_VERSION
+
+AM_INIT_AUTOMAKE(qvwm, $QVWM_VERSION)
+AM_CONFIG_HEADER(config.h)
+AM_MAINTAINER_MODE
+
+dnl Evaluate options.
+AC_ARG_ENABLE(debug,
+	[  --enable-debug          include debugging code [no]],
+	if test $enableval = yes ; then
+		AC_DEFINE(DEBUG)
+	fi)
+
+AC_ARG_ENABLE(rmtcmd,
+	[  --enable-rmtcmd         allow sending commands to qvwm [yes]],
+	if test $enableval = yes ; then
+		AC_DEFINE(ALLOW_RMTCMD)
+	fi,
+	AC_DEFINE(ALLOW_RMTCMD))
+
+AC_ARG_ENABLE(animated,
+	[  --enable-animated       include animated images (*.ani) support [no]],
+	if test $enableval = yes ; then
+		AC_DEFINE(USE_ANIM_IMAGE)
+	fi)
+
+AC_ARG_WITH(man,
+	[  --with-man=locale       set locale of installed manual (jp/fr/en) [guessed]],
+	MAN_LOCALE=$withval,
+	MAN_LOCALE="")
+
+AC_ARG_WITH(imlib,
+	[  --with-imlib            use Imlib library [guessed]],
+	IMLIB=$withval,
+	IMLIB=guess)
+
+AC_ARG_ENABLE(xsmp,
+	[  --enable-xsmp           enable X Session Management Protocol [guessed]],
+	XSMP=$enableval,
+	XSMP=guess)
+
+AC_ARG_WITH(qvwmdir,
+	[  --with-qvwmdir=DIR      qvwm resources are in DIR [PREFIX/share/qvwm]],
+	QVWMDIR=$withval,
+	QVWMDIR="")
+
+AC_ARG_WITH(imgdir,
+	[  --with-imgdir=DIR       qvwm image files are in DIR [QVWMDIR/images]],
+	IMGDIR=$withval,
+	IMGDIR="")
+
+AC_ARG_WITH(snddir,
+	[  --with-snddir=DIR       qvwm sound files are in DIR [QVWMDIR/sounds]],
+	SNDDIR=$withval,
+	SNDDIR="")
+
+AC_ARG_WITH(alsa,
+	[  --with-alsa             use ALSA for sound effects [guessed]],
+	ALSA=$withval,
+	ALSA=guess)
+
+AC_ARG_WITH(esd,
+	[  --with-esd              use esd (EsounD) for sound effects [guessed]],
+	ESD=$withval,
+	ESD=guess)
+
+AC_ARG_ENABLE(ss,
+	[  --enable-ss             enable screen saver functions [yes]],
+	SS=$enableval,
+	SS=yes)
+
+dnl Checks for programs.
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_CXX
+AC_PROG_YACC
+AM_PROG_LEX
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+
+AC_PATH_PROG(PATH_RM, rm)
+
+dnl Checks for libraries.
+AC_PATH_XTRA
+CFLAGS="$CFLAGS $X_CFLAGS "
+CXXFLAGS="$CXXFLAGS $X_CFLAGS "
+
+dnl Checks for library functions.
+AC_CHECK_LIB(X11, XOpenDisplay,
+	X_LIBS="-lX11 $X_LIBS",
+	AC_MSG_ERROR("Need X11"),
+	$X_PRE_LIBS $X_LIBS $X_EXTRA_LIBS)
+
+AC_CHECK_LIB(Xext, XShapeCombineMask,
+	X_LIBS="-lXext $X_LIBS"; AC_DEFINE(USE_SHAPE),
+	AC_MSG_WARN("Shape extension not used"),
+	$X_PRE_LIBS $X_LIBS $X_EXTRA_LIBS)
+
+dnl -lSM -lICE is included in $X_PRE_LIBS
+if test $XSMP = yes -o $XSMP = guess ; then
+	AC_CHECK_LIB(SM, SmcOpenConnection,
+		AC_DEFINE(USE_XSMP),
+		if test $XSMP = yes ; then
+			AC_MSG_ERROR("System does not support XSMP")
+		else
+			AC_MSG_WARN("XSMP not used")
+		fi,
+		$X_PRE_LIBS $X_LIBS $X_EXTRA_LIBS)
+else
+	AC_MSG_WARN("XSMP not used")
+fi
+
+if test $IMLIB = yes -o $IMLIB = guess ; then
+	AM_PATH_IMLIB(,
+		[CXXFLAGS="$CXXFLAGS $IMLIB_CFLAGS"
+		 X_LIBS="$IMLIB_LIBS $X_LIBS"
+		 AC_DEFINE(USE_IMLIB)],
+		if test $IMLIB = yes ; then
+			AC_MSG_ERROR("Imlib not installed")
+		else
+			IMLIB=no
+			AC_MSG_WARN("Imlib not used")
+		fi)
+else
+	AC_MSG_WARN("Imlib not used")
+fi
+
+
+dnl Checks screen saver functions.
+if test $SS = yes ; then
+	AC_DEFINE(USE_SS)
+	AC_CHECK_LIB(Xss, XScreenSaverQueryExtension,
+		X_LIBS="-lXss $X_LIBS"; AC_DEFINE(USE_SSEXT),
+		AC_MSG_WARN("Screen saver extention not used"),
+		$X_PRE_LIBS $X_LIBS $X_EXTRA_LIBS)
+fi
+
+LIBS="$X_PRE_LIBS $X_LIBS $X_EXTRA_LIBS $LIBS"
+
+dnl Check first for --with-alsa and --with-esd specified explicitly
+if test $ALSA = yes ; then
+	AC_CHECK_LIB(asound, snd_cards,
+		[LIBS="$LIBS -lasound"
+		 AC_DEFINE(USE_ALSA)],
+		AC_MSG_ERROR("System does not support ALSA"))
+fi
+
+if test $ESD = yes ; then
+	AM_PATH_ESD(0.2.6,
+		[CXXFLAGS="$CXXFLAGS $ESD_CFLAGS"
+		 LIBS="$LIBS $ESD_LIBS"
+		 AC_DEFINE(USE_ESD)],
+		AC_MSG_ERROR("Esd not installed"))
+fi
+
+if test $ALSA = guess ; then
+	AC_CHECK_LIB(asound, snd_cards,
+		[LIBS="$LIBS -lasound"
+		 AC_DEFINE(USE_ALSA)],
+		AC_MSG_WARN("ALSA not used"))
+fi
+
+if test $ESD = guess ; then
+	AM_PATH_ESD(0.2.6,
+		[CXXFLAGS="$CXXFLAGS $ESD_CFLAGS"
+		 LIBS="$LIBS $ESD_LIBS"
+		 AC_DEFINE(USE_ESD)],
+		AC_MSG_WARN("Esd not used"))
+fi
+
+dnl Checks for X locale.
+AC_CHECK_LIB(X11, _Xsetlocale, AC_DEFINE(X_LOCALE))
+AC_CHECK_LIB(xpg4, setlocale, LIBS="$LIBS -lxpg4")
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_TYPE_PID_T
+AC_TYPE_SIZE_T
+
+# If we use gcc 2.95, add -fpermissive to CFLAGS and CXXFLAGS
+if test $ac_cv_prog_gcc = yes ; then
+	AC_CACHE_CHECK(
+		[if gcc version is >= 2.95],
+		qvwm_cv_gcc_fpermissive,
+		AC_LANG_SAVE
+		AC_LANG_CPLUSPLUS
+		AC_TRY_RUN([
+int main()
+{
+#if defined __GNUC__ && (__GNUC__ > 2 || __GNUC__ == 2 && __GNUC_MINOR__ >= 95)
+	exit(0);
+#else
+	exit(1);
+#endif
+}],
+		qvwm_cv_gcc_fpermissive=yes,
+		qvwm_cv_gcc_fpermissive=no,
+		qvwm_cv_gcc_fpermissive=no)
+		AC_LANG_RESTORE)
+	if test $qvwm_cv_gcc_fpermissive = yes ; then
+		CFLAGS="$CFLAGS -fpermissive"
+		CXXFLAGS="$CXXFLAGS -fpermissive"
+	fi
+fi
+
+dnl Checks for functions.
+AC_FUNC_VFORK
+AC_FUNC_VPRINTF
+AC_CHECK_FUNCS(usleep)
+
+# Select language for manual page from the specified parameter or, if missing,
+# the LANGUAGE environment variable. LANG can not be used, as autoconf alters it
+# to cope with broken systems.
+if test -z "$MAN_LOCALE"; then
+	MAN_LOCALE=$LANGUAGE
+fi
+case "$MAN_LOCALE" in
+	# short iso|long iso|existing broken names|allowed parameter
+	ja|ja_*|[jJ]apan*|[jJ][pP])
+		MANUAL=qvwm.man-jp
+	;;
+	fr|fr_*|french*|c-french*|[fF][rR])
+		MANUAL=qvwm.man-fr
+	;;
+	*)
+		MANUAL=qvwm.man
+	;;
+esac
+
+dnl Makes a symbolic link
+AC_LINK_FILES(man/$MANUAL, man/qvwm.1x)
+
+if test -z "$QVWMDIR"; then
+	if test "x$prefix" = xNONE ; then
+		QVWMDIR=$ac_default_prefix/share/qvwm
+	else
+		QVWMDIR=$prefix/share/qvwm
+	fi
+fi
+AC_SUBST(QVWMDIR)
+
+if test -z "$IMGDIR"; then
+	IMGDIR=$QVWMDIR/images
+fi
+AC_SUBST(IMGDIR)
+
+if test -z "$SNDDIR"; then
+	SNDDIR=$QVWMDIR/sounds
+fi
+AC_SUBST(SNDDIR)
+
+AC_OUTPUT(Makefile
+	src/Makefile
+	src/bitmaps/Makefile
+	images/Makefile
+	sounds/Makefile
+	doc/Makefile
+	man/Makefile
+	rc/Makefile
+	rc/system.qvwmrc
+	rc/kanji.qvwmrc
+	rc/french.qvwmrc
+	rc/korean.qvwmrc
+	rc/german.qvwmrc
+	rc/portuguese.qvwmrc
+	rc/italian.qvwmrc
+	rc/light.qvwmrc)

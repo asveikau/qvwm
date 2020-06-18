@@ -1,0 +1,14 @@
+
+- Bug: when a menu is open and another application creates a window and
+  requires a focus, the focus granted, but the menu is not closed.  I
+  guess there has to be a focus stack (and probably is) and the new
+  window should probably be added at the top of the stack, but below
+  the menu.
+  (2007-05-09 16:38)
+
+- Bug: when you disable the taskbar, you are left with the focus not given
+  to any of the currently open windows.  And if you, for instance,
+  tries a command like QVWM_MAXIMIZE_WINDOW, qvwm crashes.
+  (2007-05-09 21:34)
+
+

@@ -1,0 +1,68 @@
+/* config.h.in.  Generated automatically from configure.in by autoheader.  */
+
+/* Define if you don't have vprintf but do have _doprnt.  */
+#undef HAVE_DOPRNT
+
+/* Define if you have <vfork.h>.  */
+#undef HAVE_VFORK_H
+
+/* Define if you have the vprintf function.  */
+#undef HAVE_VPRINTF
+
+/* Define to `int' if <sys/types.h> doesn't define.  */
+#undef pid_t
+
+/* Define to `unsigned' if <sys/types.h> doesn't define.  */
+#undef size_t
+
+/* Define if you have the ANSI C header files.  */
+#undef STDC_HEADERS
+
+/* Define vfork as fork if vfork does not work.  */
+#undef vfork
+
+/* Define if the X Window System is missing or not being used.  */
+#undef X_DISPLAY_MISSING
+
+/* Define if lex declares yytext as a char * by default, not a char[].  */
+#undef YYTEXT_POINTER
+
+/* Define if you want a debug version of qvwm */
+#undef DEBUG
+
+/* Define if you allow sending commands to qvwm */
+#undef ALLOW_RMTCMD
+
+/* Define if you want to use Imlib */
+#undef USE_IMLIB
+
+/* Define if the X shape extension is available */
+#undef USE_SHAPE
+
+/* Define if the X Session Management Protocol is available */
+#undef USE_XSMP
+
+/* Define if you want to use ALSA for sound effects (Linux only) */
+#undef USE_ALSA
+
+/* Define if you want to use esd (EsounD) for sound effects */
+#undef USE_ESD
+
+/* Define if you want to use screen saver functions */
+#undef USE_SS
+
+/* Define if the X screen saver extension is available */
+#undef USE_SSEXT
+
+/* Define if the X server supports locale functions */
+#undef X_LOCALE
+
+/* Define if you have the usleep function.  */
+#undef HAVE_USLEEP
+
+/* Name of package */
+#undef PACKAGE
+
+/* Version number of package */
+#undef VERSION
+

@@ -1,0 +1,102 @@
+/*
+ * Config.tmpl
+ *   included by Imakefile
+ */
+
+/*
+ * Directory where you install *.qvwmrc.
+ * LIBDIR is /usr/X11R6/lib/X11, etc.
+ * If you install them to your local directory, you should set
+ * QVWMDIR to /home/kourai/lib/qvwm, etc.
+ */
+QVWMDIR = $(LIBDIR)/qvwm
+
+/*
+ * Directory where you install the images.
+ */
+IMGDIR = $(QVWMDIR)/images
+
+/*
+ * Directory where you install the sounds.
+ */
+SNDDIR = $(QVWMDIR)/sounds
+
+/*
+ * Directory where you install the binary.
+ * By default, BINDIR is /usr/X11R6/bin, etc.
+ * If you change this directory, define BINDIR.
+ */
+/*BINDIR = /home/kourai/bin*/
+
+/*
+ * Directory where you install the manual.
+ * By default, MANDIR is /usr/X11R6/man/mann, etc.
+ * If you change this directory, define MANDIR.
+ */ 
+/*MANDIR = /home/kourai/man*/
+
+/*
+ * Path for rm.
+ */
+PATH_RM = /bin/rm
+
+/*
+ * Use locale on FreeBSD.
+ * To use locale properly on FreeBSD, you must define NEED_XPG4.
+ */
+#undef NEED_XPG4
+
+/*
+ * Use shape extension. 
+ * If you cannot use shape extension, change below to '#undef USE_SHAPE'.
+ */
+#define USE_SHAPE
+
+/*
+ * Use screen saver function.
+ * If you do not want to use screen saver function, change below to
+ * '#undef USE_SS'.
+ * If you cannot use screen saver extension, change below to
+ * '#undef USE_SSEXT'.
+ */
+#define USE_SS
+#define USE_SSEXT
+
+/*
+ * Use Imlib.
+ * If you want to use Imlib, change below to '#define USE_IMLIB'.
+ */
+#undef USE_IMLIB
+
+/*
+ * Use X session management protocol (XSMP).
+ * If you cannot use shape extension, change below to '#undef USE_XSMP'.
+ */
+#define USE_XSMP
+
+/*
+ * Use ALSA for sound effects (Linux only).
+ * If you want to use ALSA, change below to '#define USE_ALSA'.
+ */
+#undef USE_ALSA
+
+/*
+ * Use esd (EsounD) for sound effects.
+ * If you want to use esd, change below to '#define USE_ESD'.
+ */
+#undef USE_ESD
+
+/*
+ * If your system doesn't have usleep(), undefine HAVE_USLEEP.
+ */
+#define HAVE_USLEEP
+
+/*
+ * Debug flag.
+ */
+#undef DEBUG
+
+/*
+ * If you doesn't allow sending commands to qvwm, undefine ALLOW_RMTCMD
+ */
+#define ALLOW_RMTCMD

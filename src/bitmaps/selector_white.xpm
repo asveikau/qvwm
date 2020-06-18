@@ -1,0 +1,15 @@
+/* XPM */
+static char *selector_white[] = {
+/* width height num_colors chars_per_pixel */
+"     6     6        2            1",
+/* colors */
+". c None",
+"# c #ffffff",
+/* pixels */
+".####.",
+"######",
+"######",
+"######",
+"######",
+".####."
+};

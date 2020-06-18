@@ -1,0 +1,119 @@
+INSTALLATION                                               [charset:iso-8859-1]
+============
+
+Vous pouvez installer qvwm de chacune des trois façons suivantes :
+
+---------------------------------------------------------------------------
+INSTALLATION par configure
+--------------------------
+1. Lancez './configure'.
+   Par défaut, qvwm sera installé dans /usr/local/bin, et les fichiers
+   *.qvwmrc dans /usr/local/share/qvwm. Pour changer de préfixe (/usr/local),
+   lancez './configure --prefix=...' à la place.
+
+2. Lancez 'make' (ou make CXX=gcc).
+
+3. Lancez 'make install'.
+
+4. Copiez system.qvwmrc dans ~/.qvwmrc et personnalisez-le comme bon vous
+   semble. Pour plus d'informations sur la syntaxe du fichier de configuration,
+   consultez le manuel.
+   Le fichier kanji.qvwmrc est un exemple de configuration kanji.
+   Le fichier french.qvwmrc est un exemple de configuration en Français.
+
+5. Copiez default.qvwm-theme dans ~/.qvwm-theme, et profitez-en pour faire
+   votre propre thème pour qvwm. 
+
+6. Modifiez votre ~/.xinitrc si vous démarrez X Window depuis une console ou
+   ~/.xsession si vous vous loguez depuis xdm. Si le fichier est absent,
+   créez-le avec le contenu suivant :
+
+     exec qvwm
+
+   Si le fichier existe et s'il emploie un autre gestionnaire de fenêtres à
+   la fin, remplacez le nom de ce gestionnaire par "qvwm".
+   Par exemple, si la dernière ligne est
+  
+     exec twm
+
+   changez-la en
+
+     exec qvwm
+
+   Si le fichier n'emploie pas le moindre gestionnaire de fenêtres, enlevez
+   le "exec" de la dernière ligne et ajoutez un "&" en fin de ligne s'il y
+   a lieu, et ajoutez "exec qvwm" à la fin du fichier. Par exemple, le fichier
+   ressemblera à ;
+
+     xterm &
+     exec qvwm
+
+   Pour lancer qvwm depuis la console, lancez xinit (ou startx).
+
+
+---------------------------------------------------------------------------
+INSTALLATION par Imakefile
+--------------------------
+1. Fixez QVWMDIR dans Config.tmpl au répertoire dans lequel vous souhaitez
+   installer system.qvwmrc, et PIXDIR au répertoire dans lequel vous
+   souhaitez installer les pixmaps. Modifiez également les autres variables en
+   fonction de votre environnement.
+   
+2. Lancez 'xmkmf -a'.
+
+3. Lancez 'make' (ou make CXX=gcc).
+
+4. Lancez 'make install' et 'make install.man'.
+
+5. Procédez comme à l'étape 4 de la méthode 'avec configure'.
+
+6. Procédez comme à l'étape 5 de la méthode 'avec configure'.
+
+7. Procédez comme à l'étape 6 de la méthode 'avec configure'.
+
+
+---------------------------------------------------------------------------
+INSTALLATION par Makefile.std
+-----------------------------
+1. Modifiez Makefile.std dans le répertoire principal.
+
+2. Lancez 'make -f Makefile.std' (ou make -f Makefile.std CXX=gcc).
+
+3. Lancez 'make -f Makefile.std install'.
+
+4. Procédez comme à l'étape 4 de la méthode 'avec configure'.
+
+5. Procédez comme à l'étape 5 de la méthode 'avec configure'.
+
+6. Procédez comme à l'étape 6 de la méthode 'avec configure'.
+
+---------------------------------------------------------------------------
+ATTENTION
+---------
+- Conservez les paramètres par défaut de Make si vous ne comprenez pas la
+  signification des variables. Si des erreurs surviennent à la compilation ou
+  à l'édition des liens, vous pourrez modifier ces réglages en fonction des
+  informations sur l'erreur.
+
+- Qvwm nécessite la bibliothèque Xpm ou Imlib. Vous ne pourrez pas le compiler
+  sans avoir au moins l'une d'entre elles.
+
+- Si le make standard de Sun pause des problèmes, utilisez gmake.
+
+- Il se peut que la compilation échoue si vous utilisez yacc et lex à la place
+  de bison et flex. J'ai fourni yaccsrc.cc et lexsrc.cc dans cette distribution
+  pour vous éviter tout problème. Si le compilateur désire reconstruire
+  yaccsrc.cc et lexsrc.cc à cause de leur date de modification, forcez-les à
+  jour à l'aide de la commande touch ou équivalent.
+
+- Il se peut que votre système n'ait pas stdarg.h dans /usr/include. Mais si
+  vous avez gcc installé, vous pourrez probablement le trouver dans
+  /usr/lib/gcc-lib/MACHINE/VERSION/include ou similaire ; tentez de copier
+  celui-la dans /usr/include.
+
+- .qvwm-theme se content de récupérer les variables du thème depuis .qvwmrc.
+  Ces variables sont également fixées dans .qvwmrc, mais l'emploi d'un fichier
+  séparé permet d'utiliser d'autres thèmes.
+
+--
+Traduction par Miodrag Vallat <miodrag@ifrance.com>

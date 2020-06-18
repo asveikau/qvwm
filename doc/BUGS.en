@@ -1,0 +1,27 @@
+BUGS
+----
+- Some dialogs of an on-top window are put behind the main window.
+- Session management fails (at gnome-session).
+- Netscape does not response to ButtonPress after saving link twice.
+- Exist double free.
+- With netscape maximized, newly opened another window of netscape
+  become the normal window of the maximized size.
+- A transparent wrapper of icons sometimes overlaps the other icons.
+- Cannot use Meta+Delete in some environments.
+- Alt+Tab activates a window in which mouse cursor is contained when
+  FocusOnClick is False and two windows are located without overlapping?
+- A focus becomes incorrect if you click a menu item and drag to the
+  edge of the menu.
+- Fail to play au files in Linux.
+- Qvwm sometimes crashes at restart.
+- Sometimes a window with no contents is shown. (the cause is unknown) 
+- A screen flickers when you use an application which uses private
+  colormap. 
+- The taskbar flickers before hidden when you shrink it when
+  TaskbarAutoHide is True. 
+- Sometimes an input focus is left in a non-active window. 
+- Qvwm crashes when you use tgif. (not reproducible) 
+- Sometimes qvwm freezes. (the cause is unknown) 
+
+---
+Translated partially by Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>

@@ -1,0 +1,48 @@
+#
+# Makefile.std for qvwm pixmaps
+#
+
+PIXMAPS = \
+def16.ani \
+def32.ani \
+emacs16.ani \
+emacs32.ani \
+exit32.ani \
+find32.ani \
+help32.xpm \
+icon16.ani \
+icon32.ani \
+netscape16.ani \
+netscape32.ani \
+quit32.ani \
+run32.ani \
+setting32.ani \
+taskbar16.ani \
+xcalc16.xpm \
+xcalc32.ani \
+xeyes16.ani \
+xeyes32.ani \
+xterm16.xpm \
+xterm32.ani \
+xv16.xpm \
+xv32.xpm \
+qvwmdesk.ani \
+clouds.xpm \
+clouds2.xpm \
+logo_clouds.xpm \
+logo_os2.xpm
+
+all:
+
+install: $(PIXMAPS)
+	@if [ -d $(IMGDIR) ]; then set +x; \
+	else (set -x; $(MKDIRHIER) $(IMGDIR)); fi
+	@for flag in ${MAKEFLAGS} ''; do \
+	case "$$flag" in *=*) ;; *[i]*) set +e;; esac; done; \
+	for i in $(PIXMAPS); do \
+	(set -x; $(INSTALL) $$i $(IMGDIR)); \
+	done
+
+clean:
+
+depend:

@@ -1,0 +1,24 @@
+A FAIRE (TODO)                                             [charset:iso-8859-1]
+--------------
+- Supporter les images compactées.
+- Ne pas traiter les animations quand elles sont recouvertes.
+- Positionner les fenêtres de façon à ne pas recouvrir les icônes (smart
+  placement)
+- Supporter le lancement rapide par la barre des tâches comme Windows 98.
+- Placer les fenêtres temporaires systématiquement dans la page courante (en
+  option ?)
+- Réecrire avec libqv.
+- Supporter la configuration des boutons de la souris.
+- Supporter RaiseLower comme fvwm.
+- Ajouter une fonction interne pour déplacer le curseur de la souris.
+- Afficher 'Alt-F4', etc, à droite des menus.
+- Définir les propriétés des applications en un seul endroit.
+- Fermer le menu système quand on relâche un bouton de la souris en dehors du
+  menu, une fois le menu ouvert.
+- Permettre de modifier les propriétés des raccourcis.
+- Interdire de changer d'écran virtuel dans certaines directions.
+- Faire des menus sur plusieurs colonnes quand ils sont trop longs.
+- Plus d'effets lumineux.
+
+---
+Traduction par Miodrag Vallat <miodrag@ifrance.com>

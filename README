@@ -1,0 +1,65 @@
+Qvwm window manager for X
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It is a lightweight window manager, which is built to
+provide user interface which is similar to Windows 95.  It
+features a start menu, a task bar, a system tray with a
+clock and windows-like task-switching.  
+
+Unlike Windows 95, qvwm's menus and almost every other
+feature is controlled by a textual configuration file.  The
+changes done to it in a session would not be restored unless
+you write them to the conf file.
+
+
+This version is based version 1.1.12-3 as provided by
+Debian, with fixes and additions by Ivan Kurmanov,
+http://ahinea.com/en/
+
+See CHANGES file for a list of changes made since 1.1.12-3.
+
+Please send your bug reports and comments to Ivan Kurmanov
+email: kurmanka + yandex dot ru
+
+Watch http://ahinea.com/projects/qvwm/ for possible future
+releases and other news.
+
+
+COPYRIGHT 
+
+Copyright (C) 1995-2002 Kenichi Kourai
+Portions copyright (C) 2006 Ivan Kurmanov
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program (check the file named COPYING); if not, write
+to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+Boston, MA 02110-1301 USA
+
+
+CONTRIBUTORS
+
+Kenichi Kourai, the original author of this program, does
+not longer maintain the package.
+
+The package also contains result of work of many other
+contributors.  At the very least:
+
+   Falk Hueffner <falk@debian.org> 
+   Shuichi OONO <jr5pdx@debian.or.jp>
+
+Debian tracks qvwm bugs at 
+http://bugs.debian.org/cgi-bin/pkgreport.cgi?pkg=qvwm
+
+
+
+Old documentation is in doc/*.

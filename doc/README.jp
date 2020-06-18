@@ -1,0 +1,132 @@
+qvwm について
+-------------
+qvwm は X Window System 用の Windows 95/98/NT 風ウィンドウ・マネージャ
+です。Windows 95/98/NT の操作に慣れた人が X Window System を違和感なく
+使えるように、また、X Window Systemを使っている人が違和感なく Windows
+95/98/NT を使えるようにと考えて作られています。
+
+qvwm という名前の 'q' は '9'(日本語で同じ発音、字形も似ている)、'v' は 
+'5'(ローマ数字で V は 5)から来ています。また、'v' は '8' も意味する(漢
+字の八をひっくり返した形)ので、「98ウィンドウマネージャ」でもあります。
+
+現在のバージョンは 1.1.12 (Senzoku) です。
+
+
+qvwm の特徴
+-----------
+- fvwm等をベースにせずにゼロから書かれている。
+- 国際化に対応。パッチを当てなくても日本語が表示可能です。
+- 1 dot 1 dotに至るまでWindows 95/98/NTと同じグラフィックを実現。
+- Alt+Tabでタスクスイッチャを出してウィンドウの切り換えが可能。
+- タスクバーにインジケータとしてウィンドウが表示できる。
+- ウィンドウ全体の移動・サイズ変更(フルドラッグ)が可能。
+- Windows 95/98/NTにはない機能だが、仮想画面の使用が可能。
+- 終了時に確認ダイアログが出る。
+- 最小化・最大化等でタイトルバーがアニメーションする。
+- アイコンや背景をアニメーションさせることが可能。
+
+
+qvwm の最新版
+-------------
+qvwm の最新版は次のサイトから手に入れることができます。URL は
+
+    http://www.qvwm.org/
+
+です。また、以下のサイトにミラーされています。
+
+アメリカ
+    http://qvwm.kuntrynet.com/qvwm/
+        (Peter Hartman  <hartman@kuntrynet.com>)
+
+以下のサイトからダウンロードすることもできます。
+
+日本
+    ftp://ring.asahi-net.or.jp/pub/X/window_managers/qvwm/
+
+日本
+    http://www.bkr-lab.utmc.or.jp/software/index.html#QVWM
+        (UTMC 池袋研究所)
+
+
+バグの報告・質問
+----------------
+qvwm のバグや qvwm についての質問等は qvwm-support@qvwm.org までメー
+ルでお願いします。ただし BUGS.jp や TODO.jp、FAQ.jp 等を読んでからにし
+て下さい。MLの過去の記事も参考になります。
+
+Segmentation fault で落ちる場合には、Config.tmpl の DEBUG を define す
+ることによって、qvwm が assertion failed error を出してくれるかもしれ
+ません。そうでない場合でも、gdb を使って core を解析することによって 
+qvwm が落ちた位置が分かります。core の解析は以下のように行ないます。
+
+  1. qvwm のソースコードがあるディレクトリで gdb {qvwm} {core} を実行
+     して下さい。({qvwm} には core を吐いた qvwm の実行ファイルの位置、 
+     {core} には吐かれた core の位置を指定して下さい。) 
+  2. gdb のコマンドラインで backtrace を実行して下さい。
+
+また、qvwmに追加してほしい機能やアイデア等、ご意見・ご要望がありました
+ら、上記までご連絡ください。
+
+
+メーリングリスト
+----------------
+qvwm ユーザーの情報交換の場として、qvwm ML を開設しています。このメー
+リングリストでの議論は日本語または英語で行なわれます。このメーリングリ
+ストに参加するには本文に
+
+	subscribe
+
+と書いたメールを 
+
+	qvwm-ctl@qvwm.org
+                       
+宛に送って下さい。
+
+また、英語専用のメーリングリスト(qvwm-e ML)も開設しています。こちらに
+参加するには本文に
+
+	subscribe
+
+と書かれたメールを
+
+	qvwm-e-ctl@qvwm.org
+                       
+宛に送って下さい。
+
+
+警告
+----
+qvwm は正式版になりましたが、環境によっては安定しないことがあります。
+qvwm を使用したことによるいかなる損害についても責任を負いかねますので、
+御自身の責任で使用して下さい。
+
+
+謝辞
+----
+qvwm のバージョンアップに際して以下の方から多くのパッチをいただきました。
+心より感謝申し上げます。
+
+  Miodrag Vallat        <miodrag@ifrance.com>
+  Byung Yang            <byung@wam.umd.edu>
+  Jun Obama             <george@yk.rim.or.jp>
+  Falk Hueffner         <falk.hueffner@student.uni-tuebingen.de>
+  Toshiyuki Amagasa     <amagasa@dbms.cs.gunma-u.ac.jp>
+  Hajime Morito         <Hajime.Morito@ccsr.cam.ac.uk>
+  Chris Meadors         <cmeadors@acc7.ac.cc.md.us>
+  Mofeed Shahin         <shahin@ist.flinders.edu.au>
+  Osamu Kurati          <kurati@bigfoot.com>
+  Youichiro Koga        <y-koga@w3.mag.keio.ac.jp>
+  Kenji Minoura         <minoru@i21x12.fuis.fukui-u.ac.jp>
+  Don Crimbchin         <djc2@andrew.cmu.edu>
+  Nozomu Kobayashi      <nozomu@ssf.abk.nec.co.jp>
+  Shuichi Oono          <jr5pdx@debian.or.jp>
+  Tamito Kajiyama       <kajiyama@etl.go.jp>
+  Takayuki Kusano       <AE5T-KSN@asahi-net.or.jp>
+  Francois Petitjean    <francois.petitjean@bureauveritas.com>
+  Kasamatsu Kenichi     <camatsu@geocities.co.jp>
+
+また、メーリングリストなどで有益な情報を下さった方々に感謝します。
+
+--
+光来健一
+kourai@qvwm.org

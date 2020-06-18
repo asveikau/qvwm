@@ -1,0 +1,123 @@
+INSTALL
+-------
+You can install qvwm the following three ways.
+
+---------------------------------------------------------------------------
+INSTALL with configure
+----------------------
+1. Run './configure'.
+   By default, qvwm is installed in /usr/local/bin, and *.qvwmrc and 
+   pixmaps/* are installed in /usr/local/share/qvwm.  If you change
+   the prefix (/usr/local), run './configure --prefix=...' instead.
+   For other options, see './configure --help'.
+
+2. Run 'make'. (or make CXX=gcc)
+
+3. Run 'make install'.
+
+4. Copy system.qvwmrc to ~/.qvwmrc and customize it as you like.  For more
+   information about how to write the configuration file, see manual.
+   kanji.qvwmrc is an example of a configuration with kanji.
+   french.qvwmrc is an example of a configuration with french.
+
+5. Copy default.qvwm-theme to ~/.qvwm-theme and modify a line in ~/.qvwmrc
+
+     include  .../qvwm/default.qvwm-theme
+
+   to
+
+     include  ~/.qvwm-theme
+
+   If you modify this file, you can give your own theme to qvwm.
+
+6. Modify your ~/.xinitrc for starting X Window System from the
+   console (by xinit or startx) or ~/.xsession for logging in from
+   xdm.  If there is no initialization file, create a file of the
+   following contents: 
+
+     exec qvwm
+
+   If there is either initialization file and if the end of the file
+   includes another window manager's name, replace it with "qvwm".
+   For example, if the last line is
+
+     exec twm
+
+   replace it with
+
+     exec qvwm
+
+   If the file does not inlcude any window manager's name, remove
+   "exec" of the end of the file and attach "&" to the end of the line 
+   if any, and insert "exec qvwm" in the end of the file.  As a
+   result, for example, the initialization file is like:
+
+     xterm &
+     exec qvwm
+
+   To start qvwm from console, run xinit (or startx).
+
+
+---------------------------------------------------------------------------
+INSTALL with Imakefile
+----------------------
+1. Modify QVWMDIR in Config.tmpl to the directory where you install
+   system.qvwmrc, and IMGDIR to where you install pixmaps.
+   Modify the other variables according to your environment, too. 
+
+2. Run 'xmkmf -a'.
+
+3. Run 'make'. (or make CXX=gcc)
+
+4. Run 'make install' and 'make install.man'.
+
+5. Same as 4. in INSTALL with configure above.
+
+6. Same as 5. in INSTALL with configure above.
+
+7. Same as 6. in INSTALL with configure above.
+
+
+---------------------------------------------------------------------------
+INSTALL with Makefile.std
+-------------------------
+1. Modify Makefile.std in the top directory.
+
+2. Run 'make -f Makefile.std'. (or make -f Makefile.std CXX=gcc)
+
+3. Run 'make -f Makefile.std install'.
+
+4. Same as 4. in INSTALL with configure above.
+
+5. Same as 5. in INSTALL with configure above.
+
+6. Same as 6. in INSTALL with configure above.
+
+
+---------------------------------------------------------------------------
+ATTENTIONS
+----------
+- Make with default setting if you don't know the meaning of the
+  variables.  When errors happen during compiling or linking, you
+  can modify the setting, based on the error information.
+
+- Qvwm uses Imlib or Xpm library. You cannot compile without one of them.
+
+- When Sun standard make may cause some problems, you'd better use gmake.
+
+- You may fail to compile when you use yacc and lex instead of bison and
+  flex.  I included yaccsrc.cc and lexsrc in this qvwm distribution, so
+  you probably don't have problems. When the compiler remake  yaccsrc.cc
+  and lexsrc.cc for their date/time, please renew them with touch
+  command or so.
+
+- Sometimes your system don't have stdarg.h in /usr/include.  But when
+  you have gcc installed, maybe you can find in /usr/lib/gcc-lib/MACHINE/
+  VERSION/include or so, try copying that to /usr/include.
+
+- .qvwm-theme simply picks out variables for theme from .qvwmrc.
+   These variables are also set in .qvwmrc, but I separate a file so
+   that you can use the others' theme.
+
+---
+Translated partially by Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>

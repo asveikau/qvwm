@@ -1,0 +1,27 @@
+TODO
+----
+- Menu configuration by OS directory hierarchy.
+- Use keysym instead of keycode?
+- Supports compressed image file.
+- Not process AnimImage when it is hidden.
+- Allows to place windows so that they do not overlap shortcut icons.
+  (smart placement)
+- Supports the launcher of the taskbar like Windows 98.
+- Allows to complement ~ in command line arguments of external commands.
+- Supports step paging.
+- Places transient windows in the current page necessarily.(option?)
+- Rewrites using libqv.
+- Supports mouse button configuration. 
+- Supports RaiseLower in fvwm. 
+- Supports an internal function to move a mouse cursor. 
+- Allows to display 'Alt + F4', etc. in the right of a menu. 
+- Allows to define an application property at one place. 
+- Closes a control menu when a mouse button is released outside the menu
+  after the menu is opened. 
+- Allows to change the property of a shortcut icon. 
+- Disables to switch virtual pages in some directions. 
+- Makes a menu 2 rows when there are many menu items. 
+- Makes More light. 
+
+---
+Translated partially by Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>

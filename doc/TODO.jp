@@ -1,0 +1,27 @@
+TODO
+----
+- system.qvwmrc 等で $HOME/.qvwm/StartUp 等を include (merge)
+- xprop の内容(resource name etc.)を表示できるように
+- start menu の logo を 0x0 にできるように
+
+- menu の設定を OS の directory 階層で
+- keycode ではなく keysym で判定するようにする？
+- 圧縮した image file を読めるようにする
+- AnimImage が見えていない時は処理されないようにする
+- shortcut icon を避けて window を配置できるようにする(smart placement)
+- タスクバーのランチャをサポートする
+- タスクバーボタンの名前を XGetWMName で取る app 属性を
+- コマンド引数中の ~ の補完(shellをtcshにすればいい？)
+- step pagingをサポートする
+- libqvを使って書き直す。 
+- マウスボタンを設定できるようにする。 
+- fvwmのRaiseLowerをサポートする。 
+- マウスカーソルを動かす内部関数を作る。 
+- Alt+F4などをメニューに右詰めで表示できるようにする。 
+- アプリケーションのプロパティを一箇所で定義するようにする。 
+- コントロールメニューを出してカーソルをその外で離した時に、メニュー
+  を閉じるようにする。 
+- ショートカットアイコンのプロパティを変えられるようにする。 
+- 方向別にページ切替えを禁止できるようにする。 
+- メニュー項目が多い時に、メニューを2列で表示するようにする。 
+- もっと軽くする。

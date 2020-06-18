@@ -1,0 +1,361 @@
+;
+;  kanji.qvwmrc
+;
+;    設定の詳細については qvwm.jman を読んで下さい
+;
+
+[Variables]
+LocaleName		= "ja_JP.EUC"	; このファイルで使われるロケール名
+ImagePath		= "@IMGDIR@"
+SoundPath		= "@SNDDIR@"
+RestartOnFailure	= True		; seg faultやbus errorで再起動
+UseDebugger		= False
+HourGlassTime		= 1000
+ImageAnimation		= True
+
+; ウィンドウ
+OpaqueMove		= True		; フルドラッグで移動するかどうか
+OpaqueResize		= True		; フルドラッグでサイズ変更するかどうか
+FullOpaque		= True		; 
+ClickToFocus		= True		; ウィンドウのクリックでアクティブに
+FocusOnMap		= False		; 表示されたウィンドウをアクティブに
+ClickingRaises		= True		; クライアント領域のクリックでレイズ
+NoDesktopFocus		= True		; デスクトップへのフォーカス移動抑制
+NoFocusChangeMask	= Shift		; prevent focus change by this key
+TitlebarMotion		= True		; 最小化・最大化の際にアニメーション
+TitlebarMotionSpeed	= 10		; 最小化・最大化にかかる時間
+AutoRaise		= True		; オートレイズ
+AutoRaiseDelay		= 300		; オートレイズするまでの時間
+UseInfoDisplay		= True		; 移動・サイズ変更時に情報を表示
+GradWindowMapStyle	= Normal	; ウィンドウの表示・非表示の仕方
+GradWindowMapSpeed	= 10		; 徐々に表示・非表示する時の速度
+MinimizeButtonMessage	= "最小化"
+MaximizeButtonMessage	= "最大化"
+CloseButtonMessage	= "閉じる"
+RestoreButtonMessage	= "元のサイズに戻す"
+
+; 仮想画面
+PagingResistance	= 250		; ページ切替えの際の抵抗
+PagingMovement		= 100		; ページ切替えの際の移動量(%)
+PagingBeltSize		= 2		; 画面端のページ切替え可能領域
+TopLeftPage		= -1-1		; 仮想画面の左上ページ
+PagingSize		= 3x3		; 仮想画面の大きさ
+PagingSpeed		= 5		; ページを切り替える段階数
+
+; ページャ
+UsePager		= True		; ページャ使用の有無
+PagerGeometry		= 72x72-0-0	; ページャの位置・大きさ
+OnTopPager		= False		; ページャを常に手前に
+
+; タスクバー
+UseTaskbar		= True		; タスクバー使用の有無
+TaskbarPosition		= Bottom	; 初期位置
+TaskbarRows		= 1		; 高さの初期値
+TaskbarAutoHide		= False		; タスクバーを自動的に隠すかどうか
+RestoreMinimize		= True		; ボタンを最小化にも使えるようにするか
+NoResizeOverTaskbar	= False		; タスクバーを越えてサイズ変更しない
+GradTaskbarMotion	= True		; タスクバーを徐々に隠す
+GradTaskbarMotionSpeed	= 10		; タスクバーを隠す速度
+TaskbarShowDelay	= 0		; delay for automatic show (ms)
+TaskbarHideDelay	= 500		; delay for automatic hide (ms)
+OnTopTaskbar		= True		; タスクバーを常に手前に
+TaskbarButtonInScr	= False		; 画面内のウィンドウのボタンだけ表示
+StartButtonTitle	= "スタート"	; スタートボタンの文字列
+StartButtonMessage	= "このボタンから始めます。"
+
+; タスクバーの時計
+UseClock		= True
+ClockLocaleName		= "ja_JP.ujis"
+ClockFormat		= "%R"			; 16:50
+;ClockFormat		= "%p%l:%M"		; 午後 4:50
+;ClockFormat		= "%Y年%b%d日%a %R"	; 1998年 6月22日(月) 18:44
+;ClockFormat		= "%T"			; 16:50:59
+ClockMessageFormat	= "%Y年%B%e日"		; 1998年6月22日
+
+; メニュー
+MenuDelayTime		= 300		; ポイントして表示されるまでの時間
+MenuDelayTime2		= 300		; フォーカスを失なって消えるまでの時間
+GradMenuMap		= True		; メニューを徐々に表示
+GradMenuMapSpeed	= 5		; メニューを表示する速度
+
+; ダイアログ
+UseExitDialog		= True		; 終了ダイアログ使用の有無
+UseConfirmDialog	= False		; 終了確認ダイアログ使用の有無
+
+; ドラッグ
+EdgeResistance		= 50		; 画面端の抵抗
+SnappingMove		= 5		; 他のウィンドウに吸いつく距離
+SnappingEdges		= 5		; 画面端に吸いつく距離
+NoSnappingMask		= Alt		; 吸いつき等を一時的に禁止するキー
+ShiftMoveRatio		= 4.0		; シフト+カーソルでの移動の比率
+CtrlMoveRatio		= 0.5		; コントロール+カーソルでの移動の比率
+LockDragState		= False		; 再度クリックするまでドラッグを継続
+
+; 配置
+SmartPlacement		= True		; ウィンドウを重ならないように配置
+
+; ダブルクリック
+DoubleClickTime		= 400		; 2 回のクリックの最大間隔
+DoubleClickRange	= 5		; 2 回のクリックの最大距離
+
+; ツールチップ
+TooltipDelayTime        = 500
+TooltipMotionSpeed      = 5
+TooltipDisplayTime	= 6000
+
+; スクリーンセーバー
+ScreenSaver		= "xlock"	; スクリーンセーバープログラム
+ScreenSaverDelay	= 600		; スクリーンセーバーを 10 分後に起動
+
+; サウンド
+EnableSound		= True		; サウンドを有効にする
+EnableAlsa		= False		; ALSA を使う(Linux のみ)
+EnableEsd		= False		; EsounD を使う
+
+; テーマ
+include			@QVWMDIR@/debian.qvwm-theme
+
+
+;**********************************************************************
+; スタートアップ
+;
+;    qvwm を起動する時だけ実行されます。
+;**********************************************************************
+[Startup]
+;"PAGE[1, 0, Navigator] netscape"
+;"PAGE[0, 1, mule] mule"
+
+
+;**********************************************************************
+; メニュー設定
+;    <項目名> <画像名> <動作(ファイル名またはqvwm内部関数)>
+;    or
+;    <項目名> <画像名>
+;    +
+;        ... (子メニュー)
+;    -
+;
+;    \&? はそのメニュー項目に対するショートカットキー'?'を設定します。
+;**********************************************************************
+[StartMenu]
+include		/etc/X11/qvwm/menu.hook
+"設定(\&S)"	"debian-swirl-32x32.xpm"
++
+	"タスクバー(\&T)"	""
+	+
+		"下(\&B)"	""		QVWM_BOTTOM
+		"上(\&T)"	""		QVWM_TOP
+		"左(\&L)"	""		QVWM_LEFT
+		"右(\&R)"	""		QVWM_RIGHT
+	-
+-
+"検索(\&F)"			"debian-swirl-32x32.xpm"	""
+"ヘルプ(\&H)"			"debian-swirl-32x32.xpm"	"xman"
+"ファイル名を指定して実行(\&R)"	"shell-32x32.xpm"		"kterm -geometry 60x1"
+""				""				QVWM_SEPARATOR
+"qvwm の終了(\&E)"		"debian-swirl-32x32.xpm"	QVWM_EXIT
+
+
+;**********************************************************************
+; コントロールメニュー設定
+;**********************************************************************
+[CtrlMenu]
+"元のサイズに戻す(\&R)"	""		QVWM_RESTORE
+"移動(\&M)"		""		QVWM_MOVE
+"サイズ変更(\&S)"	""		QVWM_RESIZE
+"最小化(\&N)"		""		QVWM_MINIMIZE
+"最大化(\&X)"		""		QVWM_MAXIMIZE
+"一番下に(\&L)"		""		QVWM_LOWER
+""			""		QVWM_SEPARATOR
+"常に手前に"		""		QVWM_TOGGLE_ONTOP
+"Sticky"		""		QVWM_TOGGLE_STICKY
+""			""		QVWM_SEPARATOR
+"\B閉じる(\&C)"		""		QVWM_CLOSE
+"強制終了"		""		QVWM_KILL
+
+;**********************************************************************
+; デスクトップメニュー
+;**********************************************************************
+[DesktopMenu]
+"再描画(\&F)"		""		"xrefresh"
+"再起動(\&S)"		""		QVWM_RESTART
+"twm"			""		"EXEC twm"
+""			""		QVWM_SEPARATOR
+"\&kterm"		""		"kterm"
+""			""		QVWM_SEPARATOR
+"アイコン整列(\&I)"	""		QVWM_LINEUP_ICON
+"ページ切替え(\&P)"	""
++
+	"上へ(\&U)"		""		QVWM_UP_PAGING
+	"下へ(\&D)"		""		QVWM_DOWN_PAGING
+	"左へ(\&L)"		""		QVWM_LEFT_PAGING
+	"右へ(\&R)"		""		QVWM_RIGHT_PAGING
+-
+""			""		QVWM_SEPARATOR
+"qvwmの終了(\&E)"	""		QVWM_EXIT
+
+
+;**********************************************************************
+; アイコンメニュー設定
+;**********************************************************************
+[IconMenu]
+"実行(\&E)"		""		QVWM_EXEC_ICON
+"削除(\&D)"		""		QVWM_DELETE_ICON
+
+
+;**********************************************************************
+; タスクバーメニュー設定
+;**********************************************************************
+[TaskbarMenu]
+"重ねて表示(\&O)"	""		QVWM_OVERLAP
+"左右に並べて表示(\&H)"	""		QVWM_TILE_HORZ
+"上下に並べて表示(\&V)"	""		QVWM_TILE_VERT
+""			""		QVWM_SEPARATOR
+"全て最小化(\&M)"	""		QVWM_MINIMIZE_ALL
+""			""		QVWM_SEPARATOR
+"位置(\&P)"		""
++
+	"下(\&B)"		""		QVWM_BOTTOM
+	"上(\&T)"		""		QVWM_TOP
+	"左(\&L)"		""		QVWM_LEFT
+	"右(\&R)"		""		QVWM_RIGHT
+-
+""			""		QVWM_SEPARATOR
+"自動的に隠す"		""		QVWM_TOGGLE_AUTOHIDE
+
+
+;**********************************************************************
+; ショートカット設定
+;    <タイトル> <画像名> <外部コマンド> [<x>][, <y>]
+;      or
+;    <タイトル> <画像名> <qvwm内部関数名> [<x>][, <y>]
+;
+;    外部コマンドには以下の修飾子の一つを指定できます。
+;       PAGE[<x>, <y>, <識別子>] はウィンドウを(x, y)ページに配置します。
+;       識別子は[Indicator]セクションのもの同じです。
+;       PAGECUR[<識別子>] はウィンドウをショートカットがダブルクリック
+;       されたページに配置します。
+;       これらの修飾子は他のセクションの外部コマンドでも有効です。
+;
+;    ピックスマップのサイズはIconSizeに指定したサイズです。(デフォルトは
+;    32x32)
+;**********************************************************************
+[Shortcuts]
+"ミュール"		"editor-32x32.xpm"	"PAGE[1, 0, Emacs] emacs"
+"ＸＶ"			"xv-32x32.xpm"		"xv"
+"Ｋｔｅｒｍ"		"shell-32x32.xpm"	"term"
+"目玉"			"eyes-32x32.xpm"	"xeyes"
+"ネスケ"		"netscape-32x32.xpm"	"PAGECUR[Navigator] netscape"
+"終了"			"debian-swirl-32x32.xpm"	QVWM_EXIT
+"電卓"			"calculator-32x32.xpm"	"xcalc"		!1, 0
+
+
+;**********************************************************************
+; ショートカットキー設定
+;    <キー> <修飾キー> <qvwm内部関数>
+;
+;    キーのシンボルについては/usr/include/X11/keysymdef.hを見て下さい。
+;    AltとMetaは区別されます。
+;**********************************************************************
+[ShortCutKeys]
+F4		Alt		QVWM_CLOSE
+Escape		Ctrl		QVWM_POPUP_START_MENU
+Escape		Alt		QVWM_CHANGE_WIN
+Escape		Alt|Shift	QVWM_CHANGE_WIN_BACK
+Delete		Alt		QVWM_CHANGE_WIN_INSCR
+Delete		Alt|Shift	QVWM_CHANGE_WIN_BACK_INSCR
+Tab		Alt		QVWM_SWITCH_TASK
+Tab		Alt|Shift	QVWM_SWITCH_TASK
+space		Alt		QVWM_POPUP_MENU
+Insert		Alt		QVWM_DESKTOP_FOCUS
+BackSpace	Alt		QVWM_POPUP_DESKTOP_MENU
+Left		Ctrl		QVWM_LEFT_PAGING
+Right		Ctrl		QVWM_RIGHT_PAGING
+Up		Ctrl		QVWM_UP_PAGING
+Down		Ctrl		QVWM_DOWN_PAGING
+Up		Ctrl|Alt	QVWM_RAISE
+Down		Ctrl|Alt	QVWM_LOWER
+Return		Alt		QVWM_EXPAND
+Left		Alt		QVWM_EXPAND_LEFT
+Right		Alt		QVWM_EXPAND_RIGHT
+Up		Alt		QVWM_EXPAND_UP
+Down		Alt		QVWM_EXPAND_DOWN
+s		Alt		QVWM_SHOW_TASKBAR
+h		Alt		QVWM_HIDE_TASKBAR
+F1		Alt		"xman"
+;#22		None		QVWM_POPUP_START_MENU
+
+
+;**********************************************************************
+; アプリケーション毎の属性設定
+;    <アプリケーション> <属性,...>
+;**********************************************************************
+[Applications]
+"Ddd"		SMALL_PIX="debugger-16x16.xpm"
+"Emacs" 	SMALL_PIX="editor-16x16.xpm", LARGE_PIX="editor-32x32.xpm"
+"Fig"		SMALL_PIX="fig-16x16.xpm", LARGE_PIX="fig-32x32.xpm"
+"Freeamp"	SMALL_PIX="music-16x16.xpm", LARGE_PIX="music-32x32.xpm"
+"GV"		SMALL_PIX="ghostview-16x16.xpm", LARGE_PIX="ghostview-32x32.xpm"
+"Ghostview"	SMALL_PIX="ghostview-16x16.xpm", LARGE_PIX="ghostview-32x32.xpm"
+"Gimp"		SMALL_PIX="gimp-16x16.xpm", LARGE_PIX="gimp-32x32.xpm"
+"Kinput2"	NO_TITLE, NO_FOCUS, ONTOP
+"KTerm"		SMALL_PIX="shell-16x16.xpm", LARGE_PIX="shell-32x32.xpm"
+"Mahjongg"	SMALL_PIX="mahjongg-16x16.xpm"
+"Netscape"	SMALL_PIX="netscape-16x16.xpm", LARGE_PIX="netscape-32x32.xpm"
+"Netscape Download"	ONTOP
+"Netscape: subprocess diagnostics (stdout/stderr)"	CLOSE_SOON
+"XBoard"	SMALL_PIX="knight-16x16.xpm"
+"XCalc"		SMALL_PIX="calculator-16x16.xpm", NO_BORDER_EDGE
+"XClock"	SMALL_PIX="clock-16x16.xpm", NO_TBUTTON, NO_BORDER_EDGE
+"XDvi"		SMALL_PIX="tex-16x16.xpm", LARGE_PIX="tex-32x32.xpm"
+"XEyes"		SMALL_PIX="eyes-16x16.xpm", NO_BORDER
+"XKaetama"	SMALL_PIX="tetris-16x16.xpm"
+"XLoad"		SMALL_PIX="xload-16x16.xpm", LARGE_PIX="xload-32x32.xpm"
+"XMMS_Player"	SMALL_PIX="music-16x16.xpm", LARGE_PIX="music-32x32.xpm"
+"XMahjongg"	SMALL_PIX="mahjongg-16x16.xpm"
+"XTerm"		SMALL_PIX="shell-16x16.xpm", LARGE_PIX="shell-32x32.xpm"
+"XaoS"		SMALL_PIX="fractal-16x16.xpm", LARGE_PIX="fractal-32x32.xpm"
+"Xedit"		SMALL_PIX="editor-16x16.xpm", LARGE_PIX="editor-32x32.xpm"
+"Xmag"		SMALL_PIX="magnifier-16x16.xpm"
+"console"	STICKY, NO_TITLE
+"desktop_icon"	STICKY, NO_FOCUS, NO_TBUTTON
+"gcalc"		SMALL_PIX="calculator-16x16.xpm"
+"hanterm"	SMALL_PIX="shell-16x16.xpm", LARGE_PIX="shell-32x32.xpm"
+"mred"		SMALL_PIX="lambda-16x16.xpm"
+"oclock"	NO_TITLE, NO_BORDER
+"panel"		STICKY, NO_FOCUS, NO_TBUTTON
+"win:craft"	SMALL_PIX="craft-16x16.xpm"
+"win:craft_options"	SMALL_PIX="craft-16x16.xpm"
+"xbiff"		STICKY, NO_FOCUS
+"xfractint"	SMALL_PIX="fractal-16x16.xpm", LARGE_PIX="fractal-32x32.xpm"
+"xhextris"	SMALL_PIX="hextris-16x16.xpm"
+"xpdf"		SMALL_PIX="pdf-16x16.xpm"
+"xv"		SMALL_PIX="xv-16x16.xpm", LARGE_PIX="xv-32x32.xpm"
+
+
+;**********************************************************************
+; インジケータ設定
+;    <識別示> <ファイル名> 
+;
+;    識別示はタイトル名、リソース名、リースクラス名のいずれかです。
+;**********************************************************************
+[Indicators]
+"xbiff"		"xbiff"
+"XEyes"		"xeyes"
+"xload"		"xload -nolabel -update 5 -bg gray"
+
+
+;**********************************************************************
+; 終了ダイアログ設定
+;    <部品名> <文字列または画像名> (<機能>)
+;**********************************************************************
+[ExitDialog]
+Title		"qvwm の終了"
+StaticText	"次の方法で終了してよろしいですか？"
+RadioButton	"qvwm を終了する"			QVWM_EXIT
+RadioButton	"qvwm を再起動する"			QVWM_RESTART
+RadioButton	"twmを起動する"				"EXEC twm"
+IconImage	"debian-swirl-32x32.xpm"
+OKButton	"はい(\&Y)"
+CancelButton	"いいえ(\&N)"
+HelpButton	"ヘルプ(\&H)"

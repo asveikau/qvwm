@@ -1,0 +1,47 @@
+XCOMM
+XCOMM Imakefile for qvwm rc files
+XCOMM
+
+#include "../Config.tmpl"
+
+RCFILES = system.qvwmrc kanji.qvwmrc french.qvwmrc korean.qvwmrc light.qvwmrc \
+	german.qvwmrc portuguese.qvwmrc italian.qvwmrc \
+	default.qvwm-theme clouds.qvwm-theme space.qvwm-theme
+
+#ifndef InstallMultipleWithBackup
+#define InstallMultipleWithBackup(list,dest)				@@\
+install:: list								@@\
+	MakeDir($(DESTDIR)dest)						@@\
+	@MakeFlagsToShellFlags(i,set +e); \				@@\
+	for i in list; do \						@@\
+		if [ -f $(DESTDIR)dest/$$i ]; then \
+			(set -x; $(MV) $(DESTDIR)dest/$$i $(DESTDIR)dest/$$i.bak); fi; \	@@\
+		(set -x; $(INSTALL) $(INSTALLFLAGS) $(INSTDATFLAGS) $$i $(DESTDIR)dest); \	@@\
+	done
+#endif /* InstallMultipleWithBackup */
+
+InstallMultipleWithBackup($(RCFILES),$(QVWMDIR))
+
+system.qvwmrc: system.qvwmrc.in
+	sed -e 's!@QVWMDIR@!$(QVWMDIR)!g' -e 's!@IMGDIR@!$(IMGDIR)!g' -e 's!@SNDDIR@!$(SNDDIR)!g' system.qvwmrc.in > system.qvwmrc
+
+kanji.qvwmrc: kanji.qvwmrc.in
+	sed -e 's!@QVWMDIR@!$(QVWMDIR)!g' -e 's!@IMGDIR@!$(IMGDIR)!g' -e 's!@SNDDIR@!$(SNDDIR)!g' kanji.qvwmrc.in > kanji.qvwmrc
+
+french.qvwmrc: french.qvwmrc.in
+	sed -e 's!@QVWMDIR@!$(QVWMDIR)!g' -e 's!@IMGDIR@!$(IMGDIR)!g' -e 's!@SNDDIR@!$(SNDDIR)!g' french.qvwmrc.in > french.qvwmrc
+
+korean.qvwmrc: korean.qvwmrc.in
+	sed -e 's!@QVWMDIR@!$(QVWMDIR)!g' -e 's!@IMGDIR@!$(IMGDIR)!g' -e 's!@SNDDIR@!$(SNDDIR)!g' korean.qvwmrc.in > korean.qvwmrc
+
+light.qvwmrc: light.qvwmrc.in
+	sed -e 's!@QVWMDIR@!$(QVWMDIR)!g' -e 's!@IMGDIR@!$(IMGDIR)!g' -e 's!@SNDDIR@!$(SNDDIR)!g' light.qvwmrc.in > light.qvwmrc
+
+german.qvwmrc: german.qvwmrc.in
+	sed -e 's!@QVWMDIR@!$(QVWMDIR)!g' -e 's!@IMGDIR@!$(IMGDIR)!g' -e 's!@SNDDIR@!$(SNDDIR)!g' german.qvwmrc.in > german.qvwmrc
+
+portuguese.qvwmrc: portuguese.qvwmrc.in
+	sed -e 's!@QVWMDIR@!$(QVWMDIR)!g' -e 's!@IMGDIR@!$(IMGDIR)!g' -e 's!@SNDDIR@!$(SNDDIR)!g' portuguese.qvwmrc.in > portuguese.qvwmrc
+
+italian.qvwmrc: italian.qvwmrc.in
+	sed -e 's!@QVWMDIR@!$(QVWMDIR)!g' -e 's!@IMGDIR@!$(IMGDIR)!g' -e 's!@SNDDIR@!$(SNDDIR)!g' italian.qvwmrc.in > italian.qvwmrc

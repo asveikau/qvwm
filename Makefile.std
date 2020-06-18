@@ -1,0 +1,205 @@
+#
+# Makefile.std for qvwm
+#   rewrite the definitions below to customize compile options
+#
+
+# --------------------------------------------------------------------------
+# Customization of directories
+
+#
+# Directory of X Window System
+#
+XDIR = /usr/X11R6
+
+#
+# Directory where you install qvwm binary
+#
+BINDIR = $(XDIR)/bin
+
+#
+# Directory where you install qvwm manual
+#
+MANDIR = $(XDIR)/man/man$(MANSUFFIX)
+MANSUFFIX = n
+
+#
+# Directory of include files of X Window System
+#
+INCDIR = $(XDIR)/include
+
+#
+# Directory of library files of X Window System
+#
+LIBDIR = $(XDIR)/lib
+
+#
+# Directry where you install *.qvwmrc
+#
+QVWMDIR = $(LIBDIR)/X11/qvwm
+
+#
+# Directry where you install the images
+#
+IMGDIR = $(QVWMDIR)/images
+
+#
+# Directry where you install the sounds
+#
+SNDDIR = $(QVWMDIR)/sounds
+
+#
+# Path for rm.
+#
+PATH_RM = /bin/rm
+
+# --------------------------------------------------------------------------
+# Customization of compile and link
+
+#
+# C++ compiler
+#
+CXX = g++
+#CXX = gcc
+
+#
+# Use locale support of X11 (for i18n)
+#
+#CXXDEFINES += -DX_LOCALE
+
+#
+# Use locale on FreeBSD.
+# To use locale properly on FreeBSD, uncomment the following lines.
+#
+#CXXDEFINES += -DNEED_XPG4
+#XPG4_LIB = -lxpg4
+
+#
+# Use shape extension. 
+# If you cannot use shape extension, comment out the following line.
+#
+CXXDEFINES += -DUSE_SHAPE
+
+#
+# Use screen saver function.
+# If you cannot use screen saver, 
+# If you do not want to use screen saver function, comment out the
+# following first line.
+# If you cannot use screen saver extension, comment out the following
+# second line.
+#
+CXXDEFINES += -DUSE_SS
+CXXDEFINES += -DUSE_SSEXT
+SS_LIB = -lXss 
+
+#
+# Use Imlib.
+# If you want to use Imlib, uncomment the following lines.
+#
+#CXXDEFINES += -DUSE_IMLIB
+#IMAGE_LIBS = -lImlib -ljpeg -ltiff -lungif -lpng -lz -lm  # for using Imlib
+IMAGE_LIBS = -lXpm                   # for not using Imlib
+
+#
+# Use X session management protocol (XSMP).
+# If you cannot use shape extension, comment out the following line.
+#
+CXXDEFINES += -DUSE_XSMP
+
+#
+# Use ALSA for sound effects (Linux only).
+# If you want to use ALSA, uncomment the following lines.
+#
+#CXXDEFINES += -DUSE_ALSA
+#SNDLIB = -lasound
+
+#
+# Use esd (EsounD) for sound effects.
+# If you want to use ESD, uncomment the following lines.
+#
+#CXXDEFINES += -DUSE_ESD
+#SNDLIB = -lesd -laudiofile -lm          # if no ALSA support in esd
+#SNDLIB = -lesd -laudiofile -lm -lasound # if ALSA support in esd
+
+#
+# If your system doesn't have usleep(), comment out the following line.
+#
+CXXDEFINES += -DHAVE_USLEEP
+
+#
+# If your system doesn't have vprintf(), comment out the following line.
+#
+CXXDEFINES += -DHAVE_VPRINTF
+
+#
+# Debug flag.
+#
+#CXXSTD_DEFINES += -DDEBUG
+
+#
+# If you doesn't allow sending commands to qvwm, undefine ALLOW_RMTCMD
+#
+#define ALLOW_RMTCMD
+
+#
+# yacc and lex definitions
+#
+YACC = bison -y
+#YACC = yacc
+YFLAGS = -d
+LEX = flex
+#LEX = lex
+#LEXLIB = -lfl
+
+#
+# misc commands
+#
+INSTALL = install -c
+#INSTALL = cp
+MKDIRHIER = mkdirhier
+#MKDIRHIER = make -p
+MV = mv
+RM = rm -f
+
+# --------------------------------------------------------------------------
+# do not edit below
+
+SUBDIRS = src images sounds man rc
+
+MAKE = make
+MFLAGS = BINDIR=$(BINDIR) MANDIR=$(MANDIR) MANSUFFIX=$(MANSUFFIX) INCDIR=$(INCDIR) LIBDIR=$(LIBDIR) QVWMDIR=$(QVWMDIR) IMGDIR=$(IMGDIR) SNDDIR=$(SNDDIR) PATH_RM=$(PATH_RM) CXX="$(CXX)" CXXDEFINES="$(CXXDEFINES)" YACC="$(YACC)" YFLAGS="$(YFLAGS)" LEX="$(LEX)" LEXLIB="$(LEXLIB)" XPG4_LIB=$(XPG4_LIB) IMAGE_LIBS=$(IMAGE_LIBS) SS_LIB=$(SS_LIB) SNDLIB="$(SNDLIB)" INSTALL="$(INSTALL)" MKDIRHIER="$(MKDIRHIER)" MV="$(MV)" RM="$(RM)" -f Makefile.std
+
+all:
+	@for flag in ${MAKEFLAGS} ''; do \
+	case "$$flag" in *=*) ;; *[ik]*) set +e;; esac; done; \
+	for i in $(SUBDIRS) ;\
+	do \
+	echo "making" all "in ./$$i..."; \
+	(cd $$i && $(MAKE) $(MFLAGS) all); \
+	done
+
+depend:
+	@for flag in ${MAKEFLAGS} ''; do \
+	case "$$flag" in *=*) ;; *[ik]*) set +e;; esac; done; \
+	for i in $(SUBDIRS) ;\
+	do \
+	echo "depending" "in ./$$i..."; \
+	(cd $$i && $(MAKE) $(MFLAGS) depend); \
+	done
+
+install:
+	@for flag in ${MAKEFLAGS} ''; do \
+	case "$$flag" in *=*) ;; *[ik]*) set +e;; esac; done; \
+	for i in $(SUBDIRS) ;\
+	do \
+	echo "installing" "in ./$$i..."; \
+	(cd $$i && $(MAKE) $(MFLAGS) install); \
+	done
+
+clean:
+	@for flag in ${MAKEFLAGS} ''; do \
+	case "$$flag" in *=*) ;; *[ik]*) set +e;; esac; done; \
+	for i in $(SUBDIRS) ;\
+	do \
+	echo "cleaning" "in ./$$i..."; \
+	(cd $$i && $(MAKE) $(MFLAGS) clean); \
+	done
