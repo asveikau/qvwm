@@ -21,8 +21,9 @@ first frame of it as another file.
 //
 
 
-#include <malloc.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <stdarg.h>
 #include <assert.h>
 #include <sys/types.h>
@@ -261,7 +262,7 @@ int read_input( char *file ) {
       if (fstat(fileno(fp), &st) < 0) {
         error("cannot access animation file: '%s'", file );
         fclose(fp);
-        return;
+        return -1;
       }
       filesize = st.st_size;
 
