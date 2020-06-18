@@ -58,7 +58,8 @@ void Qvwm::SetProperty(Atom atom)
   switch (atom) {
   case XA_WM_NAME:
     name = GetNameFromHint();
-    toolTip->SetString(name);
+    if (toolTip)
+      toolTip->SetString(name);
     CalcShortName();
     DrawTitle(False);
     break;
