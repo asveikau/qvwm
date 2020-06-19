@@ -23,6 +23,8 @@
 
 class BasicCallback {
 public:
+  virtual ~BasicCallback() {}
+
   virtual void Execute() = 0;
 
   virtual Bool Equal(BasicCallback* cb) = 0;
