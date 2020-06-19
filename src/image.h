@@ -41,6 +41,8 @@ protected:
   BasicCallback* m_cbDisp;
   BasicCallback* m_cbPost;
 
+  QvImage *m_scaleCache;
+
 private:
   void Init();
 
@@ -52,6 +54,7 @@ public:
   QvImage(Pixmap pix, GC gc, const Dim& size);
 
   virtual QvImage* Duplicate();
+  virtual QvImage* Scale(float xscale, float yscale);
   static void Destroy(QvImage* img);
 
   Pixmap GetPixmap() const { return m_pix; }
@@ -60,7 +63,9 @@ public:
   Dim GetSize() const { return m_size; }
   int GetError() const { return m_error; }
 
-  virtual void Display(Window d, const Point& pt);
+  void Display(Window d, const Point& pt) { Display(d, pt, m_size); }
+
+  virtual void Display(Window d, const Point& pt, const Dim &size);
   virtual void SetBackground(Window win);
 
   virtual QvImage* GetOffsetImage(const Point& pt);

@@ -386,10 +386,11 @@ void AnimImage::ChangeNextImage()
   SetCurrentImage();
 }
 
-void AnimImage::Display(Window win, const Point& pt)
+void AnimImage::Display(Window win, const Point& pt, const Dim &size)
 {
   m_winDisp = win;
   m_ptDisp = pt;
+  m_size = size;
 
   QvImage::Display(win, pt);
 }
@@ -409,10 +410,9 @@ void AnimImage::Display()
       XClearArea(display, m_winDisp, 0, 0, 0, 0, True);
     }
     else {
-      Dim size = GetSize();
       XClearArea(display, m_winDisp,
-		 m_ptDisp.x, m_ptDisp.y, size.width, size.height, False);
-      QvImage::Display(m_winDisp, m_ptDisp);
+		 m_ptDisp.x, m_ptDisp.y, m_size.width, m_size.height, False);
+      QvImage::Display(m_winDisp, m_ptDisp, m_size);
       XFlush(display);
     }
   }

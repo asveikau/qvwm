@@ -27,6 +27,7 @@
 #include "main.h"
 #include "image.h"
 #include "callback.h"
+#include <new>
 
 QvImage::QvImage()
 {
@@ -56,6 +57,8 @@ void QvImage::Init()
   m_cbPost = NULL;
 
   m_import = False;
+
+  m_scaleCache = NULL;
 }
 
 QvImage::~QvImage()
@@ -71,6 +74,8 @@ QvImage::~QvImage()
     XFreePixmap(display, m_mask);
   if (m_gc)
     XFreeGC(display, m_gc);
+
+  Destroy(m_scaleCache);
 
   delete m_cbPre;
   delete m_cbDisp;
@@ -93,16 +98,160 @@ void QvImage::Destroy(QvImage* img)
     delete img;
 }
 
-void QvImage::Display(Window win, const Point& pt)
+static Pixmap Scale(
+  Display *display,
+  Window root,
+  Pixmap srcPixmap,
+  GC gc,
+  const Dim &oldSize,
+  const Dim &newSize,
+  double xscale,
+  double yscale)
+{
+  XImage *img = NULL;
+  char *dst = NULL;
+  Pixmap pixmap = 0;
+
+  img = XGetImage(display, srcPixmap, 0, 0, oldSize.width, oldSize.height, AllPlanes, ZPixmap);
+
+  if (img) {
+    int bpp = img->bits_per_pixel/8;
+    const int pad = 8;
+    int line_width = (newSize.width * img->bits_per_pixel + pad - 1) / pad * pad / 8;
+    dst = new(std::nothrow) char[newSize.height * line_width];
+    if (dst) {
+
+      //
+      // XXX this algorithm is very crude!
+      //
+
+      char *row = dst;
+      for (int y = 0; y<newSize.height; ++y) {
+        char *pixel = row;
+        for (int x = 0; x<newSize.width; ++x) {
+          int srcX = x / xscale;
+          int srcY = y / yscale;
+          if (bpp) {
+            memcpy(pixel, img->data + img->bytes_per_line * srcY + (srcX * bpp), bpp);
+            pixel += bpp;
+          }
+          else {
+            unsigned char *p = (unsigned char*)pixel;
+            unsigned char *s = (unsigned char*)img->data + img->bytes_per_line * srcY + srcX/8;
+            unsigned char bit = (((*s) & (1<<(srcX % 8))) ? 1 : 0) << (x%8);
+            if (bit)
+              *p |= bit;
+            else
+              *p &= ~bit;
+            if (x%8 == 7)
+              ++pixel;
+          }
+        }
+        row += line_width;
+      }
+
+      if (bpp) {
+        int depth = img->depth;
+        XDestroyImage(img);
+        img = NULL;
+        XImage *dstImage = XCreateImage(display, CopyFromParent, depth, ZPixmap, 0, dst, newSize.width, newSize.height, pad, line_width);
+        delete [] dst;
+        dst = NULL;
+        if (dstImage) {
+          pixmap = XCreatePixmap(display, root, newSize.width, newSize.height, depth);
+          if (pixmap)
+            XPutImage(display, pixmap, gc, dstImage, 0, 0, 0, 0, newSize.width, newSize.height);
+          XDestroyImage(dstImage);
+        }
+      }
+      else {
+        pixmap = XCreatePixmapFromBitmapData(display, root, dst, newSize.width, newSize.height, 1, 0, 1);
+        delete [] dst;
+        dst = NULL;
+      }
+    }
+    if (img)
+      XDestroyImage(img);
+  }
+
+  return pixmap;
+}
+
+QvImage* QvImage::Scale(float xscale, float yscale)
+{
+  Dim newSize = {(int)(m_size.width * xscale), (int)(m_size.height * yscale)};
+  QvImage *r = NULL;
+  Pixmap pixmap = 0;
+  Pixmap mask = 0;
+
+  if (m_scaleCache)
+  {
+    if (m_scaleCache->m_size.width == newSize.width && m_scaleCache->m_size.height == newSize.height)
+    {
+      r = m_scaleCache;
+      r->m_refcnt++;
+      return r;
+    }
+    Destroy(m_scaleCache);
+    m_scaleCache = NULL;
+  }
+
+  GC gc = XCreateGC(display, root, 0, 0);
+
+  pixmap = ::Scale(display, root, m_pix, gc, m_size, newSize, xscale, yscale);
+
+  if (pixmap) {
+    r = new (std::nothrow) QvImage(pixmap, gc, newSize);
+    if (!r) {
+      XFreePixmap(display, pixmap);
+    }
+    else {
+      if (m_mask) {
+        r->m_mask = ::Scale(display, root, m_mask, gc, m_size, newSize, xscale, yscale);
+        if (r->m_mask) {
+          XGCValues gcv;
+          gcv.clip_mask = r->m_mask;
+          XChangeGC(display, gc, GCClipMask, &gcv);
+        }
+      }
+      gc = 0;
+    }
+  }
+
+  if (gc)
+    XFreeGC(display, gc);
+
+  if (r)
+  {
+    m_scaleCache = r;
+    r->m_refcnt++;
+  }
+
+  return r;
+}
+
+void QvImage::Display(Window win, const Point& pt, const Dim &size)
 {
   if (win == None)
     return;
 
   ASSERT(m_refcnt > 0)
 
-  XSetClipOrigin(display, m_gc, pt.x, pt.y);
-  XCopyArea(display, m_pix, win, m_gc,
-            0, 0, m_size.width, m_size.height, pt.x, pt.y);
+  if (((&size) == &m_size) || (size.width == m_size.width && size.height == m_size.height)) {
+    XSetClipOrigin(display, m_gc, pt.x, pt.y);
+    XCopyArea(display, m_pix, win, m_gc,
+              0, 0, m_size.width, m_size.height, pt.x, pt.y);
+  }
+  else if (m_size.width && m_size.height) {
+    float xscale = (size.width + 0.0f) / m_size.width;
+    float yscale = (size.height + 0.0f) / m_size.height;
+
+    QvImage *scaled = Scale(xscale, yscale);
+    if (scaled) {
+      scaled->Display(win, pt);
+      Destroy(scaled);
+    }
+  }
 }
 
 void QvImage::SetBackground(Window win)

@@ -65,6 +65,9 @@ int Qvwm::TITLE_HEIGHT;
 int Qvwm::BORDER_WIDTH;
 int Qvwm::TOP_BORDER;
 
+int Qvwm::BUTTON_WIDTH = 16;      // frame button width
+int Qvwm::BUTTON_HEIGHT = 14;     // frame button height
+
 /*
  * Qvwm class constructor --
  *   Position the window at that point if usrPos is True;

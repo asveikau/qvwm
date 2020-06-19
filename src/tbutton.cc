@@ -44,6 +44,7 @@ Rect TaskbarButton::rcTButton;
 XFontSet* TaskbarButton::fsb;
 QvImage* TaskbarButton::imgTile;
 int TaskbarButton::BUTTON_HEIGHT;
+int TaskbarButton::SYMBOL_SIZE = 16;
 
 TaskbarButton::TaskbarButton(Qvwm* qvwm, const Rect& rc, QvImage* image)
 : Button(taskBar->w, rc), img(image), focus(False), qvWm(qvwm)
@@ -164,10 +165,11 @@ void TaskbarButton::DrawButton()
   /*
    * Draw the pixmap of the taskbar button.
    */
+  Dim sz = {SYMBOL_SIZE, SYMBOL_SIZE};
   if (CheckState(PUSH) & focus)
-    img->Display(frame, Point(offset.x, offset.y + 1));
+    img->Display(frame, Point(offset.x, offset.y + 1), sz);
   else
-    img->Display(frame, offset);
+    img->Display(frame, offset, sz);
 
   // Draw the title of the taskbar button.
   DrawName();

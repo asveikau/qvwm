@@ -171,8 +171,8 @@ public:
   static QvImage* imgFrame;
   static QvImage* imgActiveFrame;
 
-  static const int BUTTON_WIDTH = 16;      // frame button width
-  static const int BUTTON_HEIGHT = 14;     // frame button height
+  static int BUTTON_WIDTH;      // frame button width
+  static int BUTTON_HEIGHT;     // frame button height
   static const int MOVEMENT = 13;
 
   static int TITLE_HEIGHT;

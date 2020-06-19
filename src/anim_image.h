@@ -34,6 +34,7 @@ private:
   int m_curNum;
   Window m_winDisp;
   Point m_ptDisp;
+  Dim m_size;
   Bool m_bgImg;
   
 private:
@@ -60,7 +61,7 @@ public:
 
   AnimImage* Duplicate();
 
-  void Display(Window win, const Point& pt);
+  void Display(Window win, const Point& pt, const Size &size);
   void SetBackground(Window win);
 
   QvImage* GetOffsetImage(const Point& pt);

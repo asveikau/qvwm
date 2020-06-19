@@ -45,7 +45,7 @@ public:
   static XFontSet* fsb;            // ref to bold font set
   static QvImage* imgTile;
 
-  static const int SYMBOL_SIZE = 16;	// pixmap size
+  static int SYMBOL_SIZE;	    // pixmap size
   static int BUTTON_HEIGHT;		// tbutton height
 
 private:
