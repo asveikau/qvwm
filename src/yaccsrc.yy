@@ -32,8 +32,14 @@
 
 extern int line;
 extern char filename[256];
+#if defined(__cplusplus)
+extern "C" {
+#endif
 extern int yylex();
 extern int yyerror(char* error);
+#if defined(__cplusplus)
+}
+#endif
 
 #define YYDEBUG 0
 %}
