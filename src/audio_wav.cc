@@ -42,7 +42,7 @@
 //   "data", len(4)
 //   ...
 //
-int AudioWav::Play(char* file)
+int AudioWav::Play(const char* file)
 {
   FILE* fp;
   char id[4], format[8];

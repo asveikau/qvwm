@@ -48,7 +48,7 @@ public:
   int open();
   int close();
   int prepare();
-  int output(char* buf, int size);
+  int output(const char* buf, int size);
   int flush();
 
   int setFormat(int bits, int encoding);

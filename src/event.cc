@@ -564,7 +564,7 @@ void Event::MapRequestProc(const XMapRequestEvent& ev)
   int n;
   XClassHint classHints;
   Indicator* ind;
-  char* title = "";
+  const char* title = "";
 
   if (XGetWMName(display, ev.window, &xtp) != 0) {
     XmbTextPropertyToTextList(display, &xtp, &cl, &n);

@@ -26,7 +26,7 @@ private:
   static Bool stackTraceDone;
 
 public:
-  void TraceStack(char* debugger, char* program);
+  void TraceStack(const char* debugger, const char* program);
 
   static void TraceStackSigChld(int sig);
 };

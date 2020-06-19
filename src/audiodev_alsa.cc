@@ -82,7 +82,7 @@ int AudiodevAlsa::prepare()
 }
 
 // buf must have a space enough for AUDIO_BSIZE
-int AudiodevAlsa::output(char* buf, int size)
+int AudiodevAlsa::output(const char* buf, int size)
 {
   int err;
 

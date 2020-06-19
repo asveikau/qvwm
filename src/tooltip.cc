@@ -37,7 +37,7 @@ XContext Tooltip::context;
 #define XMARGIN 3
 #define YMARGIN 1
 
-Tooltip::Tooltip(char* str, XFontSet* fs)
+Tooltip::Tooltip(const char* str, XFontSet* fs)
 : m_str(str), m_fs(fs)
 {
   m_win = None;
@@ -86,7 +86,7 @@ Tooltip::~Tooltip()
   }
 }
 
-void Tooltip::SetString(char* str, XFontSet* fs)
+void Tooltip::SetString(const char* str, XFontSet* fs)
 {
   if (str == NULL)
     return;

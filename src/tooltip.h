@@ -27,7 +27,7 @@ class Tooltip {
 private:
   Window m_win;
 
-  char* m_str;
+  const char* m_str;
   XFontSet* m_fs;
   Rect m_rc;
 
@@ -37,11 +37,11 @@ public:
   static XContext context;
 
 public:
-  Tooltip(char* str = NULL, XFontSet* fs = NULL);
+  Tooltip(const char* str = NULL, XFontSet* fs = NULL);
   ~Tooltip();
 
   Bool IsMapped() const { return m_mapped; }
-  void SetString(char* str, XFontSet* fs = NULL);
+  void SetString(const char* str, XFontSet* fs = NULL);
 
   void CreateWindow();
   void MapTooltip();

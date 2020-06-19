@@ -42,7 +42,7 @@
 XContext RadioButton::context;
 QvImage* RadioButton::imgRadio[3];
 
-RadioButton::RadioButton(Window parent, const Point& point, char* btnname,
+RadioButton::RadioButton(Window parent, const Point& point, const char* btnname,
 			 XFontSet& btnfs, ResourceId res_id)
 : pt(point), name(btnname), fs(btnfs), rid(res_id)
 {

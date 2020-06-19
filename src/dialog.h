@@ -34,7 +34,7 @@ class Dialog {
 protected:
   Window frame;                    // frame
   Rect rc;                         // position and size
-  char* name;                      // title name
+  const char* name;                // title name
 
 public:
   static QvImage* imgDialog;
@@ -46,7 +46,7 @@ public:
 
   Window GetFrameWin() { return frame; }
   void SetRect(const Rect& rect);
-  void SetTitle(char* dlgname);
+  void SetTitle(const char* dlgname);
 
   virtual void MapDialog();
   virtual void UnmapDialog();

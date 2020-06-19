@@ -32,7 +32,7 @@ class ScreenSaver {
 private:
   Bool m_ssSupport;
   unsigned long m_lockMsec;
-  char* m_locker;
+  const char* m_locker;
   pid_t m_lockerPid;
 
 #ifdef USE_SSEXT
@@ -43,7 +43,7 @@ private:
 #endif
 
 public:
-  ScreenSaver(char* locker, unsigned long lockSec);
+  ScreenSaver(const char* locker, unsigned long lockSec);
   ~ScreenSaver();
 
   void Start();

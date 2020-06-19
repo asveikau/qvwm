@@ -39,7 +39,7 @@ enum VarAttribute {
 };
 
 struct VariableTable {
-  char* name;
+  const char* name;
   VarAttribute attr;
   void* var;
 };

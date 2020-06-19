@@ -48,10 +48,10 @@ public:
  * The origin of menu.
  */
 struct MenuElem {
-  char* name;
-  char* file;
+  const char* name;
+  const char* file;
   FuncNumber func;
-  char* exec;
+  const char* exec;
   int x, y;
   MenuElem* next;
   MenuElem* child;
@@ -62,14 +62,14 @@ struct MenuElem {
  */
 struct FsNameSet {
   XFontSet* fs;
-  char** fontname;
+  const char** fontname;
 };
 
 /*
  * Attribute bit and the name.
  */
 struct AttrNameSet {
-  char* name;
+  const char* name;
   unsigned long flag;
   Bool act;
 };
@@ -98,7 +98,7 @@ public:
  */
 struct KeyMod
 {
-  char* str;
+  const char* str;
   unsigned int mask;
 };
 
@@ -152,17 +152,17 @@ extern Bool Intersect(const Rect& rc1, const Rect& rc2);
 extern Bool IsDoubleClick(Time prevTime, Time clickTime, const Point& ptPrev,
 			  const Point& ptClick);
 extern int GetMenuItemNum(const MenuElem* mItem);
-extern QvImage* CreateImageFromFile(char* file, Timer* timer);
-extern QvImage* CreateImage(char* filename, Timer* timer);
+extern QvImage* CreateImageFromFile(const char* file, Timer* timer);
+extern QvImage* CreateImage(const char* filename, Timer* timer);
 extern char* GetFixName(XFontSet& fs, const char* name, int width);
 extern Bool MappedNotOverride(Window w, long* state);
 extern GC CreateTileGC(Drawable d);
 extern void DarkenScreen();
 extern void RefreshScreen();
-extern pid_t ExecCommand(char* exec);
+extern pid_t ExecCommand(const char* exec);
 extern void RestoreCursor();
-extern char* ExtractPathName(char* name);
-extern char* GetNextDelim(char* path, char* name, int maxSize);
+extern char* ExtractPathName(const char* name);
+extern const char* GetNextDelim(const char* path, char* name, int maxSize);
 
 #ifndef HAVE_USLEEP
 #ifdef __EMX__
@@ -173,10 +173,10 @@ extern void usleep(unsigned long);
 #endif
 #endif // HAVE_USLEEP
 
-extern int GetRealWidth(XFontSet fs, char* str);
+extern int GetRealWidth(XFontSet fs, const char* str);
 extern void DrawRealString(Window w, XFontSet fs, GC gc, int x, int y,
-			   char* str);
-extern void PlaySound(char* file, Bool sync = False);
+			   const char* str);
+extern void PlaySound(const char* file, Bool sync = False);
 extern Bool IsPointerInWindow(const Point& ptRoot);
 extern int CreateColor(unsigned short red, unsigned short green,
 		       unsigned short blue, XColor* color,

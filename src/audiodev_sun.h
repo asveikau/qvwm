@@ -40,18 +40,18 @@
 
 class AudiodevSun : public Audiodev {
 private:
-  char* m_audiodev;
+  const char* m_audiodev;
   int m_fd;
   audio_info_t m_ainfo;
   int m_amask;
 
 public:
-  AudiodevSun(char* audiodev) : m_audiodev(audiodev) {}
+  AudiodevSun(const char* audiodev) : m_audiodev(audiodev) {}
 
   int open();
   int close();
   int prepare();
-  int output(char* buf, int size);
+  int output(const char* buf, int size);
 
   int setFormat(int bits, int encoding);
   int setChannels(int channels);

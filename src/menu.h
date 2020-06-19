@@ -60,9 +60,9 @@ protected:
 
   Window* item;              // menu items
   QvImage** img;
-  char **name;
+  const char **name;
   FuncNumber* func;          // function number
-  char **exec;               // exec command
+  const char **exec;               // exec command
   char *scKey;               // short cut key for menu item
   Bool *check;               // check for toggle function
   Menu **next;               // child menu

@@ -33,7 +33,7 @@
 #include "timer.h"
 #include "qvwm.h"
 
-ScreenSaver::ScreenSaver(char* locker, unsigned long lockSec)
+ScreenSaver::ScreenSaver(const char* locker, unsigned long lockSec)
 {
   m_lockerPid = 0;
   m_locker = locker;

@@ -39,7 +39,7 @@ int imagesize;
 
 
 void print_usage (void);
-int read_input( char *file );
+int read_input( const char *file );
 
 
 void print_usage (void) {
@@ -93,7 +93,7 @@ int GetBWord(FILE* fp, int* word) {
 //   <interval> is the time during which the image is displayed.
 //
 
-int parse_header(FILE* fp, int* num, char* filename)
+int parse_header(FILE* fp, int* num, const char* filename)
 {
   char id[4];
 
@@ -128,7 +128,7 @@ int parse_header(FILE* fp, int* num, char* filename)
 int read_image_data(FILE* fp, 
                     char** data, int* len, char **name,
                     int* ival,
-                    int filesize, char* filename)
+                    int filesize, const char* filename)
 {
   char id[4];
   char pad[3];
@@ -242,7 +242,7 @@ int read_image_data(FILE* fp,
 }
 
 
-int read_input( char *file ) {
+int read_input( const char *file ) {
 
   FILE* fp;
   int ret = 0;
@@ -250,7 +250,7 @@ int read_input( char *file ) {
 
   printf( "reading file: %s\n", file );
 
-  if ( fp = fopen( file, "r" ) ) {
+  if ( ( fp = fopen( file, "r" ) ) ) {
     
     ret = parse_header( fp, &images_total, file );
     if ( ret == 0 ) {
@@ -299,7 +299,7 @@ int read_input( char *file ) {
 }
 
 
-int write_image_data ( char *data, int size, char *filename ) {
+int write_image_data ( char *data, int size, const char *filename ) {
 
   //// now write it!
   FILE *o;

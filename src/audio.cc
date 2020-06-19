@@ -38,7 +38,7 @@
 #include "audiodev_oss.h"
 #include "audiodev_sun.h"
 
-Audio::Audio(char* audiodev)
+Audio::Audio(const char* audiodev)
 {
 #ifdef ALSA
   if (EnableAlsa) {
@@ -74,7 +74,7 @@ Audio::~Audio()
 {
 }
 
-int Audio::Play(char* file)
+int Audio::Play(const char* file)
 {
   // dummy play
   return 0;

@@ -32,9 +32,9 @@
 
 class AudioAu : public Audio {
 public:
-  AudioAu(char* audiodev) : Audio(audiodev) {}
+  AudioAu(const char* audiodev) : Audio(audiodev) {}
 
-  int Play(char* file);
+  int Play(const char* file);
 };
 
 struct AuHdr {

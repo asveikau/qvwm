@@ -82,10 +82,10 @@ Menu::Menu(MenuElem* mItem, XFontSet& menufs, Menu* par, Qvwm* qvwm,
 
   item = new Window[nitems];
   img = new QvImage*[nitems];
-  name = new char*[nitems];
+  name = new const char*[nitems];
   scKey = new char[nitems];
   func = new FuncNumber[nitems];
-  exec = new char*[nitems];
+  exec = new const char*[nitems];
   next = new Menu*[nitems];
   childItem = new MenuElem*[nitems];
 
@@ -108,7 +108,7 @@ Menu::Menu(MenuElem* mItem, XFontSet& menufs, Menu* par, Qvwm* qvwm,
     exec[i] = mItem->exec;
     name[i] = mItem->name;
     
-    char* keyStr = strstr(name[i], "\\&");
+    const char* keyStr = strstr(name[i], "\\&");
     if (keyStr) {
       scKey[i] = *(keyStr + 2);
       if (scKey[i] >= 'a' && scKey[i] <= 'z')

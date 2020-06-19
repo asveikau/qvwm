@@ -41,10 +41,10 @@ int Audiodev::flush()
   return 0;
 }
 
-void Audiodev::outputFormatError(char* dev, int bits, int encoding)
+void Audiodev::outputFormatError(const char* dev, int bits, int encoding)
 {
-  char *strSign = "";
-  char *strEncode = "unknown";
+  const char *strSign = "";
+  const char *strEncode = "unknown";
 
   if (encoding == Audio::EN_ULINEAR)
     strSign = "unsigned";

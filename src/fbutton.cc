@@ -35,7 +35,7 @@
 #include "bitmaps/button_close.xpm"
 #include "bitmaps/button_restore.xpm"
 
-char* FrameButton::desc[4];
+const char* FrameButton::desc[4];
 
 QvImage* FrameButton::imgButton[4];
 

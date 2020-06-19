@@ -125,7 +125,7 @@ public:
 };
 
 struct FuncTable {
-  char* name;
+  const char* name;
   FuncNumber num;
 };
 

@@ -35,7 +35,7 @@ protected:
   Qvwm* qvWm;             // pointer to Qvwm that this button belong to
 
   static QvImage* imgButton[4];
-  static char* desc[4];
+  static const char* desc[4];
 
   static const int BUTTON_WIDTH = 12;
   static const int BUTTON_HEIGHT = 10;

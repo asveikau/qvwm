@@ -60,7 +60,7 @@ public:
   };
 
 public:
-  Audio(char* audiodev);
+  Audio(const char* audiodev);
   ~Audio();
 
   int openDevice();
@@ -70,7 +70,7 @@ public:
   int setChannels(int channels);
   int setSamplingRate(int rate);
 
-  virtual int Play(char* file);
+  virtual int Play(const char* file);
 };
 
 #endif // AUDIO_H_

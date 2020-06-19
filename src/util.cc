@@ -155,7 +155,7 @@ int GetMenuItemNum(const MenuElem* mItem)
   return num;
 }
 
-QvImage* CreateImageFromFile(char* file, Timer* timer)
+QvImage* CreateImageFromFile(const char* file, Timer* timer)
 {
   switch (file[0]) {
   case 0: 
@@ -207,7 +207,7 @@ QvImage* CreateImageFromFile(char* file, Timer* timer)
   }
 }
 
-QvImage* CreateImage(char* filename, Timer* timer)
+QvImage* CreateImage(const char* filename, Timer* timer)
 {
   QvImage* img;
   struct stat st;
@@ -387,7 +387,7 @@ void RefreshScreen()
 // tcsh does not work...
 #define SHELL "/bin/sh"
 
-pid_t ExecCommand(char* exec)
+pid_t ExecCommand(const char* exec)
 {
   pid_t pid;
 
@@ -471,7 +471,7 @@ pid_t ExecCommand(char* exec)
     ExecPending* pending = new ExecPending(pageoff, comp);
     ExecPending::m_pendingList.InsertTail(pending);
 
-    char* excmd = strchr(exec, ']');
+    const char* excmd = strchr(exec, ']');
     excmd++;
     while (*excmd == ' ')
       excmd++;
@@ -525,7 +525,7 @@ void RestoreCursor()
 /*
  * Extract ~ and environment variable in a path name.
  */
-char* ExtractPathName(char* name)
+char* ExtractPathName(const char* name)
 {
   char* exname;
 
@@ -534,8 +534,8 @@ char* ExtractPathName(char* name)
 
   if (name[0] == '~') {
     if (name[1] == '/' || name[1] == '\0') {
-      char* home = getenv("HOME");
-      char* dir = &name[1];
+      const char* home = getenv("HOME");
+      const char* dir = &name[1];
 
       if (home == NULL) {
 	QvwmError("Undefined environment variable HOME\n");
@@ -549,7 +549,7 @@ char* ExtractPathName(char* name)
     }
     else {
       char user[MAX_USER_NAME + 1];
-      char* dir;
+      const char* dir;
 
       dir = GetNextDelim(&name[1], user, MAX_USER_NAME + 1);
       struct passwd* pw = getpwnam(user);
@@ -569,7 +569,7 @@ char* ExtractPathName(char* name)
   }
   else if (name[0] == '$') {
     char env[MAX_ENV_NAME + 1];
-    char* dir;
+    const char* dir;
     
     dir = GetNextDelim(&name[1], env, MAX_ENV_NAME + 1);
     char* exenv = getenv(env);
@@ -595,7 +595,7 @@ char* ExtractPathName(char* name)
 }
 
 // maxSize includes null for termination
-char* GetNextDelim(char* path, char* name, int maxSize)
+const char* GetNextDelim(const char* path, char* name, int maxSize)
 {
   int i;
 
@@ -633,7 +633,7 @@ void usleep(unsigned long usec)
 #endif // HAVE_USLEEP
 
 // Get string width excluding "\B" for bold font and "\&" for underscore
-int GetRealWidth(XFontSet fs, char* str)
+int GetRealWidth(XFontSet fs, const char* str)
 {
   XRectangle ink, log;
   unsigned int width;
@@ -641,7 +641,7 @@ int GetRealWidth(XFontSet fs, char* str)
   if (*str == '\\' && *(str + 1) == 'B')
     str += 2;
 
-  char* keyStr = strstr(str, "\\&");
+  const char* keyStr = strstr(str, "\\&");
   if (keyStr == NULL)
     width = XmbTextExtents(fs, str, strlen(str), &ink, &log);
   else {
@@ -657,7 +657,7 @@ int GetRealWidth(XFontSet fs, char* str)
 
 // Draw "...\&?..." -> "...?..."
 //                         ~
-void DrawRealString(Window w, XFontSet fs, GC gc, int x, int y, char* str)
+void DrawRealString(Window w, XFontSet fs, GC gc, int x, int y, const char* str)
 {
   Bool bold = False;
 
@@ -666,7 +666,7 @@ void DrawRealString(Window w, XFontSet fs, GC gc, int x, int y, char* str)
     bold = True;
   }
 
-  char* keyStr = strstr(str, "\\&");
+  const char* keyStr = strstr(str, "\\&");
   XRectangle ink, log;
   int len = strlen(str);
 
@@ -698,7 +698,7 @@ void DrawRealString(Window w, XFontSet fs, GC gc, int x, int y, char* str)
 
 #define AUDIODEV "/dev/audio"
 
-void PlaySound(char* file, Bool sync)
+void PlaySound(const char* file, Bool sync)
 {
   if (file == NULL || file[0] == '\0')
     return;

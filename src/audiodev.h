@@ -29,14 +29,14 @@ public:
   virtual int open() = 0;
   virtual int close() = 0;
   virtual int prepare();
-  virtual int output(char* buf, int size) = 0;
+  virtual int output(const char* buf, int size) = 0;
   virtual int flush();
 
   virtual int setFormat(int bits, int encoding) = 0;
   virtual int setChannels(int channels) = 0;
   virtual int setSamplingRate(int rate) = 0;
 
-  void outputFormatError(char* dev, int bits, int encoding);
+  void outputFormatError(const char* dev, int bits, int encoding);
 };
 
 #endif // AUDIODEV_H_

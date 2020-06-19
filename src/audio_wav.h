@@ -28,9 +28,9 @@
 //
 class AudioWav : public Audio {
 public:
-  AudioWav(char* audiodev) : Audio(audiodev) {}
+  AudioWav(const char* audiodev) : Audio(audiodev) {}
 
-  int Play(char* file);
+  int Play(const char* file);
 };
 
 struct WavHdr {

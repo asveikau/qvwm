@@ -47,14 +47,14 @@ public:
   ItemKind kind;
   ResourceId rid;
   Rect rc;
-  char* str;
+  const char* str;
   XFontSet& fs;
   ResourceId initId;
   QvImage* img;
 
 public:
   // for STATICTEXT, RADIOBUTTON, STRINGBUTTON
-  DialogRes(ItemKind ik, ResourceId res_id, const Rect& rect, char* label,
+  DialogRes(ItemKind ik, ResourceId res_id, const Rect& rect, const char* label,
 	    XFontSet& labelfs) : kind(ik), rid(res_id), rc(rect), str(label),
             fs(labelfs) {}
   // for ICONPIXMAP
@@ -70,11 +70,11 @@ public:
 class StaticText {
 public:
   Point pt;
-  char* text;
+  const char* text;
   XFontSet& fs;
   
 public:
-  StaticText(const Point& point, char* label, XFontSet& labelfs)
+  StaticText(const Point& point, const char* label, XFontSet& labelfs)
     : pt(point), text(label), fs(labelfs) {}
 };
 

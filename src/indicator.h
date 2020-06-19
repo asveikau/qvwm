@@ -29,7 +29,7 @@ class Indicator {
 private:
   Window wOrig;				// original window
   unsigned int bwOrig;			// original border width
-  char* name;				// window indentical name
+  const char* name;				// window indentical name
   pid_t pid;				// application pid
   Window parent;			// reparented window
   QvImage* imgIndicator;
@@ -43,13 +43,13 @@ public:
   static List<Indicator> indList;
 
 public:
-  Indicator(char* exec, char* comp);
+  Indicator(const char* exec, const char* comp);
   ~Indicator();
 
   void CreateIndicator(Window w);
   void MoveIndicator(int x, int y) { XMoveWindow(display, parent, x, y); }
   static int RedrawAllIndicators();
-  static Indicator* LookInList(char* name, XClassHint& classHints);
+  static Indicator* LookInList(const char* name, XClassHint& classHints);
   static Bool NotifyDeadPid(pid_t pid);
   static void Initialize();
 };

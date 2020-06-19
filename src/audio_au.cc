@@ -29,7 +29,7 @@
 #include "audio_au.h"
 #include "message.h"
 
-int AudioAu::Play(char* file)
+int AudioAu::Play(const char* file)
 {
   FILE* fp;
   AuHdr hdr;

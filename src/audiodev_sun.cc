@@ -64,7 +64,7 @@ int AudiodevSun::prepare()
   return 0;
 }
 
-int AudiodevSun::output(char* buf, int size)
+int AudiodevSun::output(const char* buf, int size)
 {
   int err;
 

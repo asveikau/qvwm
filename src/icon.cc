@@ -53,7 +53,7 @@ QvImage*	Icon::imgIcon;
 IconMenu*	Icon::ctrlMenu = NULL;
 
 // image must be passed as a duplicated object
-Icon::Icon(QvImage* image, char* iconname, char* execname, int x, int y)
+Icon::Icon(QvImage* image, const char* iconname, const char* execname, int x, int y)
 : img(image), exec(execname)
 {
   isBuiltin = False;
@@ -62,7 +62,7 @@ Icon::Icon(QvImage* image, char* iconname, char* execname, int x, int y)
 }
 
 // image must be passed as a duplicated object
-Icon::Icon(QvImage* image, char* iconname, FuncNumber func, int x, int y)
+Icon::Icon(QvImage* image, const char* iconname, FuncNumber func, int x, int y)
 : img(image), fn(func)
 {
   isBuiltin = True;
@@ -70,7 +70,7 @@ Icon::Icon(QvImage* image, char* iconname, FuncNumber func, int x, int y)
   init(iconname, x, y);
 }
 
-void Icon::init(char* iconname, int x, int y)
+void Icon::init(const char* iconname, int x, int y)
 {
   XSetWindowAttributes attributes;
   unsigned long valueMask;
@@ -579,7 +579,7 @@ void Icon::Initialize()
  * AlterIconName --
  *   checks the icon name's size and splits it on several lines if necessary.
  */
-void Icon::AlterIconName(char* iconname)
+void Icon::AlterIconName(const char* iconname)
 {
   XRectangle ink, log;
   char *start, *end;

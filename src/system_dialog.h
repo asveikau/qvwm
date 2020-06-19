@@ -63,7 +63,7 @@ public:
   ResourceId Button1Press(Window win);
   ResourceId FindShortCutKey(char key);
 
-  void SetShortcutKeyTable(char* str, ResourceId id);
+  void SetShortcutKeyTable(const char* str, ResourceId id);
 };
 
 #endif // _SYSDLG_H_

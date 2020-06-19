@@ -416,9 +416,9 @@ ResourceId SystemDialog::FindShortCutKey(char key)
   return id;
 }
 
-void SystemDialog::SetShortcutKeyTable(char* str, ResourceId id)
+void SystemDialog::SetShortcutKeyTable(const char* str, ResourceId id)
 {
-  char* keyStr = strstr(str, "\\&");
+  const char* keyStr = strstr(str, "\\&");
   char key;
 
   if (keyStr) {

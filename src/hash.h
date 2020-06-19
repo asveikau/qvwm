@@ -32,15 +32,15 @@
 template <class T>
 class HashItem {
 private:
-  char* key;                     // hash key
+  const char* key;               // hash key
   T* item;                       // hash element
   HashItem<T>* ptr;              // pointer to next element
 
 public:
-  HashItem(char* hashkey, T* hashitem, HashItem<T>* hptr)
+  HashItem(const char* hashkey, T* hashitem, HashItem<T>* hptr)
     : key(hashkey), item(hashitem), ptr(hptr) {}
 
-  char* GetKey() const { return key; }
+  const char* GetKey() const { return key; }
   T* GetItem() const { return item; }
   HashItem<T>* GetPtr() const { return ptr; }
 };
@@ -78,7 +78,7 @@ public:
    * SetHashItem --
    *   Set item in hash table with key.
    */
-  void SetHashItem(char* key, T* item) {
+  void SetHashItem(const char* key, T* item) {
     if (key == NULL)
       return;
 

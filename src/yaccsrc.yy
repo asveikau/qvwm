@@ -36,7 +36,7 @@ extern char filename[256];
 extern "C" {
 #endif
 extern int yylex();
-extern int yyerror(char* error);
+extern int yyerror(const char* error);
 #if defined(__cplusplus)
 }
 #endif

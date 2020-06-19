@@ -29,7 +29,7 @@
 #include "qvwmrc.h"
 #include "util.h"
 
-StringButton::StringButton(Window parent, const Rect& rc, char* label,
+StringButton::StringButton(Window parent, const Rect& rc, const char* label,
 			   XFontSet& labelfs, ResourceId res_id)
 : Button(parent, rc), str(label), fs(labelfs), rid(res_id)
 {

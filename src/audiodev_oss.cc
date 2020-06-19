@@ -51,7 +51,7 @@ int AudiodevOss::close()
   return 0;
 }
 
-int AudiodevOss::output(char* buf, int size)
+int AudiodevOss::output(const char* buf, int size)
 {
   int err;
 

@@ -69,13 +69,13 @@ void Dialog::SetRect(const Rect& rect)
   XMoveResizeWindow(display, frame, rect.x, rect.y, rect.width, rect.height);
 }
 
-void Dialog::SetTitle(char* dlgname)
+void Dialog::SetTitle(const char* dlgname)
 {
   XTextProperty ct;
 
   name = dlgname;
 
-  XmbTextListToTextProperty(display, &name, 1, XCompoundTextStyle, &ct);
+  XmbTextListToTextProperty(display, (char**)&name, 1, XCompoundTextStyle, &ct);
   XSetWMName(display, frame, &ct);
 }
 

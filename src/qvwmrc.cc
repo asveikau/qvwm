@@ -59,8 +59,8 @@ Bool UseTaskbar                     = True;
 Taskbar::TaskbarPos TaskbarPosition = Taskbar::BOTTOM;
 unsigned int TaskbarRows	    = 1;
 Bool OnTopTaskbar                   = True;
-char* WallPaper			    = "Windows95";
-char* LocaleName		    = "";
+const char* WallPaper			    = "Windows95";
+const char* LocaleName		    = "";
 Bool UseBoldFont		    = False;
 Bool UseExitDialog		    = False;
 Bool UseConfirmDialog               = False;
@@ -74,10 +74,10 @@ Bool ClickingRaises                 = True;
 Bool NoDesktopFocus		    = False;
 Bool AutoRaise			    = False;
 Bool UseClock			    = True;
-char* ClockLocaleName		    = NULL;
+const char* ClockLocaleName		    = NULL;
 int AutoRaiseDelay		    = 300;
-char* ImagePath		            = IMGDIR;
-char* SoundPath		            = SNDDIR;
+const char* ImagePath		            = IMGDIR;
+const char* SoundPath		            = SNDDIR;
 Bool TaskbarAutoHide                = False;
 Bool RestoreMinimize                = False;
 Bool RestartOnFailure               = True;
@@ -104,7 +104,7 @@ unsigned int NoSnappingMask         = Mod1Mask;
 int TaskbarShowDelay                = 0;
 int TaskbarHideDelay                = 500;
 Bool LockDragState                  = False;
-char* ScreenSaverProg               = "xlock";
+const char* ScreenSaverProg         = "xlock";
 int ScreenSaverDelay                = 600;
 Bool TaskbarButtonInScr             = False;
 Bool EnableSound                    = True;
@@ -117,14 +117,14 @@ Bool DisableTaskbarDragging         = True;
 /*
  * Default message catalogs
  */
-char* StartButtonTitle		    = "Start";
-char* StartButtonMessage            = "Start with this button.";
-char* MinimizeButtonMessage         = "Minimize";
-char* MaximizeButtonMessage         = "Maximize";
-char* CloseButtonMessage            = "Close";
-char* RestoreButtonMessage          = "Restore";
-char* ClockFormat		    = "%R";
-char* ClockMessageFormat            = "%A, %B %e, %Y";
+const char* StartButtonTitle		    = "Start";
+const char* StartButtonMessage      = "Start with this button.";
+const char* MinimizeButtonMessage   = "Minimize";
+const char* MaximizeButtonMessage   = "Maximize";
+const char* CloseButtonMessage      = "Close";
+const char* RestoreButtonMessage    = "Restore";
+const char* ClockFormat		          = "%R";
+const char* ClockMessageFormat      = "%A, %B %e, %Y";
 
 /*
  * Default sizes
@@ -141,50 +141,50 @@ int MenuItemMinimalHeight           = 18;
 /*
  * Images
  */
-char* TitlebarImage                 = NULL;
-char* TitlebarActiveImage           = NULL;
-char* FrameImage                    = NULL;
-char* FrameActiveImage              = NULL;
-char* TaskbarImage                  = NULL;
-char* MenuImage                     = NULL;
-char* MenuActiveImage               = NULL;
-char* PagerImage                    = NULL;
-char* DialogImage                   = NULL;
-char* SwitcherImage                 = NULL;
-char* StartMenuLogoImage            = NULL;
+const char* TitlebarImage                 = NULL;
+const char* TitlebarActiveImage           = NULL;
+const char* FrameImage                    = NULL;
+const char* FrameActiveImage              = NULL;
+const char* TaskbarImage                  = NULL;
+const char* MenuImage                     = NULL;
+const char* MenuActiveImage               = NULL;
+const char* PagerImage                    = NULL;
+const char* DialogImage                   = NULL;
+const char* SwitcherImage                 = NULL;
+const char* StartMenuLogoImage            = NULL;
 
 /*
  * Sounds
  */
-char* SystemStartSound              = NULL;
-char* SystemExitSound               = NULL;
-char* SystemRestartSound            = NULL;
-char* MaximizeSound                 = NULL;
-char* MinimizeSound                 = NULL;
-char* RestoreUpSound                = NULL;
-char* RestoreDownSound              = NULL;
-char* ExpandSound                   = NULL;
-char* MenuPopupSound                = NULL;
-char* MenuCommandSound              = NULL;
-char* OpenSound                     = NULL;
-char* CloseSound                    = NULL;
-char* PagerSound                    = NULL;
-char* PagingSound                   = NULL;
+const char* SystemStartSound              = NULL;
+const char* SystemExitSound               = NULL;
+const char* SystemRestartSound            = NULL;
+const char* MaximizeSound                 = NULL;
+const char* MinimizeSound                 = NULL;
+const char* RestoreUpSound                = NULL;
+const char* RestoreDownSound              = NULL;
+const char* ExpandSound                   = NULL;
+const char* MenuPopupSound                = NULL;
+const char* MenuCommandSound              = NULL;
+const char* OpenSound                     = NULL;
+const char* CloseSound                    = NULL;
+const char* PagerSound                    = NULL;
+const char* PagingSound                   = NULL;
 
 // backward compatibility
-char* OpeningSound                  = NULL;
-char* EndingSound                   = NULL;
-char* RestartSound                  = NULL;
-char* RestoreSound                  = NULL;
+const char* OpeningSound                  = NULL;
+const char* EndingSound                   = NULL;
+const char* RestartSound                  = NULL;
+const char* RestoreSound                  = NULL;
 
 /*
  * Default icons
  */
-char* DefaultIcon                   = NULL;
-char* DefaultMenuItemIcon           = NULL;
-char* DefaultFolderIcon             = NULL;
-char* DefaultLargeIcon              = NULL;
-char* DefaultShortcutIcon           = NULL;
+const char* DefaultIcon                   = NULL;
+const char* DefaultMenuItemIcon           = NULL;
+const char* DefaultFolderIcon             = NULL;
+const char* DefaultLargeIcon              = NULL;
+const char* DefaultShortcutIcon           = NULL;
 
 /*
  * Default colors
@@ -230,16 +230,16 @@ XColor TooltipStringColor;	// black
 /*
  * Default fonts
  */
-char* DefaultFont                   = "-*-*-medium-r-normal-*-14-*-*-*-*-*-*-*";
-char* TitleFont			    = NULL;
-char* TaskbarFont		    = NULL;
-char* TaskbarBoldFont		    = NULL;
-char* TaskbarClockFont		    = NULL;
-char* CascadeMenuFont		    = NULL;
-char* CtrlMenuFont		    = NULL;
-char* StartMenuFont		    = NULL;
-char* IconFont			    = NULL;
-char* DialogFont		    = NULL;
+const char* DefaultFont       = "-*-*-medium-r-normal-*-14-*-*-*-*-*-*-*";
+const char* TitleFont			    = NULL;
+const char* TaskbarFont		    = NULL;
+const char* TaskbarBoldFont		= NULL;
+const char* TaskbarClockFont  = NULL;
+const char* CascadeMenuFont		= NULL;
+const char* CtrlMenuFont		  = NULL;
+const char* StartMenuFont	    = NULL;
+const char* IconFont			    = NULL;
+const char* DialogFont		    = NULL;
 
 /*
  * Default start menu

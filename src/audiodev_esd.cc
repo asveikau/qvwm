@@ -58,7 +58,7 @@ int AudiodevEsd::prepare()
   return 0;
 }
 
-int AudiodevEsd::output(char* buf, int size)
+int AudiodevEsd::output(const char* buf, int size)
 {
   int err;
 

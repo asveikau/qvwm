@@ -46,10 +46,10 @@ Bool Debug::stackTraceDone;
 #define PIPE_READ  0
 #define PIPE_WRITE 1
 
-void Debug::TraceStack(char* debugger, char* program)
+void Debug::TraceStack(const char* debugger, const char* program)
 {
   char buf[16];
-  char *args[4];
+  const char *args[4];
 
   sprintf(buf, "%d", (int)getpid());
 
@@ -91,7 +91,7 @@ void Debug::TraceStack(char* debugger, char* program)
     /*
      * Execute the debugger.
      */
-    if (execvp(args[0], args) == -1) {
+    if (execvp(args[0], (char *const*)args) == -1) {
       char str[256];
       sprintf(str, "execv: %s", args[0]);
       perror(str);

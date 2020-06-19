@@ -36,18 +36,18 @@
 
 class AudiodevEsd : public Audiodev {
 private:
-  char* m_host;			// ESD host
+  const char* m_host;			// ESD host
   int m_fd;			// socket for communicating with ESD
   esd_format_t m_format;
   int m_rate;
 
 public:
-  AudiodevEsd(char* host) : m_host(host) {}
+  AudiodevEsd(const char* host) : m_host(host) {}
 
   int open();
   int close();
   int prepare();
-  int output(char* buf, int size);
+  int output(const char* buf, int size);
 
   int setFormat(int bits, int encoding);
   int setChannels(int channels);

@@ -50,13 +50,13 @@ public:
 class Function {
 private:
   FuncNumber fn;
-  char* exec;
+  const char* exec;
 
 public:
-  Function(FuncNumber num, char* cmd) : fn(num), exec(cmd) {}
+  Function(FuncNumber num, const char* cmd) : fn(num), exec(cmd) {}
 
   FuncNumber GetFuncNumber() const { return fn; }
-  char* GetExec() const { return exec; }
+  const char* GetExec() const { return exec; }
 };
 
 #endif // EXIT_DIALOG_H_

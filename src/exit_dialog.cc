@@ -42,7 +42,7 @@ ExitDialog::ExitDialog()
   int i = 0, j, base = 12;
   ResourceId dlgid = STARTID, initRB = 0;
   ItemKind prevItem = ICONPIXMAP;
-  char* exitTitle = "Exit qvwm";
+  const char* exitTitle = "Exit qvwm";
   QvImage* img;
   MenuElem* mItem;
   DialogRes** dr;

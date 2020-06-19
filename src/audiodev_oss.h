@@ -64,15 +64,15 @@
 
 class AudiodevOss : public Audiodev {
 private:
-  char* m_audiodev;
+  const char* m_audiodev;
   int m_fd;
 
 public:
-  AudiodevOss(char* audiodev) : m_audiodev(audiodev) {}
+  AudiodevOss(const char* audiodev) : m_audiodev(audiodev) {}
 
   int open();
   int close();
-  int output(char* buf, int size);
+  int output(const char* buf, int size);
 
   int setFormat(int bits, int encoding);
   int setChannels(int channels);

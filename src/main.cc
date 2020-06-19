@@ -887,7 +887,9 @@ void FinishQvwm()
 
 void RestartQvwm(Bool minimumRestart, int count, Bool cleanup)
 {
-  char *p, *argv[20], buf[8];
+  const char *p;
+  const char *argv[20];
+  char buf[8];
   int i, j;
 
   if (cleanup)
@@ -905,7 +907,8 @@ void RestartQvwm(Bool minimumRestart, int count, Bool cleanup)
   if (strncmp(++p, "qvwm", 4) != 0) {
     QvwmError("qvwm's 1st argument is not 'qvwm*' but '%s'", p);
     QvwmError("restart 'qvwm'");
-    qvArgv[0] = "qvwm";
+    static char qvwm[] = "qvwm";
+    qvArgv[0] = qvwm;
   }
 
   for (i = 0, j = 0; qvArgv[i] != NULL && j < 16; i++) {
@@ -938,5 +941,5 @@ void RestartQvwm(Bool minimumRestart, int count, Bool cleanup)
 
   argv[j] = NULL;
   
-  execvp(argv[0], argv);
+  execvp(argv[0], (char *const*)argv);
 }

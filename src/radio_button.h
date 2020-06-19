@@ -37,7 +37,7 @@ private:
   Window frame;                      // radio button frame
   Point pt;                          // position
   unsigned int status;               // status
-  char* name;                        // right text of radio button
+  const char* name;                  // right text of radio button
   XFontSet& fs;
   ResourceId rid;
 
@@ -57,7 +57,7 @@ public:
   static QvImage* imgRadio[3];
 
 public:
-  RadioButton(Window parent, const Point& point, char* btnname,
+  RadioButton(Window parent, const Point& point, const char* btnname,
 	      XFontSet& btnfs, ResourceId res_id);
   ~RadioButton();
   void SetStatus(unsigned int st) { status |= st; }

@@ -38,7 +38,7 @@ List<Indicator> Indicator::indList;
 List<Indicator> Indicator::pendingList;
 int Indicator::INDICATOR_SIZE;
 
-Indicator::Indicator(char* exec, char* comp)
+Indicator::Indicator(const char* exec, const char* comp)
 : wOrig(None), name(comp)
 {
   pendingList.InsertTail(this);
@@ -154,7 +154,7 @@ int Indicator::RedrawAllIndicators()
  * LookInList --
  *   Look for a pending indicator with name in pending list.
  */
-Indicator* Indicator::LookInList(char* name, XClassHint& classHints)
+Indicator* Indicator::LookInList(const char* name, XClassHint& classHints)
 {
   List<Indicator>::Iterator i(&pendingList);
 

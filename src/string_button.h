@@ -26,14 +26,14 @@
 
 class StringButton : public Button {
 private:
-  char* str;
+  const char* str;
   XFontSet& fs;
   ResourceId rid;
   
   Bool triggered;
 
 public:
-  StringButton(Window parent, const Rect& rc, char* label, XFontSet& labelfs,
+  StringButton(Window parent, const Rect& rc, const char* label, XFontSet& labelfs,
 	       ResourceId res_id);
   ~StringButton() {}
 

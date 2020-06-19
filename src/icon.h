@@ -60,7 +60,7 @@ private:
   Rect rcVirt;			// the same in virtual coordinates
   QvImage* img;			// icon image
   char* name;			// icon name
-  char* exec;			// icon function (external)
+  const char* exec;			// icon function (external)
   FuncNumber fn;		// icon function (built-in)
   Bool isBuiltin;		// icon type
 
@@ -89,15 +89,15 @@ public:
   static IconMenu* ctrlMenu;            // popup menu on right-click
 
 private:
-  void init(char* iconname, int x, int y);
-  void AlterIconName(char* iconname);
+  void init(const char* iconname, int x, int y);
+  void AlterIconName(const char* iconname);
   void SetIconImage();
   void CreateShapedWindow();
   void CreateShapedShadowWindow();
 
 public:
-  Icon(QvImage* image, char* iconname, char* execname, int x, int y);
-  Icon(QvImage* image, char* iconname, FuncNumber func, int x, int y);
+  Icon(QvImage* image, const char* iconname, const char* execname, int x, int y);
+  Icon(QvImage* image, const char* iconname, FuncNumber func, int x, int y);
   ~Icon();
 
   Rect GetRect() const { return rc; }
@@ -107,7 +107,7 @@ public:
 
   Bool CheckMenuMapped() const { return ctrlMenu->CheckMapped(); }
   void UnmapMenu() { ctrlMenu->UnmapMenu(); }
-  char* GetExec() const { return exec; }
+  const char* GetExec() const { return exec; }
   FuncNumber GetFunc() const { return fn; }
   Bool IsBuiltin() const { return isBuiltin; }
 
