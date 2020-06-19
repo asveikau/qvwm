@@ -364,7 +364,7 @@ Pixmap CreateGradPixmap(unsigned long* pat, int width, Window win)
 }
 
 static unsigned long* CreatePattern(XColor base1, XColor base2);
-static void SetPattern(unsigned long* pat, int offset, unsigned long p[]);
+static void SetPattern(unsigned long* pat, int offset, const unsigned long p[]);
 
 void CreateGradPattern()
 {
@@ -443,9 +443,9 @@ static unsigned long* CreatePattern(XColor base1, XColor base2)
   return pat;
 }
 
-static void SetPattern(unsigned long* pat, int offset, unsigned long p[])
+static void SetPattern(unsigned long* pat, int offset, const unsigned long p[])
 {
-  static int table[4][28] =
+  static const int table[4][28] =
     {{ 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 1, 1, 1, 2,
        1, 2, 2, 2, 1, 2, 2, 3, 3, 3, 3, 3, 3, 3 },
      { 0, 0, 2, 0, 1, 0, 2, 0, 2, 0, 2, 0, 2, 1,
