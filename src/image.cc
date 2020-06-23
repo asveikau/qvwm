@@ -118,7 +118,7 @@ static Pixmap Scale(
     int bpp = img->bits_per_pixel/8;
     const int pad = 8;
     int line_width = (newSize.width * img->bits_per_pixel + pad - 1) / pad * pad / 8;
-    dst = new(std::nothrow) char[newSize.height * line_width];
+    dst = (char*)calloc(newSize.height, line_width);
     if (dst) {
 
       //
@@ -155,9 +155,8 @@ static Pixmap Scale(
         XDestroyImage(img);
         img = NULL;
         XImage *dstImage = XCreateImage(display, CopyFromParent, depth, ZPixmap, 0, dst, newSize.width, newSize.height, pad, line_width);
-        delete [] dst;
-        dst = NULL;
         if (dstImage) {
+          dst = NULL; // XImage* now owns data
           pixmap = XCreatePixmap(display, root, newSize.width, newSize.height, depth);
           if (pixmap)
             XPutImage(display, pixmap, gc, dstImage, 0, 0, 0, 0, newSize.width, newSize.height);
@@ -166,12 +165,11 @@ static Pixmap Scale(
       }
       else {
         pixmap = XCreatePixmapFromBitmapData(display, root, dst, newSize.width, newSize.height, 1, 0, 1);
-        delete [] dst;
-        dst = NULL;
       }
     }
     if (img)
       XDestroyImage(img);
+    free(dst);
   }
 
   return pixmap;
@@ -221,8 +219,7 @@ QvImage* QvImage::Scale(float xscale, float yscale)
   if (gc)
     XFreeGC(display, gc);
 
-  if (r)
-  {
+  if (r) {
     m_scaleCache = r;
     r->m_refcnt++;
   }
