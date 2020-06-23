@@ -21,7 +21,7 @@
 #ifndef AUDIODEV_SUN_H_
 #define AUDIODEV_SUN_H_
 
-#if defined(sun) || defined(__NetBSD__) || defined(__OpenBSD__)
+#if defined(sun) || defined(__NetBSD__)
 #define SUN_AUDIO
 #endif
 
