@@ -84,7 +84,7 @@ void Qvwm::DrawCtrlMenuMark()
   
   XClearWindow(display, ctrl);
 
-  Dim sz = {TaskbarButton::SYMBOL_SIZE, TaskbarButton::SYMBOL_SIZE};
+  Dim sz(TaskbarButton::SYMBOL_SIZE, TaskbarButton::SYMBOL_SIZE);
   imgSmall->Display(ctrl, Point(0, 0), sz);
 }
 

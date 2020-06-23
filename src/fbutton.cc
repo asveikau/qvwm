@@ -90,7 +90,7 @@ void FrameButton::DrawButton()
   Button::DrawButton();
 
   if (img) {
-    Dim sz = {Qvwm::BUTTON_WIDTH-4, Qvwm::BUTTON_HEIGHT-4};
+    Dim sz(Qvwm::BUTTON_WIDTH-4, Qvwm::BUTTON_HEIGHT-4);
     if (state == NORMAL)
       img->Display(frame, Point(2, 2), sz);
     else

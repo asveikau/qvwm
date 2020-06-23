@@ -21,6 +21,7 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
+#include <stdlib.h>
 #include <string.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -177,7 +178,7 @@ static Pixmap Scale(
 
 QvImage* QvImage::Scale(float xscale, float yscale)
 {
-  Dim newSize = {(int)(m_size.width * xscale), (int)(m_size.height * yscale)};
+  Dim newSize(m_size.width * xscale, m_size.height * yscale);
   QvImage *r = NULL;
   Pixmap pixmap = 0;
   Pixmap mask = 0;

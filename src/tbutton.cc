@@ -165,7 +165,7 @@ void TaskbarButton::DrawButton()
   /*
    * Draw the pixmap of the taskbar button.
    */
-  Dim sz = {SYMBOL_SIZE, SYMBOL_SIZE};
+  Dim sz(SYMBOL_SIZE, SYMBOL_SIZE);
   if (CheckState(PUSH) & focus)
     img->Display(frame, Point(offset.x, offset.y + 1), sz);
   else
