@@ -185,7 +185,7 @@ acc:	  STRING VAR VAR		{ CreateAccessory($1, $2, $3); }
 	;
 
 %%
-int yyerror(char* error)
+int yyerror(const char* error)
 {
   QvwmError("%s: %d: %s", filename, line, error);
   QvwmError("Restarting with the minimum configuration...");

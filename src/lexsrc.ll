@@ -40,6 +40,9 @@
 /* global state */
 int line;
 char filename[256];
+#if defined(__cplusplus)
+extern "C" { int yylex(void); }
+#endif
 
 #define MAX_INCLUDE_DEPTH 8
 #define MAX_FILE_LEN 255

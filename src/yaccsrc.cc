@@ -103,8 +103,10 @@
 
 extern int line;
 extern char filename[256];
+extern "C" {
 extern int yylex();
-extern int yyerror(char* error);
+extern int yyerror(const char* error);
+}
 
 #define YYDEBUG 0
 
@@ -1496,7 +1498,7 @@ yyreturn:
 
 #line 181 "yaccsrc.yy"
 
-int yyerror(char* error)
+int yyerror(const char* error)
 {
   QvwmError("%s: %d: %s", filename, line, error);
   QvwmError("Restarting with the minimum configuration...");
