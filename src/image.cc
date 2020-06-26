@@ -183,10 +183,8 @@ QvImage* QvImage::Scale(float xscale, float yscale)
   Pixmap pixmap = 0;
   Pixmap mask = 0;
 
-  if (m_scaleCache)
-  {
-    if (m_scaleCache->m_size.width == newSize.width && m_scaleCache->m_size.height == newSize.height)
-    {
+  if (m_scaleCache) {
+    if (m_scaleCache->m_size.width == newSize.width && m_scaleCache->m_size.height == newSize.height) {
       r = m_scaleCache;
       r->m_refcnt++;
       return r;
