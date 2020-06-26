@@ -6753,6 +6753,49 @@ $as_echo "$as_me: WARNING: \"Shape extension not used\"" >&2;}
 fi
 
 
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for XRenderCreatePicture in -lXrender" >&5
+$as_echo_n "checking for XRenderCreatePicture in -lXrender... " >&6; }
+if ${ac_cv_lib_Xrender_XRenderCreatePicture+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lXrender $X_PRE_LIBS $X_LIBS $X_EXTRA_LIBS $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char XRenderCreatePicture ();
+int
+main ()
+{
+return XRenderCreatePicture ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_Xrender_XRenderCreatePicture=yes
+else
+  ac_cv_lib_Xrender_XRenderCreatePicture=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_Xrender_XRenderCreatePicture" >&5
+$as_echo "$ac_cv_lib_Xrender_XRenderCreatePicture" >&6; }
+if test "x$ac_cv_lib_Xrender_XRenderCreatePicture" = xyes; then :
+  $as_echo "#define HAVE_XRENDER 1" >>confdefs.h
+
+   X_LIBS="$X_LIBS -lXrender"
+fi
+
+
 if test $XSMP = yes -o $XSMP = guess ; then
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for SmcOpenConnection in -lSM" >&5
 $as_echo_n "checking for SmcOpenConnection in -lSM... " >&6; }

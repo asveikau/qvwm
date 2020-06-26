@@ -2,6 +2,7 @@
  * image.cc
  *
  * Copyright (C) 1995-2001 Kenichi Kourai
+ * Copyright (C) 2020 Andrew Sveikauskas - image scaling additions
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +30,22 @@
 #include "image.h"
 #include "callback.h"
 #include <new>
+
+#ifdef HAVE_XRENDER
+#include <X11/extensions/Xrender.h>
+
+static bool XRenderSupported()
+{
+  static bool checked = false, enabled = false;
+  int eventBase, errorBase;
+  if (!checked) {
+    if (XRenderQueryExtension(display, &eventBase, &errorBase))
+      enabled = true;
+    checked = true;
+  }
+  return enabled;
+}
+#endif
 
 QvImage::QvImage()
 {
@@ -241,6 +258,76 @@ void QvImage::Display(Window win, const Point& pt, const Dim &size)
   else if (m_size.width && m_size.height) {
     float xscale = (size.width + 0.0f) / m_size.width;
     float yscale = (size.height + 0.0f) / m_size.height;
+
+#ifdef HAVE_XRENDER
+    if (XRenderSupported()) {
+      XRenderPictFormat *fmt = XRenderFindVisualFormat(display, DefaultVisual(display, DefaultScreen(display)));
+      XRenderPictureAttributes attrs = {0};
+      Picture dst = XRenderCreatePicture(
+        display,
+        win,
+        fmt,
+        0,
+        &attrs
+      );
+      if (dst) {
+        Picture pixmap = XRenderCreatePicture(
+          display,
+          m_pix,
+          fmt,
+          0,
+          &attrs
+        );
+        Picture mask = m_mask ? XRenderCreatePicture(
+          display,
+          m_mask,
+          XRenderFindStandardFormat(display, PictStandardA1),
+          0,
+          &attrs
+        ) : 0;
+        if (pixmap && (mask || !m_mask)) {
+          XTransform transform =
+          {
+            {
+              { XDoubleToFixed(1.0/xscale), XDoubleToFixed(0), XDoubleToFixed(0) },
+              { XDoubleToFixed(0), XDoubleToFixed(1.0/yscale), XDoubleToFixed(0) },
+              { XDoubleToFixed(0), XDoubleToFixed(0), XDoubleToFixed(1.0) }
+            }
+          };
+
+          XRenderSetPictureTransform(display, pixmap, &transform);
+
+          if (mask)
+            XRenderSetPictureTransform(display, mask, &transform);
+
+          XRenderComposite(
+            display,
+            PictOpOver,
+            pixmap,
+            mask,
+            dst,
+            0,
+            0,
+            0,
+            0,
+            pt.x,
+            pt.y,
+            size.width,
+            size.height
+          );
+        }
+
+        if (mask)
+          XRenderFreePicture(display, mask);
+        if (pixmap)
+          XRenderFreePicture(display, pixmap);
+        XRenderFreePicture(display, dst);
+
+        if (pixmap)
+          return; // skip legacy scaler
+      }
+    }
+#endif
 
     QvImage *scaled = Scale(xscale, yscale);
     if (scaled) {

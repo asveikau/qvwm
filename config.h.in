@@ -39,6 +39,9 @@
 /* Define if the X shape extension is available */
 #undef USE_SHAPE
 
+/* Define if the Xrender extension is available */
+#undef HAVE_XRENDER
+
 /* Define if the X Session Management Protocol is available */
 #undef USE_XSMP
 

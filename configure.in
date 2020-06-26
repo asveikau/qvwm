@@ -109,6 +109,11 @@ AC_CHECK_LIB(Xext, XShapeCombineMask,
 	AC_MSG_WARN("Shape extension not used"),
 	$X_PRE_LIBS $X_LIBS $X_EXTRA_LIBS)
 
+AC_CHECK_LIB(Xrender, XRenderCreatePicture,
+   AC_DEFINE(HAVE_XRENDER)
+   X_LIBS="$X_LIBS -lXrender",,
+   $X_PRE_LIBS $X_LIBS $X_EXTRA_LIBS)
+
 dnl -lSM -lICE is included in $X_PRE_LIBS
 if test $XSMP = yes -o $XSMP = guess ; then
 	AC_CHECK_LIB(SM, SmcOpenConnection,
