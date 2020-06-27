@@ -6,11 +6,6 @@ provide user interface which is similar to Windows 95.  It
 features a start menu, a task bar, a system tray with a
 clock and windows-like task-switching.  
 
-Unlike Windows 95, qvwm's menus and almost every other
-feature is controlled by a textual configuration file.  The
-changes done to it in a session would not be restored unless
-you write them to the conf file.
-
 Maintenance history:
 
 This version comes from: https://github.com/asveikau/qvwm
