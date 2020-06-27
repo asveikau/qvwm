@@ -554,6 +554,10 @@ void DoAllSetting()
     RestoreUpSound = RestoreSound;
   if (RestoreDownSound == NULL && RestoreSound != NULL)
     RestoreDownSound = RestoreSound;
+
+  TaskbarButton::SYMBOL_SIZE = IconSize/2;
+  Qvwm::BUTTON_HEIGHT = FrameTitleHeight * 18 / 22;
+  Qvwm::BUTTON_WIDTH = Qvwm::BUTTON_HEIGHT * 16 / 14;
 }
 
 /*
