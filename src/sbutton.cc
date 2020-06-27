@@ -93,35 +93,37 @@ void StartButton::FillBackground()
  */
 void StartButton::DrawName()
 {
+  int x;
   int y;
   XRectangle ink, log;
 
   XmbTextExtents(fsTaskbar, name, strlen(name), &ink, &log);
+  x = SYMBOL_SIZE + 6;
   y = (TaskbarButton::BUTTON_HEIGHT - log.height) / 2 - log.y;
 
   if (CheckState(PUSH)) {
     if (UseBoldFont) {
       XSetForeground(display, ::gc, ButtonStringActiveColor.pixel);
-      XmbDrawString(display, frame, *fsb, ::gc, 22, y+1, name, strlen(name));
+      XmbDrawString(display, frame, *fsb, ::gc, x, y+1, name, strlen(name));
     }
     else {
       XSetForeground(display, ::gc, ButtonStringActiveColor.pixel);
-      XmbDrawString(display, frame, fsTaskbar, ::gc, 22, y+1,
+      XmbDrawString(display, frame, fsTaskbar, ::gc, x, y+1,
 		    name, strlen(name));
-      XmbDrawString(display, frame, fsTaskbar, ::gc, 23, y+1,
+      XmbDrawString(display, frame, fsTaskbar, ::gc, x+1, y+1,
 		    name, strlen(name));
     }
   }
   else {
     if (UseBoldFont) {
       XSetForeground(display, ::gc, ButtonStringColor.pixel);
-      XmbDrawString(display, frame, *fsb, ::gc, 22, y, name, strlen(name));
+      XmbDrawString(display, frame, *fsb, ::gc, x, y, name, strlen(name));
     }
     else {
       XSetForeground(display, ::gc, ButtonStringColor.pixel);
-      XmbDrawString(display, frame, fsTaskbar, ::gc, 22, y,
+      XmbDrawString(display, frame, fsTaskbar, ::gc, x, y,
 		    name, strlen(name));
-      XmbDrawString(display, frame, fsTaskbar, ::gc, 23, y,
+      XmbDrawString(display, frame, fsTaskbar, ::gc, x+1, y,
 		    name, strlen(name));
     }
   }
